@@ -68,12 +68,12 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{$dat->JUDUL}}</td>
-                                                    <td>{{$dat->TGL}}</td>
+                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?> </td>
                                                     <td>{{$dat->LOKASI}}</td>
                                                     <td>{{$dat->KATEGORI}}</td>
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td style="width: 80px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editpeng{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
                                                         <a href="/pengguna:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
