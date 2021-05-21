@@ -7,9 +7,9 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class=" nav-item"><a href="#"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
+              <li class=" nav-item"><a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
               </li> 
-              <li class=" nav-item active"><a href="/datadumas"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
+              <li class=" nav-item active"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
               </li>               
           </ul>
       </div>
