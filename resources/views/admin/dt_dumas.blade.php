@@ -72,7 +72,7 @@
                                                     <td>{{$dat->LOKASI}}</td>
                                                     <td>{{$dat->KATEGORI}}</td>
                                                     <td>{{$dat->NAMA}}</td>
-                                                    <td style="width: 80px;">
+                                                    <td style="width: 130px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
                                                         <a href="/pengguna:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
@@ -157,7 +157,7 @@
 
   @foreach($data as $ed)
   <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
           <div class="modal-content">
               <div class="modal-header bg-primary white">
                   <h5 class="modal-title" id="myModalLabel160">Edit Barang</h5>
@@ -169,28 +169,42 @@
                   $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/dumas:upd={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-12">
-                              <table>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                </tr>
-                              </table>
-                            
+                            <div class="col-md-8">
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="first-name-vertical">Judul</label>
+                                      <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" readonly=""  style="background-color: white;">
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="email-id-vertical">Isi Pengaduan</label>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$upd->ISI}} </textarea>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="password-vertical">Kategori</label>
+                                <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
                             </div>
+                            <div class="form-group">
+                                <label for="contact-info-vertical">Lokasi</label>
+                                <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$upd->LOKASI}}" autocomplete="off" readonly="" style="background-color: white;">
+                            </div>
+                            <div class="form-group">
+                                <label for="password-vertical">Lampiran</label>
+                                <center>
+                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="width: 180px; height: 180px;margin: 10px 0px 10px 0px;border:1px solid grey;border-radius: 7px;">
+                                </center>
+                            </div>
+                          </div>
                         </div>
                     </div>
                   </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Ubah</button>
-              </div>
-              </form>
               @endforeach
           </div>
       </div>
@@ -216,19 +230,19 @@
               <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                           <div class="col-md-8">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="first-name-vertical">Judul</label>
-                                    <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" required="">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="email-id-vertical">Isi Pengaduan</label>
-                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;"> {{$upd->ISI}} </textarea>
-                                </div>
-                            </div>
+                          <div class="col-md-8">
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="first-name-vertical">Judul</label>
+                                      <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" required="">
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="email-id-vertical">Isi Pengaduan</label>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;"> {{$upd->ISI}} </textarea>
+                                  </div>
+                              </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
