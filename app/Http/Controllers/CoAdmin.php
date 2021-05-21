@@ -173,12 +173,16 @@ class CoAdmin extends Controller
         $tg = date('Y-m-d H:i:s');
         $ka = $request->kat;
         $lo = $request->lokasi;
-        $le = $request->lamp;
+        $la = $request->lamp;
         $ak = $request->akun;
 
-        $exp  = $request->file('lamp')->extension();
-        $la = $request->akun.'.'.$exp; 
-        $request->file('lamp')->move("assets/lampiran/", $la);
+        if($la == null){
+            $la = 'default.png';
+        }else{
+            $exp  = $request->file('lamp')->extension();
+            $la = $request->akun.'.'.$exp; 
+            $request->file('lamp')->move("assets/lampiran/", $la);
+        }
 
        $data = new dumas();
         if($id == null){

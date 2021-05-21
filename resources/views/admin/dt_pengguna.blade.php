@@ -165,6 +165,8 @@
   </div>
 
 
+
+  
   @foreach($data as $ed)
   <div class="modal fade text-left" id="editpeng{{$ed->PENG_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
