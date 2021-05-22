@@ -39,11 +39,11 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Line Chart</h4>
+                                    <h4 class="card-title"></h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body pl-0">
-                                            <canvas id="densityChart" width="600" height="300"></canvas>
+                                           <canvas id="barChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -56,52 +56,93 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
     <script>
-        var densityCanvas = document.getElementById("densityChart");
+        var canvas = document.getElementById("barChart");
+        var ctx = canvas.getContext('2d');
 
-        Chart.defaults.global.defaultFontFamily = "Lato";
-        Chart.defaults.global.defaultFontSize = 18;
+        // Global Options:
+        Chart.defaults.global.defaultFontColor = 'black';
+        Chart.defaults.global.defaultFontSize = 16;
 
-        var densityData = {
-          label: 'Density of Planet (kg/m3)',
-          data: [5, 6, 3, 8, 5, 4, 7, 8],
-          backgroundColor: 'rgba(0, 99, 132, 0.6)',
-          borderWidth: 0,
-          yAxisID: "y-axis-density"
-        };
-
-        var gravityData = {
-          label: 'Gravity of Planet (m/s2)',
-          data: [3.7, 8.9, 9.8, 3.7, 23.1, 9.0, 8.7, 11.0],
-          backgroundColor: 'rgba(99, 132, 0, 0.6)',
-          borderWidth: 0,
-          yAxisID: "y-axis-gravity"
-        };
-
-        var planetData = {
-          labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
-          datasets: [densityData, gravityData]
-        };
-
-        var chartOptions = {
-          scales: {
-            xAxes: [{
-              barPercentage: 1,
-              categoryPercentage: 0.6
-            }],
-            yAxes: [{
-              id: "y-axis-density"
+        var data = {
+          labels: [<?php foreach ($data as $key){ ?>
+                              '<?php echo $key->bln; ?>',
+                          <?php }?>],
+          datasets: [{
+              label: "Diverivikasi",
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: "rgba(54, 162, 235, 0.2)",
+              borderColor: "green", // The main line color
+              borderCapStyle: 'square',
+              borderDash: [], // try [5, 15] for instance
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "black",
+              pointBackgroundColor: "white",
+              pointBorderWidth: 1,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: "yellow",
+              pointHoverBorderColor: "brown",
+              pointHoverBorderWidth: 2,
+              pointRadius: 4,
+              pointHitRadius: 10,
+              // notice the gap in the data and the spanGaps: true
+              data: [<?php foreach ($data as $key){ ?>
+                              '<?php echo $key->ver; ?>',
+                          <?php }?>],
+              spanGaps: true,
             }, {
-              id: "y-axis-gravity"
-            }]
-          }
+              label: "Tidak DIverivikasi",
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              borderColor: "red",
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "white",
+              pointBackgroundColor: "black",
+              pointBorderWidth: 1,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: "brown",
+              pointHoverBorderColor: "yellow",
+              pointHoverBorderWidth: 2,
+              pointRadius: 4,
+              pointHitRadius: 10,
+              // notice the gap in the data and the spanGaps: false
+              data: [<?php foreach ($data as $key){ ?>
+                              '<?php echo $key->tdk; ?>',
+                          <?php }?>],
+              spanGaps: false,
+            }
+
+          ]
         };
 
-        var barChart = new Chart(densityCanvas, {
-          type: 'bar',
-          data: planetData,
-          options: chartOptions
+        // Notice the scaleLabel at the same level as Ticks
+        var options = {
+          scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel: {
+                             display: true,
+                             labelString: 'Pengaduan Masyarakat',
+                             fontSize: 20 
+                          }
+                    }]            
+                }  
+        };
+
+        // Chart declaration:
+        var myBarChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: options
         });
     </script>
 
