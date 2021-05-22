@@ -175,7 +175,7 @@ class CoAdmin extends Controller
         $lo = $request->lokasi;
         $la = $request->lamp;
         $ak = $request->akun;
-
+        
         if($la == null){
             $la = 'default.png';
         }else{
@@ -200,5 +200,58 @@ class CoAdmin extends Controller
         $data->save();
 
         return redirect('datadumas')->with('addpeng','.');
+    }
+
+    public function upddumas(Request $request,$id)
+    {
+        $ju = $request->judul;
+        $is = $request->isi;
+        $ka = $request->kat;
+        $lo = $request->lokasi;
+        $ak = $request->akun;
+
+        if($request->file('lamp') == null){
+
+            $data = DB::table('dumas')->where('DUMAS_ID',$id)->update(['JUDUL'=>ucfirst($ju),'ISI'=>$is,'KATEGORI'=>$ka,'LOKASI'=>$lo]);
+        }else{
+
+            $gam = DB::SELECT("select*from dumas where DUMAS_ID = '$id'");
+            foreach ($gam as $key) {
+               if($key->LAMPIRAN == 'default.png'){
+
+                }else{
+                    $image_path = "assets/lampiran/$key->LAMPIRAN";
+                    if(File::exists($image_path)) {
+                    File::delete($image_path);
+                    }
+                }
+            }
+
+                $exp  = $request->file('lamp')->extension();
+                $la = $request->akun.'.'.$exp; 
+                $request->file('lamp')->move("assets/lampiran/", $la);
+
+            $data = DB::table('dumas')->where('DUMAS_ID',$id)->update(['JUDUL'=>ucfirst($ju),'ISI'=>$is,'KATEGORI'=>$ka,'LOKASI'=>$lo,'LAMPIRAN'=>"$la"]);      
+        }
+        
+        return redirect('datadumas')->with('updpeng','.');
+    }
+
+    public function deldumas($id)
+    {
+        $gam = DB::SELECT("select*from dumas where DUMAS_ID = '$id'");
+        foreach ($gam as $key) {
+               if($key->LAMPIRAN == 'default.png'){
+
+                }else{
+                    $image_path = "assets/lampiran/$key->LAMPIRAN";
+                    if(File::exists($image_path)) {
+                    File::delete($image_path);
+                    }
+                }
+            }
+        DB::table('dumas')->where('DUMAS_ID',$id)->delete();
+
+        return redirect('datadumas')->with('delpeng','.');
     }
 }

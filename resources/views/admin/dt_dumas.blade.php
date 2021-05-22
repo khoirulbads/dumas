@@ -51,7 +51,12 @@
                               <div class="card-content">
                                   <div class="card-body">
 
-                                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button>
+                                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button> 
+                                    @if ($errors->has('file'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('file') }}</strong>
+                                      </span>
+                                    @endif
                                     <div class="table-responsive">
                                         <table class="table add-rows">
                                             <thead>
@@ -75,7 +80,7 @@
                                                     <td style="width: 130px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="/pengguna:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -198,7 +203,7 @@
                             <div class="form-group">
                                 <label for="password-vertical">Lampiran</label>
                                 <center>
-                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="width: 180px; height: 180px;margin: 10px 0px 10px 0px;border:1px solid grey;border-radius: 7px;">
+                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="width: 180px; height: 180px;margin: 10px 0px 10px 0px;border-radius: 5px;">
                                 </center>
                             </div>
                           </div>

@@ -37,3 +37,5 @@ Route::get('/pengguna:del={id}', 'CoAdmin@delpeng');
 
 Route::get('/datadumas', 'CoAdmin@dtadumas');
 Route::post('/add_dumas', 'CoAdmin@adddumas');
+Route::post('/dumas:upd={id}', 'CoAdmin@upddumas');
+Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
