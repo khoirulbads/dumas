@@ -254,4 +254,11 @@ class CoAdmin extends Controller
 
         return redirect('datadumas')->with('delpeng','.');
     }
+
+
+    public function dtastat()
+    {   
+        $data = DB::SELECT("select*from dumas");
+        return view('/admin/dt_stat',['data'=>$data]);
+    }
 }

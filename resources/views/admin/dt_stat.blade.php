@@ -26,80 +26,84 @@
 
     ?>
 
+ 
+
     @section('content')
     <div class="app-content content">
-       <!--  <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div> -->
         <div class="content-wrapper">
-          <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
-                  <div class="row breadcrumbs-top">
-                      <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masyarakat</h2>
-                          <div class="breadcrumb-wrapper col-12">
-                              <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><a href="index.html">Data</a>
-                                  </li>
-                                  <li class="breadcrumb-item active">Data Data Pengaduan Masyarakat
-                                  </li>
-                              </ol>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="content-body">
-              <section id="add-row">
-                  <div class="row">
-                      <div class="col-12">
-                          <div class="card">
-                              <div class="card-content">
-                                  <div class="card-body">
-
-                                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button> 
-                                    @if ($errors->has('file'))
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $errors->first('file') }}</strong>
-                                      </span>
-                                    @endif
-                                    <div class="table-responsive">
-                                        <table class="table add-rows">
-                                            <thead>
-                                                <tr>
-                                                    <th>Judul</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Penulis</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            @foreach($data as $dat)
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{$dat->JUDUL}}</td>
-                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
-                                                    <td>{{$dat->NAMA}}</td>
-                                                    <td></td>
-                                                    <td style="width: 130px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
-                                                        <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            @endforeach
-                                        </table>
+            <div class="content-body">
+                
+                <section id="chartjs-charts">
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Line Chart</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body pl-0">
+                                            <canvas id="densityChart" width="600" height="300"></canvas>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </section>
+                </section>
+
             </div>
-          </div>
         </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+        var densityCanvas = document.getElementById("densityChart");
+
+        Chart.defaults.global.defaultFontFamily = "Lato";
+        Chart.defaults.global.defaultFontSize = 18;
+
+        var densityData = {
+          label: 'Density of Planet (kg/m3)',
+          data: [5, 6, 3, 8, 5, 4, 7, 8],
+          backgroundColor: 'rgba(0, 99, 132, 0.6)',
+          borderWidth: 0,
+          yAxisID: "y-axis-density"
+        };
+
+        var gravityData = {
+          label: 'Gravity of Planet (m/s2)',
+          data: [3.7, 8.9, 9.8, 3.7, 23.1, 9.0, 8.7, 11.0],
+          backgroundColor: 'rgba(99, 132, 0, 0.6)',
+          borderWidth: 0,
+          yAxisID: "y-axis-gravity"
+        };
+
+        var planetData = {
+          labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
+          datasets: [densityData, gravityData]
+        };
+
+        var chartOptions = {
+          scales: {
+            xAxes: [{
+              barPercentage: 1,
+              categoryPercentage: 0.6
+            }],
+            yAxes: [{
+              id: "y-axis-density"
+            }, {
+              id: "y-axis-gravity"
+            }]
+          }
+        };
+
+        var barChart = new Chart(densityCanvas, {
+          type: 'bar',
+          data: planetData,
+          options: chartOptions
+        });
+    </script>
 
     @endsection
 
