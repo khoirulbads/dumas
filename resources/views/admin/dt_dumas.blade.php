@@ -7,10 +7,15 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class=" nav-item"><a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
+              <li class=" nav-item">
+                  <a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
               </li> 
-              <li class=" nav-item active"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
-              </li>               
+              <li class=" nav-item active">
+                  <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
+              </li>
+              <li class=" nav-item ">
+                  <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+              </li>              
           </ul>
       </div>
     @endsection
@@ -63,9 +68,8 @@
                                                 <tr>
                                                     <th>Judul</th>
                                                     <th>Tanggal</th>
-                                                    <th>Lokasi</th>
-                                                    <th>Kategori</th>
                                                     <th>Penulis</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -73,10 +77,9 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{$dat->JUDUL}}</td>
-                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?> </td>
-                                                    <td>{{$dat->LOKASI}}</td>
-                                                    <td>{{$dat->KATEGORI}}</td>
+                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                     <td>{{$dat->NAMA}}</td>
+                                                    <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 130px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
@@ -125,7 +128,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="email-id-vertical">Isi Pengaduan</label>
-                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="isi" autocomplete="off" required="" style="height: 270px;resize: none;"> </textarea>
+                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="berikan alamat lengkap dan contoh: jalan rusak parah di depan Terminal Gubug Kec. Gubug Kabupaten Grobogan, mohon segera diperbaiki" autocomplete="off" required="" style="height: 270px;resize: none;"> </textarea>
                                 </div>
                             </div>
                           </div>
@@ -165,7 +168,7 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
           <div class="modal-content">
               <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Edit Barang</h5>
+                  <h5 class="modal-title" id="myModalLabel160">Detail Laporan</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -177,7 +180,7 @@
               <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                               <div class="col-12">
                                   <div class="form-group">
                                       <label for="first-name-vertical">Judul</label>
@@ -191,7 +194,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-5">
                             <div class="form-group">
                                 <label for="password-vertical">Kategori</label>
                                 <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
@@ -203,7 +206,7 @@
                             <div class="form-group">
                                 <label for="password-vertical">Lampiran</label>
                                 <center>
-                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="width: 180px; height: 180px;margin: 10px 0px 10px 0px;border-radius: 5px;">
+                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="max-width: 100%;max-height: 300px;margin: 10px 0px 10px 0px;border-radius: 5px;">
                                 </center>
                             </div>
                           </div>

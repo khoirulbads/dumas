@@ -173,10 +173,9 @@ class CoAdmin extends Controller
         $tg = date('Y-m-d H:i:s');
         $ka = $request->kat;
         $lo = $request->lokasi;
-        $la = $request->lamp;
         $ak = $request->akun;
         
-        if($la == null){
+        if($request->file('lamp') == null){
             $la = 'default.png';
         }else{
             $exp  = $request->file('lamp')->extension();
@@ -197,6 +196,7 @@ class CoAdmin extends Controller
         $data->KATEGORI = $ka;
         $data->LAMPIRAN = $la;
         $data->PENG_ID = $ak;
+        $data->STATUS = 'diverifikasi';
         $data->save();
 
         return redirect('datadumas')->with('addpeng','.');
