@@ -9,7 +9,7 @@ class dumas extends Model
 {
     protected $table = 'dumas';
     protected $fillable = [
-        'DUMAS_ID', 'PENG_ID','JUDUL','ISI', 'TGL','KATEGORI','LAMPIRAN','STATUS'
+        'DUMAS_ID', 'PENG_ID','JUDUL','ISI', 'TGL','KATEGORI','LAMPIRAN'
     ];
 
     public $timestamps = false;

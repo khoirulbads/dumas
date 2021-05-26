@@ -1,22 +1,27 @@
 @extends('layout.layadm')
 
     @section('menu')
-        <div class="main-menu-content">
-          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item "><a href="/admin"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-              </li>
-              <li class=" navigation-header"><span>Data</span>
-              </li>
-              <li class=" nav-item">
+      <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+            </li>
+            <li class=" navigation-header"><span>Data</span>
+            </li>
+            <li class=" nav-item">
                   <a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
+            </li>
+            <li class=" nav-item active"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+                <ul class="menu-content">
+                    <li class=" nav-item active"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
+                    </li>
+                    <li><a href="/dataverdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
+                    </li>
+                </ul>
               </li> 
-              <li class=" nav-item active">
-                  <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
-              </li>
-              <li class=" nav-item ">
+            <li class=" nav-item">
                   <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
-              </li>              
-          </ul>
+            </li>             
+        </ul>
       </div>
     @endsection
 
@@ -55,13 +60,7 @@
                           <div class="card">
                               <div class="card-content">
                                   <div class="card-body">
-
-                                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button> 
-                                    @if ($errors->has('file'))
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $errors->first('file') }}</strong>
-                                      </span>
-                                    @endif
+                                      <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button> 
                                     <div class="table-responsive">
                                         <table class="table add-rows">
                                             <thead>
@@ -80,10 +79,11 @@
                                                     <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->STATUS}}</td>
-                                                    <td style="width: 130px;">
+                                                    <td style="width: 160px;">
+                                                        <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <!-- <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a> -->
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -117,6 +117,9 @@
                         <div class="row">
                           @foreach($idd as $id)
                             <input type="hidden" name="idd" value="{{$id->DUMAS_ID+1}}" readonly="">
+                          @endforeach
+                          @foreach($idv as $id)
+                            <input type="hidden" name="idv" value="{{$id->DUMAS_ID+1}}" readonly="">
                           @endforeach
                           <div class="col-md-8">
                             <div class="col-12">
@@ -162,6 +165,53 @@
           </div>
       </div>
   </div>
+
+  @foreach($data as $ed)
+  <div class="modal fade text-left" id="statdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-primary white">
+                  <h5 class="modal-title" id="myModalLabel160">Detail Laporan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <?php
+                  $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
+              ?>
+              @foreach($upd as $upd)
+              <form action="/dumas:sta={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
+              {{csrf_field()}}
+                  <div class="modal-body">
+                      <div class="form-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="password-vertical">Kategori</label>
+                                  <select class="form-control" name="stat" required="">
+                                    <option></option>
+                                    <option>tidak verifikasi</option>
+                                    <option>telah verifikasi</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <label for="contact-info-vertical">Keterangan</label>
+                                  <textarea type="text" id="contact-info-vertical" class="form-control" name="ket" value="{{$upd->KET}}" autocomplete="off" style="height: 270px;resize: none;"></textarea>
+                              </div>
+                              
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach
+                  <div class="modal-footer">
+                    <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  @endforeach
 
   @foreach($data as $ed)
   <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">

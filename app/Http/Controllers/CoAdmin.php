@@ -12,6 +12,7 @@ use DB;
 use PDF;
 use App\pengguna;
 use App\dumas;
+use App\verifikasi;
 
 class CoAdmin extends Controller
 {
@@ -161,13 +162,15 @@ class CoAdmin extends Controller
     public function dtadumas()
     {   
         $idd = dumas::getId();
-        $data = DB::SELECT("select*from dumas a, pengguna b where a.PENG_ID = b.PENG_ID");
-        return view('/admin/dt_dumas',['data'=>$data,'idd'=>$idd]);
+        $idv = verifikasi::getId();
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi'");
+        return view('/admin/dt_dumas',['data'=>$data,'idd'=>$idd,'idv'=>$idv]);
     }
 
     public function adddumas(Request $request)
     {
         $id = $request->idd;
+        $iv = $request->idv;
         $ju = $request->judul;
         $is = $request->isi;
         $tg = date('Y-m-d H:i:s');
@@ -183,7 +186,7 @@ class CoAdmin extends Controller
             $request->file('lamp')->move("assets/lampiran/", $la);
         }
 
-       $data = new dumas();
+        $data = new dumas();
         if($id == null){
             $data->DUMAS_ID = 1;
         }else{
@@ -196,10 +199,35 @@ class CoAdmin extends Controller
         $data->KATEGORI = $ka;
         $data->LAMPIRAN = $la;
         $data->PENG_ID = $ak;
-        $data->STATUS = 'diverifikasi';
+        $data->save();
+
+        $data = new verifikasi();
+        if($id == null){
+            $data->VER_ID = 1;
+        }else{
+            $data->VER_ID = $iv;
+        }
+        if($id == null){
+            $data->DUMAS_ID = 1;
+        }else{
+            $data->DUMAS_ID = $id;
+        }
+        $data->STATUS = 'verifikasi';
+        $data->TGL = $tg;
         $data->save();
 
         return redirect('datadumas')->with('addpeng','.');
+    }
+
+    public function updstdumas(Request $request,$id)
+    {
+        $st = $request->stat;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+
+        $data = DB::table('verifikasi')->where('DUMAS_ID',$id)->update(['STATUS'=>$st,'TGL'=>$tg,'KET'=>$kt]);
+       
+        return redirect()->back()->with('addpeng','.');
     }
 
     public function upddumas(Request $request,$id)
@@ -234,7 +262,7 @@ class CoAdmin extends Controller
             $data = DB::table('dumas')->where('DUMAS_ID',$id)->update(['JUDUL'=>ucfirst($ju),'ISI'=>$is,'KATEGORI'=>$ka,'LOKASI'=>$lo,'LAMPIRAN'=>"$la"]);      
         }
         
-        return redirect('datadumas')->with('updpeng','.');
+        return redirect()->back()->with('addpeng','.');
     }
 
     public function deldumas($id)
@@ -253,6 +281,12 @@ class CoAdmin extends Controller
         DB::table('dumas')->where('DUMAS_ID',$id)->delete();
 
         return redirect('datadumas')->with('delpeng','.');
+    }
+
+    public function dtaverdumas()
+    {   
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi'");
+        return view('/admin/dt_verdumas',['data'=>$data]);
     }
 
 

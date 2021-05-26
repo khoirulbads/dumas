@@ -37,7 +37,11 @@ Route::get('/pengguna:del={id}', 'CoAdmin@delpeng');
 
 Route::get('/datadumas', 'CoAdmin@dtadumas');
 Route::post('/add_dumas', 'CoAdmin@adddumas');
+Route::post('/dumas:sta={id}', 'CoAdmin@updstdumas');
 Route::post('/dumas:upd={id}', 'CoAdmin@upddumas');
 Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
+Route::get('/dataverdumas', 'CoAdmin@dtaverdumas');
 
 Route::get('/datastat', 'CoAdmin@dtastat');
+
+Route::get('/logout', 'Controller@logout');
