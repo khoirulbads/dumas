@@ -292,7 +292,7 @@ class CoAdmin extends Controller
 
     public function dtastat()
     {   
-        $data = DB::SELECT("SELECT (SELECT COUNT(*) FROM dumas WHERE STATUS = 'diverifikasi') as ver,(SELECT COUNT(*) FROM dumas WHERE STATUS = 'tidak diverifikasi') as tdk , MONTHNAME(TGL) as bln FROM dumas GROUP BY bln");
+        $data = DB::SELECT("SELECT (SELECT COUNT(*) FROM dumas a, verifikasi b WHERE a.DUMAS_ID = b.DUMAS_ID and b.STATUS = 'telah verifikasi') as ver, (SELECT COUNT(*) FROM dumas a, verifikasi b WHERE a.DUMAS_ID = b.DUMAS_ID and b.STATUS = 'tidak verifikasi') as tdk, MONTHNAME(TGL) as bln FROM dumas GROUP BY bln");
         return view('/admin/dt_stat',['data'=>$data]);
     }
 }
