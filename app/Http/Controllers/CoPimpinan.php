@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use File;
+use App\Http\Requests;
+use Authenticate;
+use DB;
+use PDF;
+use App\pengguna;
+use App\dumas;
+use App\verifikasi;
 
 class CoPimpinan extends Controller
 {
@@ -12,7 +21,7 @@ class CoPimpinan extends Controller
             return redirect('/login')->with('errlog','.');
         }else{
 
-            return view('/admin/home');
+            return view('/pimpinan/home');
         }
 
     }

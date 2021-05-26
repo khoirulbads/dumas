@@ -23,7 +23,7 @@ Route::get('/actlog', 'Controller@actlog');
 
 
 
-Route::get('/pimpinan', 'CoOwner@home');
+Route::get('/pimpinan', 'CoPimpinan@home');
 
 
 
