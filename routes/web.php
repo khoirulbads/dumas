@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('login');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
 
 Route::post('/regis', 'Controller@register');
 Route::get('/actlog', 'Controller@actlog');
@@ -43,5 +47,15 @@ Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
 Route::get('/dataverdumas', 'CoAdmin@dtaverdumas');
 
 Route::get('/datastat', 'CoAdmin@dtastat');
+
+
+
+Route::get('/pengunjung', 'CoPengunjung@home');
+
+
+Route::get('/pdatadumas', 'CoPengunjung@dtadumas');
+Route::post('/add_pdumas', 'CoPengunjung@adddumas');
+Route::post('/pdumas:upd={id}', 'CoPengunjung@upddumas');
+Route::get('/pdumas:del={id}', 'CoPengunjung@deldumas');
 
 Route::get('/logout', 'Controller@logout');
