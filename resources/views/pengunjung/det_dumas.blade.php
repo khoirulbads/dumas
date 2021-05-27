@@ -88,7 +88,7 @@
                                   <ul class="activity-timeline timeline-left list-unstyled">
                                       <li>
                                           @foreach($data as $tm1)
-                                          <div class="timeline-icon bg-success">
+                                          <div class="timeline-icon bg-info">
                                               <i class="feather icon-check-circle font-medium-2 align-middle"></i>
                                           </div>
                                           <div class="timeline-info">
@@ -100,56 +100,100 @@
                                       </li>
                                       <li>
                                         @foreach($ver as $tm2)
-                                          <?php if ($tm2->STATUS == 'belum verifikasi' ){ ?>
-                                              <div class="timeline-icon bg-light">
-                                                  <i class="feather icon-clock font-medium-2 align-middle"></i>
-                                              </div>
-                                              <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">Status Verifikasi</p>
-                                                <span class="font-small-3">belum diverifikasi</span>
-                                              </div>
-                                          <?php }else{ ?>
-                                              <div class="timeline-icon bg-success">
+                                            <?php if ($tm2->STATUS == 'belum verifikasi' ){ ?>
+                                                <div class="timeline-icon bg-light">
+                                                    <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                  <p class="font-weight-bold mb-0">Status Verifikasi</p>
+                                                  <span class="font-small-3">menunggu diverifikasi</span>
+                                                </div>
+                                            <?php }else if ($tm2->STATUS == 'tidak verifikasi' ){ ?>
+                                                <div class="timeline-icon bg-light">
+                                                    <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                  <p class="font-weight-bold mb-0">Status Verifikasi</p>
+                                                  <span class="font-small-3"></span>
+                                                </div>
+                                            <?php }else{ ?>
+                                                <div class="timeline-icon bg-info">
+                                                    <i class="feather icon-check-circle font-medium-2 align-middle"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                  <p class="font-weight-bold mb-0">Status Verifikasi</p>
+                                                  <span class="font-small-3">pengaduan anda telah diverifikasi 
+                                                              <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : " <i>'.$tm2->KET.'</i> ".'; }?> </span>
+                                                </div>
+                                                <small class="text-muted"><?= date('d M Y H:i',strtotime($tm2->TGL)); ?></small>
+                                            <?php } ?>
+                                        @endforeach
+                                      </li>
+                                      <li>
+                                        <?php if ($tln == null){ ?>
+                                            <div class="timeline-icon bg-light">
+                                                <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                              <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
+                                              <span class="font-small-3">menunggu ditindak lanjuti</span>
+                                            </div>
+                                        <?php }else{ ?>
+                                            @foreach($tln as $tm3)
+                                              <div class="timeline-icon bg-info">
                                                   <i class="feather icon-check-circle font-medium-2 align-middle"></i>
                                               </div>
                                               <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">Status Verifikasi</p>
-                                                <span class="font-small-3">Cupcake gummi bears soufflé caramels candy</span>
+                                                <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
+                                                <span class="font-small-3">{{$tm3->KET}}</span>
                                               </div>
-                                              <small class="text-muted">15 days ago</small>
-                                          <?php } ?>
-                                          
-                                          @endforeach
+                                              <small class="text-muted"><?= date('d M Y H:i',strtotime($tm3->TGL)); ?></small>
+                                            @endforeach
+                                        <?php } ?>
                                       </li>
                                       <li>
-                                          <div class="timeline-icon bg-danger">
-                                              <i class="feather icon-check font-medium-2 align-middle"></i>
-                                          </div>
-                                          <div class="timeline-info">
-                                              <p class="font-weight-bold mb-0">Plan Webinar</p>
-                                              <span class="font-small-3">Candy ice cream cake. Halvah gummi bears</span>
-                                          </div>
-                                          <small class="text-muted">20 days ago</small>
+                                        <?php if ($res == null){ ?>
+                                            <div class="timeline-icon bg-light">
+                                                <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                              <p class="font-weight-bold mb-0">Status Respon</p>
+                                              <span class="font-small-3">menunggu direspon</span>
+                                            </div>
+                                        <?php }else{ ?>
+                                            @foreach($res as $tm4)
+                                              <div class="timeline-icon bg-info">
+                                                  <i class="feather icon-check-circle font-medium-2 align-middle"></i>
+                                              </div>
+                                              <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Status Respon</p>
+                                                <span class="font-small-3">{{$tm4->KET}}</span>
+                                              </div>
+                                              <small class="text-muted"><?= date('d M Y H:i',strtotime($tm4->TGL)); ?></small>
+                                            @endforeach
+                                        <?php } ?>
                                       </li>
                                       <li>
-                                          <div class="timeline-icon bg-success">
-                                              <i class="feather icon-check font-medium-2 align-middle"></i>
-                                          </div>
-                                          <div class="timeline-info">
-                                              <p class="font-weight-bold mb-0">Launch Website</p>
-                                              <span class="font-small-3">Candy ice cream cake. </span>
-                                          </div>
-                                          <small class="text-muted">25 days ago</small>
-                                      </li>
-                                      <li>
-                                          <div class="timeline-icon bg-primary">
-                                              <i class="feather icon-check font-medium-2 align-middle"></i>
-                                          </div>
-                                          <div class="timeline-info">
-                                              <p class="font-weight-bold mb-0">Marketing</p>
-                                              <span class="font-small-3">Candy ice cream. Halvah bears Cupcake gummi bears.</span>
-                                          </div>
-                                          <small class="text-muted">28 days ago</small>
+                                        <?php if ($res == null){ ?>
+                                            <div class="timeline-icon bg-light">
+                                                <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                            </div>
+                                            <div class="timeline-info">
+                                              <p class="font-weight-bold mb-0">Status Selesai </p>
+                                              <span class="font-small-3">masih menunggu beberapa proses lagi ... </span>
+                                            </div>
+                                        <?php }else{ ?>
+                                              <div class="timeline-icon bg-info">
+                                                  <i class="feather icon-check-circle font-medium-2 align-middle"></i>
+                                              </div>
+                                              <div class="timeline-info">
+                                                <p class="font-weight-bold mb-0">Status Selesai</p>
+                                                <span class="font-small-3">Pengaduan telah terselesaikan</span>
+                                              </div>
+                                              @foreach($res as $tm5)
+                                              <small class="text-muted"><?= date('d M Y H:i',strtotime($tm5->TGL)); ?></small>
+                                              @endforeach
+                                        <?php } ?>
                                       </li>
                                   </ul>
                               </div>
