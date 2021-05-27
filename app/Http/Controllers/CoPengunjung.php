@@ -13,6 +13,8 @@ use PDF;
 use App\pengguna;
 use App\dumas;
 use App\verifikasi;
+use App\tindak_lanjut;
+use App\respon;
 
 class CoPengunjung extends Controller
 {
@@ -123,6 +125,14 @@ class CoPengunjung extends Controller
         return redirect('pdatadumas')->with('addpeng','.');
     }
 
+    public function detdumas($id)
+    {   
+        $data = DB::SELECT("select*from dumas a, pengguna b where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = '$id'");
+        $ver = DB::SELECT("select*from verifikasi where DUMAS_ID = '$id'");
+        $tln = DB::SELECT("select*from tindak_lanjut where DUMAS_ID = '$id'");
+        $res = DB::SELECT("select*from respon where DUMAS_ID = '$id'");
+        return view('/pengunjung/det_dumas',['data'=>$data,'ver'=>$ver,'tln'=>$tln,'res'=>$res]);
+    }
 
     public function upddumas(Request $request,$id)
     {

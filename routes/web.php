@@ -51,10 +51,11 @@ Route::get('/datastat', 'CoAdmin@dtastat');
 
 
 Route::get('/pengunjung', 'CoPengunjung@home');
-
+Route::post('/edpeng:pengunjung={id}', 'CoPengunjung@edpeng');
 
 Route::get('/pdatadumas', 'CoPengunjung@dtadumas');
 Route::post('/add_pdumas', 'CoPengunjung@adddumas');
+Route::get('/pdumas:det={id}', 'CoPengunjung@detdumas');
 Route::post('/pdumas:upd={id}', 'CoPengunjung@upddumas');
 Route::get('/pdumas:del={id}', 'CoPengunjung@deldumas');
 
