@@ -7,16 +7,18 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class=" nav-item ">
-                    <a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
-              </li>
               <li class=" nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
-                  <ul class="menu-content">
-                      <li><a href="/datadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
-                      </li>
-                      <li><a href="/dataverdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
-                      </li>
-                  </ul>
+                <ul class="menu-content">
+                    <li>
+                        <a href="/odatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Verifikasi</span></a>
+                    </li>
+                    <li>
+                        <a href="/odataprdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
+                    </li>
+                    <li>
+                        <a href="/odatatldumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
+                    </li>
+                </ul>
               </li>  
               <li class=" nav-item">
                     <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>

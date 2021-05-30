@@ -180,7 +180,7 @@
                                             </div>
                                             <div class="timeline-info">
                                               <p class="font-weight-bold mb-0">Status Selesai </p>
-                                              <span class="font-small-3">masih menunggu beberapa proses lagi ... </span>
+                                              <span class="font-small-3">beberapa proses masih belum terpenuhi </span>
                                             </div>
                                         <?php }else{ ?>
                                               <div class="timeline-icon bg-info">

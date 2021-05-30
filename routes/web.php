@@ -28,6 +28,15 @@ Route::get('/actlog', 'Controller@actlog');
 
 
 Route::get('/pimpinan', 'CoPimpinan@home');
+Route::post('/edpeng:pimpinan={id}', 'CoPimpinan@edpeng');
+
+Route::get('/odatadumas', 'CoPimpinan@dtadumas');
+Route::post('/odumas:addsta', 'CoPimpinan@addstdumas');
+
+Route::get('/odataprdumas', 'CoPimpinan@dtaproses');
+Route::post('/odumas:sta={id}', 'CoPimpinan@updstdumas');
+
+Route::get('/odatastat', 'CoPimpinan@dtastat');
 
 
 
