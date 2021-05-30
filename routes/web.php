@@ -36,6 +36,9 @@ Route::post('/odumas:addsta', 'CoPimpinan@addstdumas');
 Route::get('/odataprdumas', 'CoPimpinan@dtaproses');
 Route::post('/odumas:sta={id}', 'CoPimpinan@updstdumas');
 
+Route::get('/odatatldumas', 'CoPimpinan@dtaselesai');
+
+
 Route::get('/odatastat', 'CoPimpinan@dtastat');
 
 
@@ -67,5 +70,10 @@ Route::post('/add_pdumas', 'CoPengunjung@adddumas');
 Route::get('/pdumas:det={id}', 'CoPengunjung@detdumas');
 Route::post('/pdumas:upd={id}', 'CoPengunjung@upddumas');
 Route::get('/pdumas:del={id}', 'CoPengunjung@deldumas');
+
+Route::get('/pdataresdumas', 'CoPengunjung@dtaresdumas');
+Route::post('/dumas:respon', 'CoPengunjung@resdumas');
+
+
 
 Route::get('/logout', 'Controller@logout');

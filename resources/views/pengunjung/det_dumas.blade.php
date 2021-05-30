@@ -7,8 +7,15 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class="nav-item active">
-                    <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
+              <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+                <ul class="menu-content">
+                    <li class="active">
+                        <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
+                    </li>
+                    <li>
+                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu respon</span></a>
+                    </li>
+                </ul>
               </li>             
           </ul>
       </div>
@@ -123,7 +130,7 @@
                                                 <div class="timeline-info">
                                                   <p class="font-weight-bold mb-0">Status Verifikasi</p>
                                                   <span class="font-small-3">pengaduan anda telah diverifikasi 
-                                                              <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : " <i>'.$tm2->KET.'</i> ".'; }?> </span>
+                                                              <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm2->KET.'"</i>.'; }?> </span>
                                                 </div>
                                                 <small class="text-muted"><?= date('d M Y H:i',strtotime($tm2->TGL)); ?></small>
                                             <?php } ?>
@@ -139,15 +146,33 @@
                                               <span class="font-small-3">menunggu ditindak lanjuti</span>
                                             </div>
                                         <?php }else{ ?>
+                                            
                                             @foreach($tln as $tm3)
-                                              <div class="timeline-icon bg-info">
-                                                  <i class="feather icon-check-circle font-medium-2 align-middle"></i>
-                                              </div>
-                                              <div class="timeline-info">
-                                                <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
-                                                <span class="font-small-3">{{$tm3->KET}}</span>
-                                              </div>
-                                              <small class="text-muted"><?= date('d M Y H:i',strtotime($tm3->TGL)); ?></small>
+                                            <?php if($tm3->STATUS == 'proses'){?> 
+
+                                                <div class="timeline-icon bg-gradient-info">
+                                                    <i class="feather icon-refresh-cw font-medium-2 align-middle"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                  <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
+                                                  <span class="font-small-3">pengaduan anda telah diproses 
+                                                      <?php if($tm3->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm3->KET.'"</i>.'; }?> </span>
+                                                </div>
+                                                <small class="text-muted"><?= date('d M Y H:i',strtotime($tm3->TGL)); ?></small>
+
+                                            <?php }else{ ?>
+
+                                                <div class="timeline-icon bg-info">
+                                                    <i class="feather icon-check-circle font-medium-2 align-middle"></i>
+                                                </div>
+                                                <div class="timeline-info">
+                                                  <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
+                                                  <span class="font-small-3">pengaduan anda telah selesai di proses
+                                                      <?php if($tm3->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm3->KET.'"</i>.'; }?></span>
+                                                </div>
+                                                <small class="text-muted"><?= date('d M Y H:i',strtotime($tm3->TGL)); ?></small>
+
+                                            <?php } ?>
                                             @endforeach
                                         <?php } ?>
                                       </li>
@@ -167,7 +192,7 @@
                                               </div>
                                               <div class="timeline-info">
                                                 <p class="font-weight-bold mb-0">Status Respon</p>
-                                                <span class="font-small-3">{{$tm4->KET}}</span>
+                                                <span class="font-small-3">{{$tm1->NAMA}} telah merespon dengan pesan <i>"{{$tm4->ISI}}"</i></span>
                                               </div>
                                               <small class="text-muted"><?= date('d M Y H:i',strtotime($tm4->TGL)); ?></small>
                                             @endforeach

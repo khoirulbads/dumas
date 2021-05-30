@@ -81,7 +81,6 @@
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
                                                       <td style="width: 50px;">
-                                                          <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>
                                                   </tr>
@@ -99,57 +98,7 @@
         </div>
     </div>
 
-    @foreach($data as $det)
-    <div class="modal fade text-left" id="statdumas{{$det->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary white">
-                    <h5 class="modal-title" id="myModalLabel160">Tindak Lanjut Laporan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <?php
-                        $uds = DB::SELECT("select*from tindak_lanjut where DUMAS_ID = '$det->DUMAS_ID'");
-                    ?>
 
-                    @foreach($uds as $upd)
-                    <form action="/odumas:sta={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                        <div class="modal-body">
-                            <div class="form-body">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="password-vertical">Kategori</label>
-                                        <select class="form-control" name="stat" required="">
-                                            @foreach($sta as $st)
-                                            <?php if ($st == $upd->STATUS){ ?>
-                                                 <option value="{{$st}}" selected="">{{$st}}</option>
-                                              <?php }else{ ?>
-                                                <option value="{{$st}}">{{$st}}</option>
-                                              <?php }?>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contact-info-vertical">Keterangan</label>
-                                        <textarea type="text" id="contact-info-vertical" class="form-control" name="ket"autocomplete="off" style="height: 270px;resize: none;"> {{$upd->KET}}</textarea>
-                                    </div>
-                                    
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button>
-                        </div>
-                    </form>
-                    @endforeach
-            </div>
-        </div>
-    </div>
-    @endforeach
 
     @foreach($data as $ed)
     <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">

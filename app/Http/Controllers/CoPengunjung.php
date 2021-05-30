@@ -186,4 +186,37 @@ class CoPengunjung extends Controller
 
         return redirect('pdatadumas')->with('delpeng','.');
     }
+
+    public function dtaresdumas()
+    {   
+        $idd = dumas::getId();
+        $idr = respon::getId();
+        $ses = Session::get('akun');
+        $data = DB::SELECT("select*from dumas a, pengguna b, tindak_lanjut c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'selesai' and a.PENG_ID = '$ses'");
+        return view('/pengunjung/res_dumas',['data'=>$data,'idd'=>$idd,'idr'=>$idr]);
+    }
+
+    public function resdumas(Request $request)
+    {
+        $it = $request->idt;
+        $id = $request->idd;
+        $ip = $request->idp;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+
+
+       $data = new respon();
+        if($id == null){
+            $data->RESPON_ID = 1;
+        }else{
+            $data->RESPON_ID = $id;
+        }
+        $data->DUMAS_ID = $id;
+        $data->PENG_ID = $ip;
+        $data->ISI = $kt;
+        $data->TGL = $tg;
+        $data->save();
+
+        return redirect('pdatadumas')->with('addpeng','.');
+    }
 }

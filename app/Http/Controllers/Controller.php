@@ -69,6 +69,7 @@ class Controller extends BaseController
 	        if($level == 'Pimpinan') {
 	        	$na = DB::SELECT("select*from pengguna where USERNAME like '$username'");
 	        	foreach ($na as $nam) {
+                    Session::put('akun',$nam->PENG_ID);
 	        		Session::put('nama',$username);
                     Session::put('nam',$nam->NAMA);
                     Session::put('email',$nam->EMAIL);

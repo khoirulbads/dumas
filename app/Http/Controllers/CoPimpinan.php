@@ -65,7 +65,7 @@ class CoPimpinan extends Controller
     {   
         $idt = tindak_lanjut::getId();
         $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = ''");
+        $data = DB::SELECT("select * FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
         return view('/pimpinan/dt_dumas',['data'=>$data,'idt'=>$idt]);
     }
 
@@ -99,5 +99,25 @@ class CoPimpinan extends Controller
         $ses = Session::get('akun');
         $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses'");
         return view('/pimpinan/pr_dumas',['data'=>$data]);
+    }
+
+    public function updstdumas(Request $request,$id)
+    {
+        $st = $request->stat;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+
+            $data = DB::table('tindak_lanjut')->where('TLAN_ID',$id)->update(['STATUS'=>$st,'KET'=>$kt,'TGL'=>$tg]);      
+        
+
+        return redirect()->back()->with('addpeng','.');
+    }
+
+
+    public function dtaselesai()
+    {   
+        $ses = Session::get('akun');
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai'");
+        return view('/pimpinan/tl_dumas',['data'=>$data]);
     }
 }

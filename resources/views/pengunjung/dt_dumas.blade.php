@@ -7,9 +7,16 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class="nav-item active">
-                    <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
-              </li>             
+              <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+                <ul class="menu-content">
+                    <li class="active">
+                        <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
+                    </li>
+                    <li>
+                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu respon</span></a>
+                    </li>
+                </ul>
+              </li>           
           </ul>
       </div>
     @endsection
