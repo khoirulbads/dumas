@@ -21,7 +21,7 @@
                 </ul>
               </li>  
               <li class=" nav-item">
-                    <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                    <a href="/odatastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
               </li>             
           </ul>
       </div>

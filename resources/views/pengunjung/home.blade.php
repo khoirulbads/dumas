@@ -17,6 +17,9 @@
                     </li>
                 </ul>
               </li>
+              <li class=" nav-item">
+                    <a href="/pdatastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+              </li>
           </ul>
       </div>
   @endsection

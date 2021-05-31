@@ -120,4 +120,13 @@ class CoPimpinan extends Controller
         $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai'");
         return view('/pimpinan/tl_dumas',['data'=>$data]);
     }
+
+    public function dtastat()
+    {   
+        $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi");
+        $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut");
+        $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon");
+        return view('/admin/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+    }
+
 }

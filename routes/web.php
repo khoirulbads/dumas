@@ -74,6 +74,7 @@ Route::get('/pdumas:del={id}', 'CoPengunjung@deldumas');
 Route::get('/pdataresdumas', 'CoPengunjung@dtaresdumas');
 Route::post('/dumas:respon', 'CoPengunjung@resdumas');
 
+Route::get('/pdatastat', 'CoPimpinan@dtastat');
 
 
 Route::get('/logout', 'Controller@logout');
