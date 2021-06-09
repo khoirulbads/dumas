@@ -13,7 +13,7 @@
                         <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
                     </li>
                     <li>
-                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu respon</span></a>
+                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu direspon</span></a>
                     </li>
                 </ul>
               </li>
