@@ -188,7 +188,9 @@
                 <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                            <input type="hidden" name="idp" value="1" readonly="">
+                            @foreach($idp as $id)
+                              <input type="hidden" name="idp" value="{{$id->PENG_ID+1}}" readonly="">
+                            @endforeach
                             
                             <div class="col-md-12">
                                 <div class="col-12">

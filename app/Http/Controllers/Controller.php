@@ -21,6 +21,12 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
+    public function login()
+    {   
+        $idp = pengguna::getId();
+        return view('/login',['idp'=>$idp]);
+    }
+
     public function register(Request $request)
     {
         $id = $request->idp;
@@ -44,6 +50,36 @@ class Controller extends BaseController
             $data->USERNAME = $us;
             $data->PASSWORD = $pa;
             $data->LEVEL = 'Admin';
+            $data->FOTO = $foto;
+            $data->save();
+
+        return redirect('/')->with('addpeng','.');
+
+    }
+
+    public function regispeng(Request $request)
+    {
+        $id = $request->idp;
+        $na = $request->nama;
+        $em = $request->email;
+        $us = $request->user;
+        $pa = $request->pass;
+        $fo = $request->foto;
+
+        if($fo == null){
+            $foto = 'defaultprofile.png';
+        }else{
+            $foto = $fo->getClientOriginalName();
+            $request->file('foto')->move("assets/foto/", $foto);
+        }
+
+       $data = new pengguna();
+            $data->PENG_ID = $id;
+            $data->NAMA = ucfirst($na);
+            $data->EMAIL = $em;
+            $data->USERNAME = $us;
+            $data->PASSWORD = $pa;
+            $data->LEVEL = 'Pengunjung';
             $data->FOTO = $foto;
             $data->save();
 

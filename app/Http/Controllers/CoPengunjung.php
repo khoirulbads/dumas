@@ -192,7 +192,7 @@ class CoPengunjung extends Controller
         $idd = dumas::getId();
         $idr = respon::getId();
         $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, tindak_lanjut c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'selesai' and a.PENG_ID = '$ses'");
+        $data = DB::SELECT("select*from dumas a, pengguna b, tindak_lanjut c where NOT EXISTS (SELECT * FROM respon WHERE a.DUMAS_ID = respon.DUMAS_ID) and a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'selesai' and a.PENG_ID = '$ses'");
         return view('/pengunjung/res_dumas',['data'=>$data,'idd'=>$idd,'idr'=>$idr]);
     }
 

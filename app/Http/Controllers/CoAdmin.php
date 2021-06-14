@@ -212,7 +212,7 @@ class CoAdmin extends Controller
         }else{
             $data->DUMAS_ID = $id;
         }
-        $data->STATUS = 'verifikasi';
+        $data->STATUS = 'belum verifikasi';
         $data->TGL = $tg;
         $data->save();
 
@@ -292,7 +292,7 @@ class CoAdmin extends Controller
 
     public function dtastat()
     {   
-        $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi");
+        $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi where STATUS = 'telah verifikasi'");
         $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut");
         $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon");
         return view('/admin/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);

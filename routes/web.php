@@ -13,16 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
 
+Route::get('/', 'Controller@login');
 Route::post('/regis', 'Controller@register');
+Route::post('/regis:pengunjung', 'Controller@regispeng');
 Route::get('/actlog', 'Controller@actlog');
 
 
