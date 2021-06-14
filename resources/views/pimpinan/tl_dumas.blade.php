@@ -3,7 +3,7 @@
     @section('menu')
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class="nav-item"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              <li class="nav-item"><a href="/pimpinan"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
               </li>
               <li class="navigation-header"><span>Data</span>
               </li>
@@ -12,11 +12,11 @@
                     <li>
                         <a href="/odatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Verifikasi</span></a>
                     </li>
-                    <li  class="active">
-                        <a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
-                    </li>
                     <li>
-                        <a href="/odatatldumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
+                        <a href="/odataprdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
+                    </li>
+                    <li  class="active">
+                        <a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
                     </li>
                 </ul>
               </li>  

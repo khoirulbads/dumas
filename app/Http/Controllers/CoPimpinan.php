@@ -126,7 +126,7 @@ class CoPimpinan extends Controller
         $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi");
         $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut");
         $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon");
-        return view('/admin/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+        return view('/pimpinan/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
     }
 
 }
