@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h1 class="mb-2 text-white">Selamat Datang  {{Session::get('nama')}}</h1>
+                                            <h1 class="mb-2 text-white">Selamat Datang  {{Session::get('nam')}}</h1>
                                             <!-- <p class="m-auto w-75">You have done <strong>57.6%</strong> more sales today. Check your new badge in your profile.</p> -->
                                         </div>
                                     </div>
