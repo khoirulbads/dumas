@@ -226,6 +226,6 @@ class CoPengunjung extends Controller
         $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
         $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' ");
         $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
-        return view('/admin/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+        return view('/pengunjung/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
     }
 }
