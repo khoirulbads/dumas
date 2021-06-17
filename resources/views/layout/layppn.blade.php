@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>SIPM- Pimpinan</title>
+    <title>SI DUMAS- Pimpinan</title>
     <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="assets/back/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -142,7 +142,7 @@
                <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="#">
                         <!-- <div class="brand-logo"></div> --><img src="/assets/img/logo.png" style="border-radius: 100px; background-position: -65px -54px; height: 35px; width: 35px;margin-top: -10px;">
-                        <h2 class="brand-text mb-0">SIPM</h2>
+                        <h2 class="brand-text mb-0" style="color: #166BB2;">SI DUMAS</h2>
                     </a>
                 </li>
             </ul>

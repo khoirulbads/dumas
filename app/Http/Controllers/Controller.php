@@ -148,7 +148,7 @@ class Controller extends BaseController
 	        }
 			else {
 
-            return redirect('/login')->with('error','.');
+            return redirect('/')->with('error','.');
         	}
 	    }
 

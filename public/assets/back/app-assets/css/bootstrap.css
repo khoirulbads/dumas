@@ -2914,7 +2914,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #7367f0; }
+  background-color: #0080C9; }
 
 .nav-fill .nav-item {
   flex: 1 1 auto;
@@ -4563,7 +4563,7 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #7367f0 !important; }
+  background-color: #0080C9 !important; }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,

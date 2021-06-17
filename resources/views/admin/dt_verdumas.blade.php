@@ -14,7 +14,7 @@
                 <ul class="menu-content">
                     <li><a href="/datadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
                     </li>
-                    <li class=" active"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
+                    <li ><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
                     </li>
                 </ul>
               </li> 

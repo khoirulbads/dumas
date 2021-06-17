@@ -52,7 +52,7 @@
                         <div class="card bg-authentication rounded-0 mb-0">
                             <div class="row m-0" >
                                 <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                                    <img src="assets/back/app-assets/images/pages/login.png" alt="branding logo">
+                                    <img src="assets/img/login.png" alt="branding logo" style="padding-right: 30px;">
                                 </div>
                                 <div class="col-lg-6 col-12 p-0">
                                     <div class="card rounded-0 mb-0 px-2" style="text-align: center;">
@@ -82,7 +82,7 @@
                                                         <label for="user-password">Password</label>
                                                     </fieldset>
                                                     <br><br>
-                                                    <button type="submit" class="btn btn-primary float-right btn-block">Login</button>
+                                                    <button type="submit" class="btn float-right btn-block" style="background-color:#0080C9;color:white;">Login</button>
                                                 </form>
                                             </div>
                                         </div>

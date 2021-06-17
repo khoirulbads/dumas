@@ -12,12 +12,12 @@
                     <li>
                         <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu direspon</span></a>
                     </li>
                 </ul>
               </li>  
-              <li class=" nav-item active">
+              <li class=" nav-item" style="background-color:#0080C9;">
                   <a href="#"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
               </li>              
           </ul>

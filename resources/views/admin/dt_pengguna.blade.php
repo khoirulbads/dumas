@@ -7,7 +7,7 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class=" nav-item active">
+              <li class=" nav-item" style="background-color:#0080C9;">
                   <a href="#"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
               </li> 
               <li class=" nav-item"><a href="index.html"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
