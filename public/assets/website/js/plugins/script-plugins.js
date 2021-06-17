@@ -19,7 +19,7 @@ window.odometerOptions = {
 };
 
 setTimeout(function(){
-    jQuery('#1584612796597484876').html(70101);
+    jQuery('#1584612796597484876').html(180);
 }, 1000);
 
 window.odometerOptions = {
@@ -35,7 +35,7 @@ window.odometerOptions = {
 };
 
 setTimeout(function(){
-    jQuery('#1584612796413307740').html(6409);
+    jQuery('#1584612796413307740').html(97);
 }, 1000);
 
 window.odometerOptions = {
@@ -43,7 +43,7 @@ window.odometerOptions = {
 };
 
 setTimeout(function(){
-    jQuery('#1584612796678726464').html(10876);
+    jQuery('#1584612796678726464').html(89);
 }, 1000);
 
 

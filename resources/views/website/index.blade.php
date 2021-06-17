@@ -58,8 +58,9 @@ $setting = DB::select("select * from setting");
         <a id="close_mobile_menu" href="#"><i class="fa fa-times-circle"></i></a>
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-            	<li class="menu-item"><a href="">Apa itu Dumas??</a></li>
-                <li class="menu-item menu-item-has-children menu-item-6"><a href="sample-page.html">Statistik</a></li>
+            	<li class="menu-item"><a href="">Beranda</a></li>
+                <li class="menu-item"><a href="">Apa itu Dumas??</a></li>
+                <li class="menu-item menu-item-has-children menu-item-6"><a href="sample-page.html">Kontak</a></li>
             </ul>
         </div>
     </div>
@@ -106,8 +107,9 @@ $setting = DB::select("select * from setting");
                             <div id="menu_border_wrapper">
                                 <div class="menu-main-menu-container">
                                     <ul id="main_menu" class="nav">
-            							<li class="menu-item"><a href="index.html">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="index.html">Statistik</a></li>
+            							<li class="menu-item"><a href="index.html">Beranda</a></li>
+                                        <li class="menu-item"><a href="index.html">Apa itu Dumas??</a></li>
+            							<li class="menu-item"><a href="index.html">Kontak</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -153,234 +155,31 @@ $setting = DB::select("select * from setting");
 
 
         <div class="ppb_wrapper  ">
-         
-            <div class="ppb_tour one withpadding " style="border-top:1px solid #e1e1e1;">
-                <div class="page_content_wrapper full_width" style="text-align:center">
-                    <h2 class="ppb_title">Best Offers</h2>
-                    <div class="page_caption_desc pb20">Check out our best promotion tours</div>
-                    <div class="portfolio_filter_wrapper three_cols fullwidth shortcode gallery section content clearfix">
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated1">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-6-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Turkey
-                                        </div>
-                                        <h3>Grand Turkey</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            8 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $2000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated2">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-8-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Spain
-                                        </div>
-                                        <h3>Grand Spain Madrid</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            9 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $3000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated3">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-9-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Austria, Switzerland
-                                        </div>
-                                        <h3>Swiss Alps Trip</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            13 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $4000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated4">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-10-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Italy
-                                        </div>
-                                        <h3>Grand Italy</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            8 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $3000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated5">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-11-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            England, Scotland, Wales
-                                        </div>
-                                        <h3>UK Trip</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            13 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $5000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated6">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-12-560x460.jpg" alt="">
-                                </a>
-                                <div class="tour_sale fullwidth">
-                                    <div class="tour_sale_text">Best Deal</div>
-                                    25% Off
-                                </div>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Slovenia, Hungary, Czech
-                                        </div>
-                                        <h3>East Europe</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            10 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $3000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated1">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-6-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Turkey
-                                        </div>
-                                        <h3>Grand Turkey</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            8 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $2000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>
-                        <div class="element portfolio3filter_wrapper">
-                            <div class="one_third gallery3 filterable gallery_type animated2">
-                                <a href="east-europe.html">
-                                    <img src="assets/website/upload/1600x1200-8-560x460.jpg" alt="">
-                                </a>
-                                <a href="east-europe.html" class="portanchor"><div class="thumb_content fullwidth ">
-                                    <div class="thumb_title">
-                                        <div class="tour_country">
-                                            Spain
-                                        </div>
-                                        <h3>Grand Spain Madrid</h3>
-                                    </div>
-                                    <div class="thumb_meta">
-                                        <div class="tour_days">
-                                            9 Days
-                                        </div>
-                                        <div class="tour_price">
-                                            $3000
-                                        </div>
-                                    </div>
-                                </div></a>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
             <div class="one withsmallpadding ">
                 <div class="page_content_wrapper pt20" style="text-align:center">
-                    <h2 class="ppb_title">What Customers Say</h2>
+                    <h2 class="ppb_title">Komentar Pelapor</h2>
                     <br>
                     <div class="testimonial_slider_wrapper">
                         <div class="flexslider" data-height="750">
                             <ul class="slides">
                                 <li>
-                                    <div class="testimonial_slider_wrapper">Vivamus aliquet felis eu diam ultricies congue. Morbi porta lorem nec consectetur porta. Sed quis dui elit. Pellentesque habitant morbi tristique senectus et netus et male.
+                                    <div class="testimonial_slider_wrapper">Webiste DUMAS ini sangat membantu masyarakat tentang cara pengaduan keluhan dalam pelayanan, sehingga masyarakat tidak perlu melapor secara langsung.
                                         <div class="testimonial_slider_meta">
-                                            <h6>Mark Anthony</h6>
-                                            <div class="testimonial_slider_meta_position">CEO</div>-
-                                            <div class="testimonial_slider_meta_company"><a href="#" target="_blank">WikiMedia</a></div>
-                                        </div>
+                                            <h6>Andre Agustiar</h6>
+                                            </div>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="testimonial_slider_wrapper">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed vestibulum orci quam. Pellentesque habitant morbi tristique senectus et netus et male.
+                                    <div class="testimonial_slider_wrapper">Perkembangan teknologi yang pesat harus sebanding dengan pelayanan yang ada. Saya pribadi merasa terbantu dengan adanya website DUMAS ini.
                                         <div class="testimonial_slider_meta">
-                                            <h6>Christina Hardy</h6>
-                                            <div class="testimonial_slider_meta_position">Marketing Manager</div>-
-                                            <div class="testimonial_slider_meta_company"><a href="#" target="_blank">Red Inc.</a></div>
-                                        </div>
+                                            <h6>Dewi Nazula</h6>
+                                            </div>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="testimonial_slider_wrapper">In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Pellentesque habitant morbi tristique senectus et netus et male.
+                                    <div class="testimonial_slider_wrapper">memang seharusnya layanan yang ada selalu dikembangkan dengan beberapa inovasi termasuk DUMAS ini.
                                         <div class="testimonial_slider_meta">
-                                            <h6>Jane Bennett</h6>
-                                            <div class="testimonial_slider_meta_position">Developer</div>-
-                                            <div class="testimonial_slider_meta_company"><a href="#" target="_blank">Hubboard Media</a></div>
+                                            <h6>Abdul Karim, M.Kes.</h6>
                                         </div>
                                     </div>
                                 </li>
@@ -392,105 +191,38 @@ $setting = DB::select("select * from setting");
             <div class="one withsmallpadding withbg fullwidth parallax" style="height:600px;" data-image="assets/website/upload/1600x1200-13.jpg" data-width="1600" data-height="1200">
                 <div class="page_content_wrapper"></div>
             </div>
-            <div class="one withsmallpadding pt80 pb80">
-                <div class="page_content_wrapper">
-                    <div style="text-align:center">
-                        <h2 class="ppb_title">Lake Geneva Switzerland</h2>
-                        <div class="page_caption_desc"></div>
-                    </div>
-                    <div class="two_third paragraphs">
-                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ulla.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
-                        <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla</p>
-                    </div>
-                    <div class="one_third last">
-                        <blockquote>
-                            <i>&#8220;It was fantastic going on the sled to see the views on the mountains! And the action of it – I loved going fast!&#8221;</i>
-                        </blockquote>
-                    </div>
-                    <p>
-                    </p>
-                </div>
-            </div>
-            <div class="one withsmallpadding withbg parallax " data-image="assets/website/upload/1600x1200-12.jpg" data-width="1600" data-height="1200">
-                <div class="page_content_wrapper pt40" style="text-align:center">
-                    <h2 class="ppb_title">Why Choose Us</h2>
-                    <div style="height:20px"></div>
-                    <br>
-                    <div class="service_content_wrapper ">
-                        <div class="one_third ">
-                            <div class="service_wrapper">
-                                <div class="service_icon"><i class="fa fa-star"></i></div>
-                                <div class="service_title">
-                                    <h3>Handpicked Hotels</h3>
-                                    <div class="service_content">Lorem ipsum dolor sit amet, consect adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa
-                                        <br>
-                                        <br>
-                                        <a href="paris.html">learn more</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one_third ">
-                            <div class="service_wrapper">
-                                <div class="service_icon"><i class="fa fa-globe"></i></div>
-                                <div class="service_title">
-                                    <h3>World Class Service</h3>
-                                    <div class="service_content">Lorem ipsum dolor sit amet, consect adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa
-                                        <br>
-                                        <br>
-                                        <a href="paris.html">learn more</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one_third last">
-                            <div class="service_wrapper">
-                                <div class="service_icon"><i class="fa fa-thumbs-up"></i></div>
-                                <div class="service_title">
-                                    <h3>Best Price Guarantee</h3>
-                                    <div class="service_content">Lorem ipsum dolor sit amet, consect adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa
-                                        <br>
-                                        <br>
-                                        <a href="paris.html">learn more</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <br class="clear">
-                        <br>
-                    </div>
-                    <br class="clear">
-                </div>
-            </div>
             <div class="one withsmallpadding " style="background:#f3f3f3;">
                 <div class="page_content_wrapper pt20">
                     <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-smile-o"></i>
+                        <div class="animate_counter_wrapper"><i class="fa fa-eye"></i>
                             <br>
                             <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">0</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Happy Customers</div>
+                            <div class="counter_subject">Pengunjung</div>
                         </div>
                     </div>
                     <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-bus"></i>
+                        <div class="animate_counter_wrapper"><i class="fa fa-user"></i>
                             <br>
                             <div id="1584612796254376806" class="odometer" style="font-size:44px;line-height:44px;">0</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Amazing Tours</div>
+                            <div class="counter_subject">Pelapor</div>
                         </div>
                     </div>
                     <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-briefcase"></i>
+                        <div class="animate_counter_wrapper"><i class="fa fa-th-list"></i>
                             <br>
                             <div id="1584612796413307740" class="odometer" style="font-size:44px;line-height:44px;">0</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">In Business</div>
+                            <div class="counter_subject">Laporan Masuk</div>
                         </div>
                     </div>
                     <div class="one_fourth last">
-                        <div class="animate_counter_wrapper"><i class="fa fa-comments-o"></i>
+                        <div class="animate_counter_wrapper"><i class="fa fa-check-square-o"></i>
                             <br>
                             <div id="1584612796678726464" class="odometer" style="font-size:44px;line-height:44px;">0</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Support Cases</div>
+                            <div class="counter_subject">Laporan direspon</div>
                         </div>
                     </div>
                     <p>
@@ -504,28 +236,27 @@ $setting = DB::select("select * from setting");
 
     <div class="footer_bar ">
         <div id="footer" class="">
-            <ul class="sidebar_widget four">
+            <ul class="sidebar_widget three">
                 <li id="text-2" class="widget widget_text">
                     <div class="textwidget">
                         <div style="text-align:left;margin-top:10px;">
                             <img src="images/logo@2x_white.png" alt="" style="max-width:100px;">
-                            <div style="margin-top:10px;">A Powerful & Beautiful Multi-Purpose WordPress theme with tons of advanced features.
+                            <div style="margin-top:10px;">Website pengaduan masyarakat yang di fasilitasi oleh BKKBN
                             </div>
                         </div>
                     </div>
                 </li>
                 <li id="text-3" class="widget widget_text">
-                    <h2 class="widgettitle">Contact Info</h2>
+                    <h2 class="widgettitle">Kontak</h2>
                     <div class="textwidget">
                         <ul class="address">
-                            <li><i class="fa fa-map-marker"></i>732/21 Second Street, Manchester, King Street, Kingston United Kingdom</li>
-                            <li><i class="fa fa-phone"></i>345-677-554</li>
-                            <li><i class="fa fa-mobile"></i>323-678-567</li>
-                            <li><i class="fa fa-envelope"></i>info@altairtheme.com</li>
-                            <li><i class="fa fa-globe"></i>themegoods.com</li>
+                            <li><i class="fa fa-map-marker"></i>Kantor BKKBN</li>
+                            <li><i class="fa fa-whatsapp"></i>0858 5197 1698 </li>
+                            <li><i class="fa fa-envelope"></i>info@bkkbn.com</li>
                         </ul>
                     </div>
                 </li>
+                <!--
                 <li id="recent-posts-6" class="widget widget_recent_entries">
                     <h2 class="widgettitle">Recent Posts</h2>
                     <ul>
@@ -546,17 +277,15 @@ $setting = DB::select("select * from setting");
                         </li>
                     </ul>
                 </li>
+                -->
                 <li id="tag_cloud-5" class="widget">
                     <h2 class="widgettitle">Tags</h2>
                     <div class="tagcloud">
-                    	<a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">blog</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">city</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Design</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">landscape</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">model</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">portrait</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">street</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">street photography</a></div>
+                    	<a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">BKKBN</a>
+                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Keluhan Masyarakat</a>
+                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota</a>
+                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Pengaduan Masyarakat</a>
+                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota Bersih</a></div>
                 </li>
             </ul>
 
@@ -576,7 +305,7 @@ $setting = DB::select("select * from setting");
                     <li class="instagram"><a title="Instagram" href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
             </div>
-            <div id="copyright">© Copyright Altair Template by Max Themes</div>
+            <div id="copyright">© Copyright Altair || Developers</div>
             <br class="clear">
             <div id="toTop"><i class="fa fa-angle-up"></i></div>
         </div>
