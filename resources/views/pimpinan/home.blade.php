@@ -3,7 +3,7 @@
   @section('menu')
       <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item active"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              <li class=" nav-item" style="background-color:#0080C9;"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
@@ -46,12 +46,14 @@
             card-img-left">
                                         <img src="assets/back/app-assets/images/elements/decore-right.png" class="img-right" alt="
             card-img-right">
-                                        <div class="avatar avatar-xl bg-primary shadow mt-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-award white font-large-1"></i>
+                                        <div >
+                                            <div >
+                                                <!-- <i class="feather icon-award white font-large-1"></i> -->
+                                                <img src="/assets/img/logo putih.png" style="width:150px;">
                                             </div>
                                         </div>
                                         <div class="text-center">
+                                            <br>
                                             <h1 class="mb-2 text-white">Selamat Datang  {{Session::get('nam')}}</h1>
                                             <!-- <p class="m-auto w-75">You have done <strong>57.6%</strong> more sales today. Check your new badge in your profile.</p> -->
                                         </div>

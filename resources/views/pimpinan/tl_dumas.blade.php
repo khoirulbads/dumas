@@ -15,7 +15,7 @@
                     <li>
                         <a href="/odataprdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
                     </li>
-                    <li  class="active">
+                    <li>
                         <a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
                     </li>
                 </ul>

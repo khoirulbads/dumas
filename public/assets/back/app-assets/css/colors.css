@@ -1326,7 +1326,7 @@ input:focus ~ .bg-primary {
 
 .nav-pill-primary .nav-item .nav-link.active {
   color: #fff;
-  background-color: #7367f0 !important; }
+  background-color: #0080C9 !important; }
 
 .progress-bar-primary {
   background-color: rgba(115, 103, 240, 0.1); }

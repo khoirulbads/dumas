@@ -12,7 +12,7 @@
                     <li>
                         <a href="/odatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Verifikasi</span></a>
                     </li>
-                    <li  class="active">
+                    <li>
                         <a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
                     </li>
                     <li>

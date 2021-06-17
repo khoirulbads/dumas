@@ -9,7 +9,7 @@
               </li>
               <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                 <ul class="menu-content">
-                    <li class="active">
+                    <li>
                         <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
                     </li>
                     <li>
