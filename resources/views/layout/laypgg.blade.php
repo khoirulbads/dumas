@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>SI DUMAS - Admin</title>
+    <title>SI DUMAS - Pengunjung</title>
     <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="assets/back/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -173,7 +173,7 @@
                   $upd = DB::SELECT("select*from pengguna where PENG_ID = '$ed->PENG_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/edpeng:admin={{$upd->PENG_ID}}" method="post" enctype="multipart/form-data">
+              <form action="/edpeng:pengunjung={{$upd->PENG_ID}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">

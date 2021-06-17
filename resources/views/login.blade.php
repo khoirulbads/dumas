@@ -52,7 +52,7 @@
                         <div class="card bg-authentication rounded-0 mb-0">
                             <div class="row m-0" >
                                 <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                                    <img src="assets/back/app-assets/images/pages/login.png" alt="branding logo">
+                                    <img src="assets/img/login.png" alt="branding logo" style="padding-right: 30px;">
                                 </div>
                                 <div class="col-lg-6 col-12 p-0">
                                     <div class="card rounded-0 mb-0 px-2" style="text-align: center;">
@@ -82,21 +82,23 @@
                                                         <label for="user-password">Password</label>
                                                     </fieldset>
                                                     <br><br>
-                                                    <button type="submit" class="btn btn-primary float-right btn-block" style="margin-bottom: 40px;">Login</button>
+                                                    <button type="submit" class="btn float-right btn-block" style="background-color:#0080C9;color:white;">Login</button>
                                                 </form>
                                             </div>
-                                            <br>
                                         </div>
                                         <div class="login-footer">
                                             <?php
-                                                $data = DB::SELECT("select * from pengguna ");
+                                                $data = DB::SELECT("select * from pengguna where LEVEL = 'Admin'");
                                                 if(count($data) >= 1){
-                                                ?> <br><br><br><?php
+                                                ?> 
+                                                <div class="divider">
+                                                    <div class="divider-text">OR</div>
+                                                </div>
+                                                <a href="#" class="btn btn-outline-primary btn-block" style="margin-bottom: 20px;" data-toggle="modal" data-target="#daftar">Register</a>
+                                                <br>
+                                                <?php
                                                 }else{
                                             ?>
-                                            <!-- <div class="divider">
-                                                <div class="divider-text">OR</div>
-                                            </div> -->
                                               <a href="#" class="btn btn-outline-primary btn-block" style="margin-bottom: 20px;" data-toggle="modal" data-target="#primary">Register</a>
                                           <?php } ?>
                                         </div>
@@ -160,6 +162,70 @@
                                         <input type="text" id="password-vertical" class="form-control" name="pass" placeholder="password" autocomplete="off" required="">
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Simpan</button>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <div class="modal fade text-left" id="daftar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-primary white">
+                  <h5 class="modal-title" id="myModalLabel160">Register</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <form action="{{url('/regis:pengunjung')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="form-body">
+                        <div class="row">
+                            @foreach($idp as $id)
+                              <input type="hidden" name="idp" value="{{$id->PENG_ID+1}}" readonly="">
+                            @endforeach
+                            
+                            <div class="col-md-12">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Nama</label>
+                                        <input type="text" id="first-name-vertical" class="form-control" name="nama" placeholder="nama lengkap" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Email</label>
+                                        <input type="email" id="email-id-vertical" class="form-control" name="email" placeholder="email" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="contact-info-vertical">Username</label>
+                                        <input type="text" id="contact-info-vertical" class="form-control" name="user" placeholder="username" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="password-vertical">Password</label>
+                                        <input type="text" id="password-vertical" class="form-control" name="pass" placeholder="password" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                <div class="form-group">
+                                    <label for="password-vertical">Foto</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="foto" class="custom-file-input" id="inputGroupFile01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                   </div>

@@ -1,27 +1,26 @@
-@extends('layout.layadm')
+@extends('layout.laypgg')
 
     @section('menu')
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-            </li>
-            <li class="navigation-header"><span>Data</span>
-            </li>
-            <li class="nav-item">
-                  <a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
-            </li>
-            <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+              <li class=" nav-item"><a href="/pengunjung"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              </li>
+              <li class=" navigation-header"><span>Data</span>
+              </li>
+              <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                 <ul class="menu-content">
-                    <li style="background-color:#0080C9;"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
+                    <li>
+                        <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
                     </li>
-                    <li><a href="/dataverdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
+                    <li>
+                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu direspon</span></a>
                     </li>
                 </ul>
-              </li> 
-            <li class=" nav-item">
-                  <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
-            </li>             
-        </ul>
+              </li>
+              <li class=" nav-item">
+                    <a href="/pdatastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+              </li>          
+          </ul>
       </div>
     @endsection
 
@@ -45,7 +44,7 @@
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Data Pengaduan Masyarakat
+                                  <li class="breadcrumb-item active">Data Pengaduan Masyarakat
                                   </li>
                               </ol>
                           </div>
@@ -80,10 +79,10 @@
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 160px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
-                                                        <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
+                                                      `<a href="/pdumas:det={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-info"><i class="feather icon-info"></i></a>
+                                                        <!-- <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button> -->
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <!-- <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a> -->
+                                                        <a href="/pdumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -110,7 +109,7 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <form action="{{url('/add_dumas')}}" method="post" enctype="multipart/form-data">
+              <form action="{{url('/add_pdumas')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">
@@ -165,109 +164,6 @@
           </div>
       </div>
   </div>
-
-  @foreach($data as $ed)
-  <div class="modal fade text-left" id="statdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Verifikasi Laporan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <?php
-                  $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
-              ?>
-              @foreach($upd as $upd)
-              <form action="/dumas:sta={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
-              {{csrf_field()}}
-                  <div class="modal-body">
-                      <div class="form-body">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                  <label for="password-vertical">Kategori</label>
-                                  <select class="form-control" name="stat" required="">
-                                    <option></option>
-                                    <option>tidak verifikasi</option>
-                                    <option>telah verifikasi</option>
-                                  </select>
-                              </div>
-                              <div class="form-group">
-                                  <label for="contact-info-vertical">Keterangan</label>
-                                  <textarea type="text" id="contact-info-vertical" class="form-control" name="ket" value="{{$upd->KET}}" autocomplete="off" style="height: 270px;resize: none;"></textarea>
-                              </div>
-                              
-                            </div>
-                          </div>
-                      </div>
-                  </div>
-                  @endforeach
-                  <div class="modal-footer">
-                    <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
-  @endforeach
-
-  @foreach($data as $ed)
-  <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Detail Laporan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <?php
-                  $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
-              ?>
-              @foreach($upd as $upd)
-              <div class="modal-body">
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-7">
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="first-name-vertical">Judul</label>
-                                      <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" readonly=""  style="background-color: white;">
-                                  </div>
-                              </div>
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="email-id-vertical">Isi Pengaduan</label>
-                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$upd->ISI}} </textarea>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="password-vertical">Kategori</label>
-                                <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-info-vertical">Lokasi</label>
-                                <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$upd->LOKASI}}" autocomplete="off" readonly="" style="background-color: white;">
-                            </div>
-                            <div class="form-group">
-                                <label for="password-vertical">Lampiran</label>
-                                <center>
-                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="max-width: 100%;max-height: 300px;margin: 10px 0px 10px 0px;border-radius: 5px;">
-                                </center>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-              @endforeach
-          </div>
-      </div>
-  </div>
-  @endforeach
 
   @foreach($data as $ed)
   <div class="modal fade text-left" id="editdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
@@ -336,8 +232,6 @@
   @endforeach
 
 
- 
-
-    @endsection
+@endsection
 
             

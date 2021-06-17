@@ -7,10 +7,20 @@
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
-              <li class=" nav-item active"><a href="#"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
+              <li class=" nav-item" style="background-color:#0080C9;">
+                  <a href="#"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
               </li> 
-              <li class=" nav-item "><a href="/datadumas"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Data Dumas</span></a>
-              </li>               
+              <li class=" nav-item"><a href="index.html"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+                  <ul class="menu-content">
+                      <li><a href="/datadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
+                      </li>
+                      <li><a href="/dataverdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
+                      </li>
+                  </ul>
+              </li>  
+              <li class=" nav-item ">
+                  <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+              </li>            
           </ul>
       </div>
     @endsection
@@ -165,6 +175,8 @@
   </div>
 
 
+
+  
   @foreach($data as $ed)
   <div class="modal fade text-left" id="editpeng{{$ed->PENG_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
