@@ -21,8 +21,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('login');
 // });
 
+//website
+Route::get('/', 'CoWebsite@home');
 
-Route::get('/', 'Controller@login');
+Route::get('/auth', 'Controller@login');
 Route::post('/regis', 'Controller@register');
 Route::post('/regis:pengunjung', 'Controller@regispeng');
 Route::get('/actlog', 'Controller@actlog');
