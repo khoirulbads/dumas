@@ -99,7 +99,7 @@ class Controller extends BaseController
         };
 
         if (count($data) == 0){
-            return redirect('/login')->with('gagal','.');
+            return redirect('/auth')->with('gagal','.');
         }else{
 
 	        if($level == 'Pimpinan') {
@@ -148,7 +148,7 @@ class Controller extends BaseController
 	        }
 			else {
 
-            return redirect('/')->with('error','.');
+            return redirect('/auth')->with('error','.');
         	}
 	    }
 
