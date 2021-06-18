@@ -58,9 +58,20 @@ $setting = DB::select("select * from setting");
         <a id="close_mobile_menu" href="#"><i class="fa fa-times-circle"></i></a>
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-            	<li class="menu-item"><a href="">Beranda</a></li>
-                <li class="menu-item"><a href="">Apa itu Dumas??</a></li>
-                <li class="menu-item menu-item-has-children menu-item-6"><a href="sample-page.html">Kontak</a></li>
+            	<li class="menu-item"><a href="/">Beranda</a></li>
+                <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
+                <li class="menu-item"><a href="/kontak">Kontak</a></li>
+                <li class="menu-item"><a href="/kontak">MASUK</li>
+                <li>
+                    @foreach ($setting as $data)
+                    <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
+                        <div class="header_action">
+                                <i class="fa fa-whatsapp"></i>
+                            0{{$data->NO_PONSEL}}
+                        </div>
+                    </a>
+                    @endforeach
+                </li>
             </ul>
         </div>
     </div>
@@ -73,7 +84,22 @@ $setting = DB::select("select * from setting");
 
             <div class="top_bar  hasbg ">
 
-                <div id="mobile_nav_icon"></div>
+                <div id="mobile_nav_icon">
+                <a href="/auth">
+                        <div class="header_action">
+                            MASUK 
+                        </div>
+                    </a>
+                    @foreach ($setting as $data)
+                    <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
+                        <div class="header_action">
+                                <i class="fa fa-whatsapp"></i>
+                            0{{$data->NO_PONSEL}}
+                        </div>
+                    </a>
+                    @endforeach
+                    
+                </div>
 
                 <div id="menu_wrapper">
 
@@ -107,9 +133,9 @@ $setting = DB::select("select * from setting");
                             <div id="menu_border_wrapper">
                                 <div class="menu-main-menu-container">
                                     <ul id="main_menu" class="nav">
-            							<li class="menu-item"><a href="index.html">Beranda</a></li>
-                                        <li class="menu-item"><a href="index.html">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="index.html">Kontak</a></li>
+            							<li class="menu-item"><a href="/">Beranda</a></li>
+                                        <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
+            							<li class="menu-item"><a href="/kontak">Kontak</a></li>
                                     </ul>
                                 </div>
                             </div>
