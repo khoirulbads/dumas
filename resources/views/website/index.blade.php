@@ -222,7 +222,7 @@ $setting = DB::select("select * from setting");
                     <div class="one_fourth">
                         <div class="animate_counter_wrapper"><i class="fa fa-eye"></i>
                             <br>
-                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">0</div>
+                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">12</div>
                             <div class="count_separator"><span></span></div>
                             <div class="counter_subject">Pengunjung</div>
                         </div>
@@ -262,12 +262,13 @@ $setting = DB::select("select * from setting");
 
     <div class="footer_bar ">
         <div id="footer" class="">
+        @foreach ($setting as $data)
             <ul class="sidebar_widget three">
                 <li id="text-2" class="widget widget_text">
                     <div class="textwidget">
                         <div style="text-align:left;margin-top:10px;">
                             <img src="images/logo@2x_white.png" alt="" style="max-width:100px;">
-                            <div style="margin-top:10px;">Website pengaduan masyarakat yang di fasilitasi oleh BKKBN
+                            <div style="margin-top:10px;">{{$data->FOOTER}}
                             </div>
                         </div>
                     </div>
@@ -276,9 +277,9 @@ $setting = DB::select("select * from setting");
                     <h2 class="widgettitle">Kontak</h2>
                     <div class="textwidget">
                         <ul class="address">
-                            <li><i class="fa fa-map-marker"></i>Kantor BKKBN</li>
-                            <li><i class="fa fa-whatsapp"></i>0858 5197 1698 </li>
-                            <li><i class="fa fa-envelope"></i>info@bkkbn.com</li>
+                            <li><i class="fa fa-map-marker"></i>{{$data->ALAMAT}}</li>
+                            <li><i class="fa fa-whatsapp"></i>0{{$data->NO_PONSEL}}</li>
+                            <li><i class="fa fa-envelope"></i>{{$data->EMAIL}}</li>
                         </ul>
                     </div>
                 </li>
@@ -314,7 +315,8 @@ $setting = DB::select("select * from setting");
                         <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota Bersih</a></div>
                 </li>
             </ul>
-
+            @endforeach
+        
             <br class="clear">
         </div>
 
