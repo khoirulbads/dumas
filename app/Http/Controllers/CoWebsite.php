@@ -25,5 +25,10 @@ class CoWebsite extends Controller
     {
             return view('/website/kontak');
     }
+    
+    public function tentang()
+    {
+            return view('/website/tentang');
+    }
 
 }
