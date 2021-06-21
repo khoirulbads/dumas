@@ -58,9 +58,20 @@ $setting = DB::select("select * from setting");
         <a id="close_mobile_menu" href="#"><i class="fa fa-times-circle"></i></a>
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-            	<li class="menu-item"><a href="">Beranda</a></li>
-                <li class="menu-item"><a href="">Apa itu Dumas??</a></li>
-                <li class="menu-item menu-item-has-children menu-item-6"><a href="sample-page.html">Kontak</a></li>
+            	<li class="menu-item"><a href="/">Beranda</a></li>
+                <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
+                <li class="menu-item"><a href="/kontak">Kontak</a></li>
+                <li class="menu-item"><a href="/kontak">MASUK</li>
+                <li>
+                    @foreach ($setting as $data)
+                    <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
+                        <div class="header_action">
+                                <i class="fa fa-whatsapp"></i>
+                            0{{$data->NO_PONSEL}}
+                        </div>
+                    </a>
+                    @endforeach
+                </li>
             </ul>
         </div>
     </div>
@@ -73,7 +84,22 @@ $setting = DB::select("select * from setting");
 
             <div class="top_bar  hasbg ">
 
-                <div id="mobile_nav_icon"></div>
+                <div id="mobile_nav_icon">
+                <a href="/auth">
+                        <div class="header_action">
+                            MASUK 
+                        </div>
+                    </a>
+                    @foreach ($setting as $data)
+                    <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
+                        <div class="header_action">
+                                <i class="fa fa-whatsapp"></i>
+                            0{{$data->NO_PONSEL}}
+                        </div>
+                    </a>
+                    @endforeach
+                    
+                </div>
 
                 <div id="menu_wrapper">
 
@@ -107,9 +133,9 @@ $setting = DB::select("select * from setting");
                             <div id="menu_border_wrapper">
                                 <div class="menu-main-menu-container">
                                     <ul id="main_menu" class="nav">
-            							<li class="menu-item"><a href="index.html">Beranda</a></li>
-                                        <li class="menu-item"><a href="index.html">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="index.html">Kontak</a></li>
+            							<li class="menu-item"><a href="/">Beranda</a></li>
+                                        <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
+            							<li class="menu-item"><a href="/kontak">Kontak</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -196,7 +222,7 @@ $setting = DB::select("select * from setting");
                     <div class="one_fourth">
                         <div class="animate_counter_wrapper"><i class="fa fa-eye"></i>
                             <br>
-                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">0</div>
+                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">12</div>
                             <div class="count_separator"><span></span></div>
                             <div class="counter_subject">Pengunjung</div>
                         </div>
@@ -236,12 +262,13 @@ $setting = DB::select("select * from setting");
 
     <div class="footer_bar ">
         <div id="footer" class="">
+        @foreach ($setting as $data)
             <ul class="sidebar_widget three">
                 <li id="text-2" class="widget widget_text">
                     <div class="textwidget">
                         <div style="text-align:left;margin-top:10px;">
                             <img src="images/logo@2x_white.png" alt="" style="max-width:100px;">
-                            <div style="margin-top:10px;">Website pengaduan masyarakat yang di fasilitasi oleh BKKBN
+                            <div style="margin-top:10px;">{{$data->FOOTER}}
                             </div>
                         </div>
                     </div>
@@ -250,9 +277,9 @@ $setting = DB::select("select * from setting");
                     <h2 class="widgettitle">Kontak</h2>
                     <div class="textwidget">
                         <ul class="address">
-                            <li><i class="fa fa-map-marker"></i>Kantor BKKBN</li>
-                            <li><i class="fa fa-whatsapp"></i>0858 5197 1698 </li>
-                            <li><i class="fa fa-envelope"></i>info@bkkbn.com</li>
+                            <li><i class="fa fa-map-marker"></i>{{$data->ALAMAT}}</li>
+                            <li><i class="fa fa-whatsapp"></i>0{{$data->NO_PONSEL}}</li>
+                            <li><i class="fa fa-envelope"></i>{{$data->EMAIL}}</li>
                         </ul>
                     </div>
                 </li>
@@ -288,7 +315,8 @@ $setting = DB::select("select * from setting");
                         <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota Bersih</a></div>
                 </li>
             </ul>
-
+            @endforeach
+        
             <br class="clear">
         </div>
 
