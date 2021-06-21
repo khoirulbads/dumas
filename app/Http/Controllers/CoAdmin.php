@@ -61,6 +61,16 @@ class CoAdmin extends Controller
         return redirect()->back()->with('addpeng','.');
     }
 
+    public function edsetting(Request $request)
+    {
+        $no = $request->nopon;
+        $em = $request->email;
+
+        $data = DB::table('setting')->where('SET_ID',1)->update(['NO_PONSEL'=>$no,'EMAIL'=>$em]);
+        
+        return redirect()->back()->with('addpeng','.');
+    }
+
     
 
     public function dtapeng()

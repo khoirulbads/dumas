@@ -49,6 +49,7 @@ Route::get('/odatastat', 'CoPimpinan@dtastat');
 
 Route::get('/admin', 'CoAdmin@home');
 Route::post('/edpeng:admin={id}', 'CoAdmin@edpeng');
+Route::post('/edsetting', 'CoAdmin@edsetting');
 
 Route::get('/datapengguna', 'CoAdmin@dtapeng');
 Route::post('/add_pengguna', 'CoAdmin@addpeng');
