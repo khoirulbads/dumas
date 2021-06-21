@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 //website
 Route::get('/', 'CoWebsite@home');
+Route::get('/kontak', 'CoWebsite@kontak');
 
 Route::get('/auth', 'Controller@login');
 Route::post('/regis', 'Controller@register');

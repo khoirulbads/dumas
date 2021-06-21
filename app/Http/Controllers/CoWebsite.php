@@ -20,5 +20,10 @@ class CoWebsite extends Controller
     {
             return view('/website/index');
     }
+    
+    public function kontak()
+    {
+            return view('/website/kontak');
+    }
 
 }
