@@ -10,7 +10,7 @@
 
 
     <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/login.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/back/app-assets/images/ico/favicon.ico">
     
 
     <link rel='stylesheet' href='assets/website/revslider/public/assets/css/settings.css' type='text/css' media='all'>
@@ -60,8 +60,8 @@ $setting = DB::select("select * from setting");
             <ul id="mobile_main_menu" class="mobile_main_nav">
             	<li class="menu-item"><a href="/">Beranda</a></li>
                 <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
-                <li class="menu-item"><a href="/kontak">Kontak</a></li>
-                <li class="menu-item"><a href="/kontak">MASUK</li>
+                <li class="menu-item"><a href="/kontak">Hubungi Kami</a></li>
+                <li class="menu-item"><a href="/auth">MASUK</li>
                 <li>
                     @foreach ($setting as $data)
                     <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
@@ -135,7 +135,7 @@ $setting = DB::select("select * from setting");
                                     <ul id="main_menu" class="nav">
             							<li class="menu-item"><a href="/">Beranda</a></li>
                                         <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="/kontak">Kontak</a></li>
+            							<li class="menu-item"><a href="/kontak">Hubungi Kami</a></li>
                                     </ul>
                                 </div>
                             </div>
