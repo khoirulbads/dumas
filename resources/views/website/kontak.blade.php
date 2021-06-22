@@ -9,7 +9,7 @@
     <title>Dumas | Hubungi Kami </title>
 
     <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/back/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/login.png">
 
 
     <link rel='stylesheet' href='assets/website/revslider/public/assets/css/settings.css' type='text/css' media='all'>
