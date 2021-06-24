@@ -91,10 +91,10 @@ $sosmed = DB::select("select * from sosmed");
 
                     <!-- Begin logo -->
 
-                    <a id="custom_logo" class="logo_wrapper hidden" href="index.html">
+                    <a id="custom_logo" class="logo_wrapper hidden" href="/">
                         <img src="assets/website/images/newlogo1.png" alt="" width="69" height="33">
                     </a>
-                    <a id="custom_logo_transparent" class="logo_wrapper default" href="index.html">
+                    <a id="custom_logo_transparent" class="logo_wrapper default" href="/">
                         <img src="assets/website/images/newlogo1.png" alt="" width="50" height="50">
                     </a>
                     <!-- End logo -->
