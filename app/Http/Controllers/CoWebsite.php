@@ -18,7 +18,15 @@ class CoWebsite extends Controller
 {
     public function home()
     {
-            return view('/website/index');
+        $countPengunjung = 10;
+        $ip_address=$_SERVER['REMOTE_ADDR']; 
+        $cek = DB::select("select * from visitor_counter where IP='$ip_address'");
+        if ($cek == null) {
+                $save = DB::table('visitor_counter')->insert([
+                        'IP' => $ip_address
+                        ]);                
+        }
+        return view('/website/index');
     }
     
     public function kontak()
