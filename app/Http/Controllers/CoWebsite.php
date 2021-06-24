@@ -30,5 +30,16 @@ class CoWebsite extends Controller
     {
             return view('/website/tentang');
     }
+    
+    public function addsaran(Request $req)
+    {
+        $save = DB::table('saran')->insert([
+                'EMAIL' => $req->email, 
+                'NAMA' => $req->nama,
+                'ISI' => $req->isi
+                ]);
+
+        return redirect("/kontak");
+    }
 
 }

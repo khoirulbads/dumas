@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'CoWebsite@home');
 Route::get('/kontak', 'CoWebsite@kontak');
 Route::get('/tentang', 'CoWebsite@tentang');
+Route::post('/add-saran', 'CoWebsite@addsaran');
 
 Route::get('/auth', 'Controller@login');
 Route::post('/regis', 'Controller@register');
