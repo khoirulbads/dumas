@@ -9,8 +9,8 @@
     <title>Dumas | Pengaduan Masyarakat </title>
 
 
-    <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/back/app-assets/images/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png">
     
 
     <link rel='stylesheet' href='assets/website/revslider/public/assets/css/settings.css' type='text/css' media='all'>
@@ -39,6 +39,8 @@
 
 @php
 $setting = DB::select("select * from setting");
+$komentar = DB::select("select * from komentar");
+$sosmed = DB::select("select * from sosmed");
 @endphp
 
     <input type="hidden" id="pp_enable_reflection" name="pp_enable_reflection" value="">
@@ -188,34 +190,22 @@ $setting = DB::select("select * from setting");
                     <div class="testimonial_slider_wrapper">
                         <div class="flexslider" data-height="750">
                             <ul class="slides">
+                            @foreach ($komentar as $kom )
                                 <li>
-                                    <div class="testimonial_slider_wrapper">Webiste DUMAS ini sangat membantu masyarakat tentang cara pengaduan keluhan dalam pelayanan, sehingga masyarakat tidak perlu melapor secara langsung.
+                                    <div class="testimonial_slider_wrapper">{{$kom->KOMENTAR}}
                                         <div class="testimonial_slider_meta">
-                                            <h6>Andre Agustiar</h6>
+                                            <h6>{{$kom->KOMENTATOR}}</h6>
                                             </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="testimonial_slider_wrapper">Perkembangan teknologi yang pesat harus sebanding dengan pelayanan yang ada. Saya pribadi merasa terbantu dengan adanya website DUMAS ini.
-                                        <div class="testimonial_slider_meta">
-                                            <h6>Dewi Nazula</h6>
-                                            </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="testimonial_slider_wrapper">memang seharusnya layanan yang ada selalu dikembangkan dengan beberapa inovasi termasuk DUMAS ini.
-                                        <div class="testimonial_slider_meta">
-                                            <h6>Abdul Karim, M.Kes.</h6>
-                                        </div>
-                                    </div>
-                                </li>
+                            @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="one withsmallpadding withbg fullwidth parallax" style="height:600px;" data-image="assets/website/upload/1600x1200-13.jpg" data-width="1600" data-height="1200">
-                <div class="page_content_wrapper"></div>
+            <div class="one withsmallpadding withbg fullwidth parallax" style="height:200px;" data-image="assets/website/upload/1600x1200-13.jpg" data-width="1600" data-height="1200">
+                <div class="page_content_wrapper"><h1><center>PENGADUAN MASYARAKAT</h1></center></div>
             </div>
             <div class="one withsmallpadding " style="background:#f3f3f3;">
                 <div class="page_content_wrapper pt20">
@@ -261,13 +251,22 @@ $setting = DB::select("select * from setting");
     </div>
 
     <div class="footer_bar ">
-        <div id="footer" class="">
+        <div id="footer" style="background-image: url('https://p4.wallpaperbetter.com/wallpaper/40/938/548/abstract-geometric-triangle-background-blue-wallpaper-377744cc509cc960b92ff08eab4271db.jpg');">
         @foreach ($setting as $data)
-            <ul class="sidebar_widget three">
+            <ul class="sidebar_widget four">
                 <li id="text-2" class="widget widget_text">
+                    <h2 class="widgettitle"></h2>
                     <div class="textwidget">
-                        <div style="text-align:left;margin-top:10px;">
-                            <img src="images/logo@2x_white.png" alt="" style="max-width:100px;">
+                        <div style="text-align:left;margin-top:10px; color:white"><br><br>
+                            <img src="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png" alt="" width="200" height="200">
+                        </div>
+                    </div>
+                </li>
+                
+                <li id="text-2" class="widget widget_text">
+                    <h2 class="widgettitle">TENTANG KAMI</h2>
+                    <div class="textwidget">
+                        <div style="text-align:left;margin-top:10px; color:white; text-align:justify;">
                             <div style="margin-top:10px;">{{$data->FOOTER}}
                             </div>
                         </div>
@@ -276,66 +275,24 @@ $setting = DB::select("select * from setting");
                 <li id="text-3" class="widget widget_text">
                     <h2 class="widgettitle">Kontak</h2>
                     <div class="textwidget">
-                        <ul class="address">
+                        <ul class="address" style="color:white;">
                             <li><i class="fa fa-map-marker"></i>{{$data->ALAMAT}}</li>
                             <li><i class="fa fa-whatsapp"></i>0{{$data->NO_PONSEL}}</li>
                             <li><i class="fa fa-envelope"></i>{{$data->EMAIL}}</li>
                         </ul>
                     </div>
                 </li>
-                <!--
-                <li id="recent-posts-6" class="widget widget_recent_entries">
-                    <h2 class="widgettitle">Recent Posts</h2>
-                    <ul>
-                        <li>
-                            <a href="standard-blog-post-with-image.html">Standard Blog Post With Image</a>
-                        </li>
-                        <li>
-                            <a href="standard-blog-post-with-image.html">Amazing Fullwidth Post</a>
-                        </li>
-                        <li>
-                            <a href="standard-blog-post-with-image.html">Link Post</a>
-                        </li>
-                        <li>
-                            <a href="standard-blog-post-with-image.html">Quote Post</a>
-                        </li>
-                        <li>
-                            <a href="standard-blog-post-with-image.html">Sidebar Post With Slideshow</a>
-                        </li>
-                    </ul>
-                </li>
-                -->
-                <li id="tag_cloud-5" class="widget">
-                    <h2 class="widgettitle">Tags</h2>
-                    <div class="tagcloud">
-                    	<a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">BKKBN</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Keluhan Masyarakat</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Pengaduan Masyarakat</a>
-                        <a href="standard-blog-post-with-image.html" class="tag-cloud-link" style="font-size: 13px;">Kota Bersih</a></div>
+                <li id="text-3" class="widget widget_text">
+                    <h2 class="widgettitle">Ikuti Kami </h2>
+                    <div class="textwidget">
+                    @foreach ($sosmed as $sos)
+                                <a href="{{$sos->LINK}}"><i class="{{$sos->LOGO}}" style="color:white;"></i></a>&nbsp&nbsp
+                    @endforeach
+                    </div>
                 </li>
             </ul>
             @endforeach
-        
             <br class="clear">
-        </div>
-
-        <div class="footer_bar_wrapper ">
-            <div class="social_wrapper">
-                <ul>
-                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="flickr"><a title="Flickr" href="#"><i class="fa fa-flickr"></i></a></li>
-                    <li class="youtube"><a title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li class="vimeo"><a title="Vimeo" href="#"><i class="fa fa-vimeo-square"></i></a></li>
-                    <li class="google"><a title="Google+" href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="pinterest"><a title="Pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li class="instagram"><a title="Instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-                </ul>
-            </div>
-            <div id="copyright">© Copyright Altair || Developers</div>
-            <br class="clear">
-            <div id="toTop"><i class="fa fa-angle-up"></i></div>
         </div>
     </div>
 
