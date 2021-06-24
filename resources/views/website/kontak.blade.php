@@ -8,9 +8,15 @@
 
     <title>Dumas | Hubungi Kami </title>
 
+<<<<<<< HEAD
     <link rel="apple-touch-icon" href="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png">
     
+=======
+    <link rel="apple-touch-icon" href="assets/back/app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/login.png">
+
+>>>>>>> e4f1813ad50949d56659ece626100ed00c7fee8f
 
     <link rel='stylesheet' href='assets/website/revslider/public/assets/css/settings.css' type='text/css' media='all'>
     <link rel='stylesheet' href='assets/website/css/animation.css' type='text/css' media='all'>
