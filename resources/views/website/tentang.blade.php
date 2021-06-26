@@ -172,7 +172,7 @@ $sosmed = DB::select("select * from sosmed");
     </div>
 
     <div class="footer_bar ">
-        <div id="footer" style="background-image: url('https://p4.wallpaperbetter.com/wallpaper/40/938/548/abstract-geometric-triangle-background-blue-wallpaper-377744cc509cc960b92ff08eab4271db.jpg');">
+        <div id="footer" style="background-image: url('assets/img/bgweb.jpg');">
         @foreach ($setting as $data)
             <ul class="sidebar_widget four">
                 <li id="text-2" class="widget widget_text">
