@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Session;
 use File;
 use App\Http\Requests;
-// use Illuminate\Http\RedirectResponsetoast;
+use App\Mail\KirimEmail;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MalasngodingEmail;
 use Authenticate;
 use DB;
 use PDF;
@@ -24,9 +26,17 @@ class CoPengunjung extends Controller
             return redirect('/login')->with('errlog','.');
         }else{
 
+
             return view('/pengunjung/home');
         }
 
+    }
+
+    public function kirim()
+    {
+       Mail::to("weciez11@gmail.com")->send(new KirimEmail());
+        
+        echo "Jogjatech Laravel Send Email Success. Check your inbox.";
     }
 
     public function edpeng(Request $request,$id)

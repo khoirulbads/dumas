@@ -73,6 +73,8 @@ Route::get('/datastat', 'CoAdmin@dtastat');
 Route::get('/pengunjung', 'CoPengunjung@home');
 Route::post('/edpeng:pengunjung={id}', 'CoPengunjung@edpeng');
 
+Route::get('/kirim', 'CoPengunjung@kirim');
+
 Route::get('/pdatadumas', 'CoPengunjung@dtadumas');
 Route::post('/add_pdumas', 'CoPengunjung@adddumas');
 Route::get('/pdumas:det={id}', 'CoPengunjung@detdumas');
