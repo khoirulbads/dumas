@@ -26,7 +26,6 @@ class CoPengunjung extends Controller
             return redirect('/login')->with('errlog','.');
         }else{
 
-
             return view('/pengunjung/home');
         }
 
@@ -35,8 +34,6 @@ class CoPengunjung extends Controller
     public function kirim()
     {
        Mail::to("weciez11@gmail.com")->send(new KirimEmail());
-        
-        echo "Jogjatech Laravel Send Email Success. Check your inbox.";
     }
 
     public function edpeng(Request $request,$id)

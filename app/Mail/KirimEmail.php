@@ -29,7 +29,7 @@ class KirimEmail extends Mailable
     public function build()
     {
         return $this->from('weciez11@gmail.com')
-           ->view('emailku')
+           ->view('/email/emailku')
            ->with(
             [
                 'nama' => 'Diki Alfarabi Hadi',

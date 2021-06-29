@@ -24,6 +24,7 @@ class Controller extends BaseController
     public function login()
     {   
         $idp = pengguna::getId();
+
         return view('/login',['idp'=>$idp]);
     }
 
