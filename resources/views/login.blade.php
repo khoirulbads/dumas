@@ -27,17 +27,15 @@
     <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/themes/semi-dark-layout.css">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/core/menu/menu-types/horizontal-menu.css">
     <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/pages/dashboard-analytics.css">
-    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/pages/card-analytics.css">
-    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/plugins/tour/tour.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/back/app-assets/css/pages/authentication.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/back/assets/css/style.css">
     <!-- END: Custom CSS-->
+
 </head>
 
 <body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
@@ -240,34 +238,11 @@
       </div>
   </div>
 
-    <!-- BEGIN: Vendor JS-->
     <script src="assets/back/app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/charts/apexcharts.min.js"></script>
-    <script src="assets/back/app-assets/vendors/js/extensions/tether.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
+    <script src="assets/back/app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="assets/back/app-assets/js/core/app-menu.js"></script>
     <script src="assets/back/app-assets/js/core/app.js"></script>
     <script src="assets/back/app-assets/js/scripts/components.js"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="assets/back/app-assets/js/scripts/pages/dashboard-analytics.js"></script>
-    <!-- END: Page JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="assets/back/app-assets/js/scripts/datatables/datatable.js"></script>
     <script type="text/javascript">
         function previewImage() {
         document.getElementById("image-preview").style.display = "inline";

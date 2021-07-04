@@ -13,6 +13,7 @@ use PDF;
 use App\pengguna;
 use App\dumas;
 use App\verifikasi;
+use App\sosmed;
 
 class CoAdmin extends Controller
 {
@@ -65,19 +66,70 @@ class CoAdmin extends Controller
     {
         $no = $request->nopon;
         $em = $request->email;
+        $al = $request->alamat;
+        $fo = $request->footer;
+        $hu = $request->hubung;
+        $vi = $request->video;
+        $te = $request->tentang;
 
-        $data = DB::table('setting')->where('SET_ID',1)->update(['NO_PONSEL'=>$no,'EMAIL'=>$em]);
+        $data = DB::table('setting')->where('SET_ID',1)->update(['NO_PONSEL'=>$no,'EMAIL'=>$em,'ALAMAT'=>$al,'FOOTER'=>$fo,'HUBUNGI'=>$hu,'VIDEO'=>$vi,'TENTANG'=>$te]);
         
         return redirect()->back()->with('addpeng','.');
     }
 
     
 
+    public function dtasosmed()
+    {   
+        $idp = sosmed::getId();
+        $data = DB::SELECT("select*from sosmed");
+        return view('/admin/dt_sosmed',['data'=>$data,'idp'=>$idp]);
+    }
+
+    public function addsosmed(Request $request)
+    {
+        $id = $request->idp;
+        $li = $request->link;
+        $lo = $request->logo;
+
+       $data = new sosmed();
+        if($id == null){
+            $data->ID_SOSMED = 1;
+        }else{
+            $data->ID_SOSMED = $id;
+        }
+        $data->LINK = $li;
+        $data->LOGO = $lo;
+        $data->save();
+
+        return redirect('datasosmed')->with('addpeng','.');
+    }
+
+
     public function dtapeng()
     {   
         $idp = pengguna::getId();
         $data = DB::SELECT("select*from pengguna");
         return view('/admin/dt_pengguna',['data'=>$data,'idp'=>$idp]);
+    }
+
+    public function updsosmed(Request $request,$id)
+    {
+        $li = $request->link;
+        $lo = $request->logo;
+
+        $data = DB::table('sosmed')->where('ID_SOSMED',$id)->update(['LINK'=>$li,'LOGO'=>$lo]);
+
+        
+        return redirect('datasosmed')->with('updpeng','.');
+    }
+
+    public function delsosmed($id)
+    {
+        
+        DB::table('sosmed')->where('ID_SOSMED',$id)->delete();
+
+        return redirect('datasosmed')->with('delpeng','.');
     }
 
     public function addpeng(Request $request)
@@ -173,7 +225,7 @@ class CoAdmin extends Controller
     {   
         $idd = dumas::getId();
         $idv = verifikasi::getId();
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi'");
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
         return view('/admin/dt_dumas',['data'=>$data,'idd'=>$idd,'idv'=>$idv]);
     }
 
@@ -295,7 +347,7 @@ class CoAdmin extends Controller
 
     public function dtaverdumas()
     {   
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi'");
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0");
         return view('/admin/dt_verdumas',['data'=>$data]);
     }
 

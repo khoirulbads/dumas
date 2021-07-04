@@ -28,7 +28,7 @@ class KirimEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('weciez11@gmail.com')
+        return $this->from('noreply@dumas.pkmsukorame.com')
            ->view('/email/emailku')
            ->with(
             [

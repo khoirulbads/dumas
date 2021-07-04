@@ -21,11 +21,11 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    public function login()
-    {   
-        $idp = pengguna::getId();
+    public function log()
+    {
+        $idp = pengguna::getId();  
 
-        return view('/login',['idp'=>$idp]);
+        return view('login',['idp'=>$idp]);
     }
 
     public function register(Request $request)

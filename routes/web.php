@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('login');
 // });
 
-// Route::get('/login', function () {
+// Route::get('/auth', function () {
 //     return view('login');
 // });
 
@@ -27,7 +27,7 @@ Route::get('/kontak', 'CoWebsite@kontak');
 Route::get('/tentang', 'CoWebsite@tentang');
 Route::post('/add-saran', 'CoWebsite@addsaran');
 
-Route::get('/auth', 'Controller@login');
+Route::get('/auth', 'Controller@log');
 Route::post('/regis', 'Controller@register');
 Route::post('/regis:pengunjung', 'Controller@regispeng');
 Route::get('/actlog', 'Controller@actlog');
@@ -53,6 +53,11 @@ Route::get('/odatastat', 'CoPimpinan@dtastat');
 Route::get('/admin', 'CoAdmin@home');
 Route::post('/edpeng:admin={id}', 'CoAdmin@edpeng');
 Route::post('/edsetting', 'CoAdmin@edsetting');
+
+Route::get('/datasosmed', 'CoAdmin@dtasosmed');
+Route::post('/add_sosmed', 'CoAdmin@addsosmed');
+Route::post('/sosmed:upd={id}', 'CoAdmin@updsosmed');
+Route::get('/sosmed:del={id}', 'CoAdmin@delsosmed');
 
 Route::get('/datapengguna', 'CoAdmin@dtapeng');
 Route::post('/add_pengguna', 'CoAdmin@addpeng');

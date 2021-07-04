@@ -65,7 +65,7 @@ class CoPimpinan extends Controller
     {   
         $idt = tindak_lanjut::getId();
         $ses = Session::get('akun');
-        $data = DB::SELECT("select * FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+        $data = DB::SELECT("select * FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
         return view('/pimpinan/dt_dumas',['data'=>$data,'idt'=>$idt]);
     }
 
@@ -97,7 +97,7 @@ class CoPimpinan extends Controller
     public function dtaproses()
     {   
         $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses'");
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.DUMAS = 0");
         return view('/pimpinan/pr_dumas',['data'=>$data]);
     }
 
@@ -117,7 +117,7 @@ class CoPimpinan extends Controller
     public function dtaselesai()
     {   
         $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai'");
+        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
         return view('/pimpinan/tl_dumas',['data'=>$data]);
     }
 

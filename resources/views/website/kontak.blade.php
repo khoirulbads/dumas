@@ -265,7 +265,7 @@ $sosmed = DB::select("select * from sosmed");
                     <h2 class="widgettitle">Ikuti Kami </h2>
                     <div class="textwidget">
                     @foreach ($sosmed as $sos)
-                                <a href="{{$sos->LINK}}"><i class="{{$sos->LOGO}}" style="color:white;"></i></a>&nbsp&nbsp
+                        <a href="{{$sos->LINK}}" style="padding-right: 17px;"><i class="{{$sos->LOGO}} fa-2x" style="color:white;"></i></a>
                     @endforeach
                     </div>
                 </li>

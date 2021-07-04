@@ -74,8 +74,8 @@
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
-                                            @foreach($data as $dat)
                                             <tbody>
+                                              @foreach($data as $dat)
                                                 <tr>
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->EMAIL}}</td>
@@ -87,8 +87,8 @@
                                                         <a href="/pengguna:del={{$dat->PENG_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
+                                              @endforeach
                                             </tbody>
-                                            @endforeach
                                         </table>
                                     </div>
 

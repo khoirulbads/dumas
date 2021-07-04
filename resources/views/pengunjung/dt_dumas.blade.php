@@ -75,7 +75,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{$dat->JUDUL}}</td>
-                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
+                                                    <td><?= date('d M Y H:i',strtotime($dat->TGL)); ?></td>
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 160px;">

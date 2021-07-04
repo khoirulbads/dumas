@@ -125,6 +125,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editpeng{{Session::get('akun')}}"><i class="feather icon-user"></i> Edit Profile</a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsetting"><i class="feather icon-settings"></i> Edit Setting</a>
+                                <a class="dropdown-item" href="/datasosmed"><i class="feather icon-link"></i> Data Sosmed</a>
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="/logout"><i class="feather icon-power"></i> Logout</a>
                             </div>
                         </li>
@@ -228,51 +229,80 @@
   </div>
   @endforeach
 
-  <div class="modal fade text-left" id="editsetting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Edit Setting</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <?php
-                  $upd = DB::SELECT("select*from setting where SET_ID = '1'");
-              ?>
-              @foreach($upd as $upd)
-              <form action="/edsetting" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
-              <div class="modal-body">
-                    <div class="form-body">
-                        <div class="row">
-                           
-                          <div class="col-md-12">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="first-name-vertical">No Ponsel</label>
-                                    <input type="text" id="first-name-vertical" class="form-control" name="nopon" value="{{$upd->NO_PONSEL}}" autocomplete="off" required="">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="email-id-vertical">Email</label>
-                                    <input type="email" id="email-id-vertical" class="form-control" name="email" value="{{$upd->EMAIL}}" autocomplete="off" required="">
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+   
+    
+
+    <div class="modal fade text-left" id="editsetting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
+            <div class="modal-content">
+                  <div class="modal-header bg-primary white">
+                      <h5 class="modal-title" id="myModalLabel160">Edit Setting</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
                   </div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Ubah</button>
-              </div>
-              </form>
-              @endforeach
-          </div>
-      </div>
-  </div>
+                  <?php
+                      $upd = DB::SELECT("select*from setting where SET_ID = '1'");
+                  ?>
+                  @foreach($upd as $upd)
+                  <form action="/edsetting" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                  <div class="modal-body">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">No Ponsel</label>
+                                        <input type="text" id="first-name-vertical" class="form-control" name="nopon" value="{{$upd->NO_PONSEL}}" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Email</label>
+                                        <input type="email" id="email-id-vertical" class="form-control" name="email" value="{{$upd->EMAIL}}" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Link Video</label>
+                                        <input type="text" id="email-id-vertical" class="form-control" name="video" value="{{$upd->VIDEO}}" autocomplete="off" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Alamat</label>
+                                        <textarea class="form-control" name="alamat" style="height: 150px;resize: none;">{{$upd->ALAMAT}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Hubungi</label>
+                                        <textarea class="form-control" name="hubung" style="height: 150px;resize: none;">{{$upd->HUBUNGI}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Footer</label>
+                                        <textarea class="form-control" name="footer" style="height: 150px;resize: none;">{{$upd->FOOTER}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">Tentang</label>
+                                        <textarea class="form-control" name="tentang" style="height: 150px;resize: none;">{{$upd->TENTANG}}</textarea>
+                                    </div>
+                                </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Ubah</button>
+                  </div>
+                  </form>
+                  @endforeach
+            </div>
+        </div>
+    </div>
 
     <footer class="footer footer-static footer-light">
         <p class="clearfix blue-grey lighten-2 mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2019<a class="text-bold-800 grey darken-2" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent,</a>All rights Reserved</span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i class="feather icon-heart pink"></i></span>
