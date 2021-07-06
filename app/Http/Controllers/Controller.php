@@ -21,7 +21,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    public function log()
+    public function login()
     {
         $idp = pengguna::getId();  
 

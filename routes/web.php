@@ -27,7 +27,7 @@ Route::get('/kontak', 'CoWebsite@kontak');
 Route::get('/tentang', 'CoWebsite@tentang');
 Route::post('/add-saran', 'CoWebsite@addsaran');
 
-Route::get('/auth', 'Controller@log');
+Route::get('/auth', 'Controller@login');
 Route::post('/regis', 'Controller@register');
 Route::post('/regis:pengunjung', 'Controller@regispeng');
 Route::get('/actlog', 'Controller@actlog');
