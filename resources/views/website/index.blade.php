@@ -158,7 +158,7 @@ $sosmed = DB::select("select * from sosmed");
                         <!-- SLIDE  -->
                         <li data-index="rs-1" data-transition="zoomout" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="upload/1600x1200-1-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Pengaduan Masyarakan" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                             <!-- MAIN IMAGE -->
-                            <img src="assets/website/upload/biru1.jpg" alt="" title="1600&#215;1200-1" width="1600" height="1200" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
+                            <img src="assets/website/upload/biru2.jpg" alt="" title="1600&#215;1200-1" width="1600" height="1200" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina="">
                             <!-- LAYERS -->
 
                             <!-- LAYER NR. 1 -->
@@ -172,7 +172,7 @@ $sosmed = DB::select("select * from sosmed");
                         </li>
                     </ul>
 
-                    <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+                    
                 </div>
 
 
@@ -436,25 +436,6 @@ $sosmed = DB::select("select * from sosmed");
                                 swipe_min_touches: 1,
                                 swipe_direction: "horizontal",
                                 drag_block_vertical: false
-                            },
-                            arrows: {
-                                style: "gyges",
-                                enable: true,
-                                hide_onmobile: false,
-                                hide_onleave: false,
-                                tmp: '',
-                                left: {
-                                    h_align: "left",
-                                    v_align: "center",
-                                    h_offset: 20,
-                                    v_offset: 0
-                                },
-                                right: {
-                                    h_align: "right",
-                                    v_align: "center",
-                                    h_offset: 20,
-                                    v_offset: 0
-                                }
                             },
                             bullets: {
                                 enable: true,

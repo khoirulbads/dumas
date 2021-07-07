@@ -136,7 +136,7 @@ $sosmed = DB::select("select * from sosmed");
 
 
 
-        <div id="page_caption" class="hasbg parallax  " data-image="assets/website/upload/biru1.jpg" data-width="1600" data-height="1200">
+        <div id="page_caption" class="hasbg parallax  " data-image="assets/website/upload/biru2.jpg" data-width="1600" data-height="1200">
             <div class="page_title_wrapper">
                 <h1>Hubungi Kami</h1>
                 <div id="crumbs"><a href="index.html"></a>  <span class="current"></span></div>
