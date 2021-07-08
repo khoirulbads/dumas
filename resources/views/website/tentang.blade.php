@@ -58,10 +58,10 @@ $sosmed = DB::select("select * from sosmed");
         <a id="close_mobile_menu" href="#"><i class="fa fa-times-circle"></i></a>
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-            	<li class="menu-item"><a href="/">Beranda</a></li>
-                <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
-                <li class="menu-item"><a href="/kontak">Hubungi Kami</a></li>
-                <li class="menu-item"><a href="/auth">MASUK</li>
+            	<li class="menu-item"><a href="{{ url('/')}}">Beranda</a></li>
+                <li class="menu-item"><a href="{{ url('/tentang')}}">Apa itu Dumas??</a></li>
+                <li class="menu-item"><a href="{{ url('/kontak')}}">Hubungi Kami</a></li>
+                <li class="menu-item"><a href="{{ url('/auth')}}">MASUK</li>
                 <li>
                     @foreach ($setting as $data)
                     <a href="https://api.whatsapp.com/send?phone=62{{$data->NO_PONSEL}}">
