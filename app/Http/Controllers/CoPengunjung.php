@@ -150,7 +150,7 @@ class CoPengunjung extends Controller
         \Mail::send('email.emailku',$data, function($message) use ($data)
         {
             $message->from('noreply@dumas.pkmsukorame.com');
-            $message->to('weciez11@gmail.com')->subject('Pengaduan Masyarakat');
+            $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
         });
 
         return redirect('pdatadumas')->with('addpeng','.');
