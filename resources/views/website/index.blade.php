@@ -114,7 +114,7 @@ $sosmed = DB::select("select * from sosmed");
                         <img src="assets/website/images/newlogo1.png" alt="" width="50" height="50">
                     </a>
                     <!-- End logo -->
-                    <a href="/auth">
+                    <a href="{{ url('/auth')}}">
                         <div class="header_action">
                             MASUK 
                         </div>
@@ -135,9 +135,9 @@ $sosmed = DB::select("select * from sosmed");
                             <div id="menu_border_wrapper">
                                 <div class="menu-main-menu-container">
                                     <ul id="main_menu" class="nav">
-            							<li class="menu-item"><a href="/dumas">Beranda</a></li>
-                                        <li class="menu-item"><a href="/dumas/tentang">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="/dumas/kontak">Hubungi Kami</a></li>
+            							<li class="menu-item"><a href="{{ url('/')}}">Beranda</a></li>
+                                        <li class="menu-item"><a href="{{ url('/tentang')}}">Apa itu Dumas??</a></li>
+            							<li class="menu-item"><a href="{{ url('/kontak')}}">Hubungi Kami</a></li>
                                     </ul>
                                 </div>
                             </div>
