@@ -60,8 +60,8 @@ $sosmed = DB::select("select * from sosmed");
         <a id="close_mobile_menu" href="#"><i class="fa fa-times-circle"></i></a>
         <div class="menu-main-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-            	<li class="menu-item"><a href="{{ url('/'}}">Beranda</a></li>
-                <li class="menu-item"><a href="{{ url('/tentang'}}">Apa itu Dumas??</a></li>
+            	<li class="menu-item"><a href="{{ url('/')}}">Beranda</a></li>
+                <li class="menu-item"><a href="{{ url('/tentang')}}">Apa itu Dumas??</a></li>
                 <li class="menu-item"><a href="{{ url('/kontak')}}">Hubungi Kami</a></li>
                 <li class="menu-item"><a href="{{ url('/auth')}}">MASUK</li>
                 <li>
@@ -87,7 +87,7 @@ $sosmed = DB::select("select * from sosmed");
             <div class="top_bar  hasbg ">
 
                 <div id="mobile_nav_icon">
-                <a href="/auth">
+                <a href="{{ url('/auth')}}">
                         <div class="header_action">
                             MASUK 
                         </div>
@@ -145,7 +145,6 @@ $sosmed = DB::select("select * from sosmed");
                     </div>
 
                     <!-- End main nav -->
-
                 </div>
             </div>
         </div>
