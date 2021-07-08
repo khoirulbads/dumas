@@ -3,22 +3,22 @@
     @section('menu')
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item"><a href="/pengunjung"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              <li class=" nav-item"><a href="{{ url('/pengunjung')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
               <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                 <ul class="menu-content">
                     <li>
-                        <a href="/pdatadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
+                        <a href="{{ url('/pdatadumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data yang tersedia</span></a>
                     </li>
                     <li>
-                        <a href="/pdataresdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu direspon</span></a>
+                        <a href="{{ url('/pdataresdumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data perlu direspon</span></a>
                     </li>
                 </ul>
               </li>
               <li class=" nav-item">
-                    <a href="/pdatastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                    <a href="{{ url('/pdatastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
               </li>          
           </ul>
       </div>
@@ -79,10 +79,10 @@
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 160px;">
-                                                      <a href="/pdumas:det={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-info"><i class="feather icon-info"></i></a>
+                                                      <a href="{{ url('/pdumas:det=$dat->DUMAS_ID')}}" class="btn btn-icon btn-icon btn-info"><i class="feather icon-info"></i></a>
                                                         <!-- <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button> -->
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="/pdumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <a href="{{ url('/pdumas:del=$dat->DUMAS_ID')}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -179,7 +179,7 @@
                   $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/dumas:upd={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/dumas:upd=$upd->DUMAS_ID')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">

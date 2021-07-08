@@ -82,7 +82,7 @@
                                                     <td style="text-align:center;"><i class="{{$dat->LOGO}} fa-2x "></i></td>
                                                     <td style="width: 80px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editpeng{{$dat->ID_SOSMED}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="/sosmed:del={{$dat->ID_SOSMED}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <a href="{{ url('/sosmed:del=$dat->ID_SOSMED')}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                               @endforeach
@@ -161,7 +161,7 @@
                   $upd = DB::SELECT("select*from sosmed where ID_SOSMED = '$ed->ID_SOSMED'");
               ?>
               @foreach($upd as $upd)
-              <form action="/sosmed:upd={{$upd->ID_SOSMED}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/sosmed:upd=$upd->ID_SOSMED')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">

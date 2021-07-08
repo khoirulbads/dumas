@@ -124,7 +124,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editpeng{{Session::get('akun')}}"><i class="feather icon-user"></i> Edit Profile</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="/logout"><i class="feather icon-power"></i> Logout</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ url('/logout')}}"><i class="feather icon-power"></i> Logout</a>
                             </div>
                         </li>
                         <?php } ?>
@@ -173,7 +173,7 @@
                   $upd = DB::SELECT("select*from pengguna where PENG_ID = '$ed->PENG_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/edpeng:admin={{$upd->PENG_ID}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/edpeng:admin=$upd->PENG_ID')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">
