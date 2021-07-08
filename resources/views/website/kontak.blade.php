@@ -119,9 +119,9 @@ $sosmed = DB::select("select * from sosmed");
                             <div id="menu_border_wrapper">
                                 <div class="menu-main-menu-container">
                                     <ul id="main_menu" class="nav">
-            							<li class="menu-item"><a href="/">Beranda</a></li>
-                                        <li class="menu-item"><a href="/tentang">Apa itu Dumas??</a></li>
-            							<li class="menu-item"><a href="/kontak">Hubungi Kami</a></li>
+            							<li class="menu-item"><a href="{{ url('/')}}">Beranda</a></li>
+                                        <li class="menu-item"><a href="{{ url('/tentang')}}">Apa itu Dumas??</a></li>
+            							<li class="menu-item"><a href="{{ url('/kontak')}}">Hubungi Kami</a></li>
                                     </ul>
                                 </div>
                             </div>
