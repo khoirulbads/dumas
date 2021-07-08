@@ -3,23 +3,23 @@
     @section('menu')
         <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item "><a href="/admin"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              <li class=" nav-item "><a href="{{ url('/admin')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
               </li>
               <li class=" navigation-header"><span>Data</span>
               </li>
               <li class=" nav-item">
-                  <a href="/datapengguna"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
+                  <a href="{{ url('/datapengguna')}}"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
               </li> 
               <li class=" nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                   <ul class="menu-content">
-                      <li><a href="/datadumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
+                      <li><a href="{{ url('/datadumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
                       </li>
-                      <li><a href="/dataverdumas"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
+                      <li><a href="{{ url('/dataverdumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
                       </li>
                   </ul>
               </li>  
               <li class=" nav-item" style="background-color:#0080C9;">
-                  <a href="/datastat"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                  <a href="{{ url('/datastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
               </li>              
           </ul>
       </div>
