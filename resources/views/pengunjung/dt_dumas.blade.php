@@ -82,7 +82,7 @@
                                                       <a href="{{ url('/pdumas:det=$dat->DUMAS_ID')}}" class="btn btn-icon btn-icon btn-info"><i class="feather icon-info"></i></a>
                                                         <!-- <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button> -->
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="{{ url('/pdumas:del=$dat->DUMAS_ID')}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <a href="{{ url('/pdumas:del=')}}{{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -179,7 +179,7 @@
                   $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="{{ url('/dumas:upd=$upd->DUMAS_ID')}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/dumas:upd=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">

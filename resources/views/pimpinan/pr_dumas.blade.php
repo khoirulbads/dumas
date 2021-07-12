@@ -114,7 +114,7 @@
                     ?>
 
                     @foreach($uds as $upd)
-                    <form action="{{ url('/odumas:sta={{$upd->DUMAS_ID}}')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('/odumas:sta=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                         <div class="modal-body">
                             <div class="form-body">

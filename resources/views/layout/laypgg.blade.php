@@ -173,7 +173,7 @@
                   $upd = DB::SELECT("select*from pengguna where PENG_ID = '$ed->PENG_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="{{ url('/edpeng:pengunjung=$upd->PENG_ID')}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/edpeng:pengunjung=')}}{{$upd->PENG_ID}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">
