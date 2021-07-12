@@ -84,7 +84,7 @@
                                                     <td>{{$dat->LEVEL}}</td>
                                                     <td style="width: 80px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editpeng{{$dat->PENG_ID}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="{{ url('/pengguna:del=$dat->PENG_ID')}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <a href="{{ url('/pengguna:del=')}}{{$dat->PENG_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
                                                 </tr>
                                               @endforeach
@@ -191,7 +191,7 @@
                   $upd = DB::SELECT("select*from pengguna where PENG_ID = '$ed->PENG_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="{{ url('/pengguna:upd=$upd->PENG_ID')}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/pengguna:upd=')}} {{$upd->PENG_ID}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">

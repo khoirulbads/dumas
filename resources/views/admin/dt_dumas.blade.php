@@ -180,7 +180,7 @@
                   $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/dumas:sta={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/dumas:sta=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
                   <div class="modal-body">
                       <div class="form-body">
@@ -283,7 +283,7 @@
                   $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="/dumas:upd={{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/dumas:upd=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="modal-body">
                     <div class="form-body">
