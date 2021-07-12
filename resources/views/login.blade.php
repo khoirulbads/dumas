@@ -37,7 +37,7 @@
     <!-- END: Custom CSS-->
 
 </head>
-
+<?php ?>
 <body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
     <!-- BEGIN: Content-->
     <div class="app-content content">
