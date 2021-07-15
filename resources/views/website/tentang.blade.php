@@ -97,7 +97,7 @@ $sosmed = DB::select("select * from sosmed");
                         <img src="assets/website/images/newlogo1.png" alt="" width="50" height="50">
                     </a>
                     <!-- End logo -->
-                    <a href="/auth">
+                    <a href="{{url('auth')}}">
                         <div class="header_action">
                             MASUK 
                         </div>
