@@ -47,7 +47,7 @@
                                         <div >
                                             <div >
                                                 <!-- <i class="feather icon-award white font-large-1"></i> -->
-                                                <img src="/assets/img/logo putih.png" style="width:150px;">
+                                                <img src="assets/img/logo putih.png" style="width:150px;">
                                             </div>
                                         </div>
                                         <div class="text-center">

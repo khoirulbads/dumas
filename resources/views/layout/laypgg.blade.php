@@ -141,7 +141,7 @@
             <ul class="nav navbar-nav flex-row">
                <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="#">
-                        <!-- <div class="brand-logo"></div> --><img src="/assets/img/logo.png" style="border-radius: 100px; background-position: -65px -54px; height: 35px; width: 35px;margin-top: -10px;">
+                        <!-- <div class="brand-logo"></div> --><img src="assets/img/logo.png" style="border-radius: 100px; background-position: -65px -54px; height: 35px; width: 35px;margin-top: -10px;">
                         <h2 class="brand-text mb-0" style="color: #166BB2;">SI DUMAS</h2>
                     </a>
                 </li>
