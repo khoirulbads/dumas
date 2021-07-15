@@ -60,7 +60,7 @@
                           <div class="card">
                               <div class="card-content">
                                   <div class="card-body">
-                                      <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button> 
+                                      <!-- <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button>  -->
                                     <div class="table-responsive">
                                         <table class="table add-rows">
                                             <thead>

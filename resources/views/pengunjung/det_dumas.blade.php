@@ -65,13 +65,13 @@
                                       <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$det->ISI}} </textarea>
                                   </div>
                                   <div class="row">
-                                      <div class="col-md-6">
+                                      <div class="col-md-8">
                                           <div class="form-group">
                                             <label for="password-vertical">Kategori</label>
                                             <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$det->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
+                                      <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="contact-info-vertical">Lokasi</label>
                                               <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$det->LOKASI}}" autocomplete="off" readonly="" style="background-color: white;">

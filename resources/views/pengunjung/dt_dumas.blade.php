@@ -28,6 +28,22 @@
 
         $lev = array('Admin','Pimpinan','Pengunjung');
 
+        $kat = array(
+          'Pengelolaan Pengendalian Penduduk',
+          'Pengelolaan Keluarga Berencana dan Kesehatan Reproduksi',
+          'Pengelolaan Pembangunan Keluarga',
+          'Pengelolaan Kebijakan',
+          'Pengelolaan Advokasi dan KIE',
+          'Pengelolaan Penggerakan dan Kemitraan',
+          'Pengelolaan Teknologi Informasi dan Komunikasi',
+          'Pengelolaan Pelatihan, Penelitian dan Pengembangan',
+          'Pengelolaan SDM',
+          'Pengelolaan Keuangan dan Sarana Prasarana',
+          'Pengelolaan Organisasi',
+          'Pengendalian dan Pengawasan',
+          'Tidak Tahu/Tidak Terkategori'
+        );
+
     ?>
 
     @section('content')
@@ -129,16 +145,23 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label for="password-vertical">Kategori</label>
+                                    <select class="form-control" name="kat" required="">
+                                        <option></option>
+                                        @foreach($kat as $ka)
+                                        <option>{{$ka}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
                                     <label for="email-id-vertical">Isi Pengaduan</label>
                                     <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="berikan alamat lengkap dan contoh: jalan rusak parah di depan Terminal Gubug Kec. Gubug Kabupaten Grobogan, mohon segera diperbaiki" autocomplete="off" required="" style="height: 270px;resize: none;"> </textarea>
                                 </div>
                             </div>
                           </div>
                           <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="password-vertical">Kategori</label>
-                                <input type="text" id="password-vertical" class="form-control" name="kat" placeholder="kategori" autocomplete="off" required="">
-                            </div>
                             <div class="form-group">
                                 <label for="contact-info-vertical">Lokasi</label>
                                 <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" placeholder="lokasi" autocomplete="off" required="">
@@ -193,16 +216,26 @@
                               </div>
                               <div class="col-12">
                                   <div class="form-group">
+                                      <label for="password-vertical">Kategori</label>
+                                      <select class="form-control" name="kat">
+                                        @foreach($kat as $ka)
+                                        <?php if ($ka == $upd->KATEGORI){ ?>
+                                             <option selected="">{{$ka}}</option>
+                                          <?php }else{ ?>
+                                            <option>{{$ka}}</option>
+                                          <?php }?>
+                                        @endforeach
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
                                       <label for="email-id-vertical">Isi Pengaduan</label>
                                       <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;"> {{$upd->ISI}} </textarea>
                                   </div>
                               </div>
                           </div>
                           <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="password-vertical">Kategori</label>
-                                <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" required="">
-                            </div>
                             <div class="form-group">
                                 <label for="contact-info-vertical">Lokasi</label>
                                 <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$upd->LOKASI}}" autocomplete="off" required="">

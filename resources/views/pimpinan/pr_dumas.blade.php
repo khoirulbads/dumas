@@ -80,7 +80,7 @@
                                                       <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
-                                                      <td style="width: 50px;">
+                                                      <td style="width: 80px;">
                                                           <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>

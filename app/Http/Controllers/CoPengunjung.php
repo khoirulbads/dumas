@@ -111,11 +111,7 @@ class CoPengunjung extends Controller
         $data->KATEGORI = $ka;
         $data->LAMPIRAN = $la;
         $data->PENG_ID = $ak;
-<<<<<<< HEAD
         $data->HAPUS = '0';
-=======
-	$data->HAPUS = '0';
->>>>>>> 45d21fce1f5f433b7d91eb462cb9e91a6e58efff
         $data->save();
 
         $data = new verifikasi();
@@ -138,25 +134,24 @@ class CoPengunjung extends Controller
         $dumas = DB::SELECT("select*from dumas a, pengguna b where a.PENG_ID = b.PENG_ID and a.PENG_ID = '$ak'");
 
         foreach($dumas as $dum){
-        $data = array(
+            $data = array(
 
-            'nama' => $dum->NAMA,
-            'email' => $dum->EMAIL,
-            'judul' => $dum->JUDUL,
-            'lokasi' => $dum->LOKASI,
-            'tanggal' => $dum->TGL,
-            'kat' => $dum->KATEGORI,
-            'isi' => $dum->ISI,
-        );
+                'nama' => $dum->NAMA,
+                'email' => $dum->EMAIL,
+                'judul' => $dum->JUDUL,
+                'lokasi' => $dum->LOKASI,
+                'tanggal' => $dum->TGL,
+                'kat' => $dum->KATEGORI,
+                'isi' => $dum->ISI,
+            );
         }
 
-        // Mail::to("weciez11@gmail.com")->send(new KirimEmail());
 
-        \Mail::send('email.emailku',$data, function($message) use ($data)
-        {
-            $message->from('noreply@dumas.pkmsukorame.com');
-            $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
-        });
+        // \Mail::send('email.emailku',$data, function($message) use ($data)
+        // {
+        //     $message->from('noreply@dumas.pkmsukorame.com');
+        //     $message->to('weciez11@gmail.com')->subject('Pengaduan Masyarakat');
+        // });
 
         return redirect('pdatadumas')->with('addpeng','.');
     }
