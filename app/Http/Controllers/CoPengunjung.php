@@ -111,6 +111,7 @@ class CoPengunjung extends Controller
         $data->KATEGORI = $ka;
         $data->LAMPIRAN = $la;
         $data->PENG_ID = $ak;
+        $data->HAPUS = '0';
         $data->save();
 
         $data = new verifikasi();

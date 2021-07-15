@@ -1,4 +1,4 @@
-<h3>Halo, admin dumas.pkmsukorame.com !</h3>
+<h3>Halo, admin Dumas!</h3>
 
 <p>
 	Nama : {{$nama}}
