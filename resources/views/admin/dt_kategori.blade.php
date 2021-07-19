@@ -109,9 +109,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                              <?php $no = 1; ?>
                                               @foreach($data as $dat)
                                                 <tr>
-                                                    <td data-orderable="false">{{$dat->KAT_ID}}</td>
+                                                    <td data-orderable="false">{{$no++}}</td>
                                                     <td>{{$dat->KATEGORI}}</td>
                                                     <td style="width: 80px;">
                                                       <a class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editkat{{$dat->KAT_ID}}" style="color:black;"><i class="feather icon-edit"></i></a>
