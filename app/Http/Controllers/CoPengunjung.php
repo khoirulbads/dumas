@@ -286,7 +286,7 @@ class CoPengunjung extends Controller
         \Mail::send('email.email_respon',$data, function($message) use ($data)
             {
                 $message->from('noreply@dumas.pkmsukorame.com');
-                $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
+                $message->to('weciez11@gmail.com')->subject('Pengaduan Masyarakat');
             }
         );
 
