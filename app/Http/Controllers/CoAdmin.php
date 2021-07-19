@@ -289,6 +289,7 @@ class CoAdmin extends Controller
             $data->KAT_ID = $id;
         }
         $data->KATEGORI = ucfirst($ka);
+        $data->HAPUS = '0';
         $data->save();
 
         return redirect('datakategori')->with('addpeng','.');
