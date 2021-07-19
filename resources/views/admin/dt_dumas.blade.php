@@ -1,29 +1,66 @@
 @extends('layout.layadm')
 
-    @section('menu')
-      <div class="main-menu-content">
+  @section('menu')
+    <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="/admin"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-            </li>
-            <li class="navigation-header"><span>Data</span>
-            </li>
-            <li class="nav-item">
-                  <a href="{{url('/datapengguna')}}"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
-            </li>
-            <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
-                <ul class="menu-content">
-                    <li style="background-color:#0080C9;"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
-                    </li>
-                    <li><a href="{{url('/dataverdumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
-                    </li>
-                </ul>
-              </li> 
             <li class=" nav-item">
-                  <a href="{{url('/datastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                <a href="{{ url('/admin')}}">
+                    <i class="feather icon-home"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+                </a>
+            </li>
+            <li class=" navigation-header"><span>Data</span></li>
+            <li class=" nav-item ">
+                <a href="{{ url('/datapengguna')}}">
+                    <i class="feather icon-users"></i>
+                    <span class="menu-title" data-i18n="Email">Data Pengguna</span>
+                </a>
+            </li>
+            <li class=" nav-item ">
+                <a href="{{ url('/datakategori')}}">
+                    <i class="feather icon-tag"></i><span class="menu-title" data-i18n="Email">Data Kategori</span>
+                </a>
+            </li>
+            <li class=" nav-item">
+                <a href="#"><i class="feather icon-mail"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Data Dumas</span>
+                </a>
+              <ul class="menu-content">
+                  <li>
+                    <a href="{{ url('/datadumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="Analytics">telah masuk</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/dataverdumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah diverifikasi</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jver as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/dataprodumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">sedang diproses</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jpro as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/datatladumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah ditindak</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtla as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+              </ul>
+            </li> 
+            <li class=" nav-item">
+                <a href="{{ url('/datastat')}}">
+                    <i class="feather icon-bar-chart-2"></i>
+                    <span class="menu-title" data-i18n="Email">Data Statistik</span>
+                </a>
             </li>             
         </ul>
-      </div>
-    @endsection
+    </div>
+  @endsection
 
     <?php 
 
@@ -37,15 +74,15 @@
         <div class="header-navbar-shadow"></div> -->
         <div class="content-wrapper">
           <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
+              <div class="content-header-left col-md-12 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masyarakat</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masuk</h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Data Pengaduan Masyarakat
+                                  <li class="breadcrumb-item active">Data Data Pengaduan Masuk
                                   </li>
                               </ol>
                           </div>
@@ -80,7 +117,7 @@
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 160px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-check-circle"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
                                                         <!-- <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a> -->
@@ -180,7 +217,7 @@
                   $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="{{ url('/dumas:sta=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
+              <form action="{{ url('/dumas:verifikasi=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
                   <div class="modal-body">
                       <div class="form-body">
@@ -188,11 +225,12 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                   <label for="password-vertical">Kategori</label>
-                                  <select class="form-control" name="stat" required="">
+                                  <!-- <select class="form-control" name="stat" required="">
                                     <option></option>
                                     <option>tidak verifikasi</option>
                                     <option>telah verifikasi</option>
-                                  </select>
+                                  </select> -->
+                                  <input type="text" class="form-control" name="stat" value="telah verifikasi" readonly>
                               </div>
                               <div class="form-group">
                                   <label for="contact-info-vertical">Keterangan</label>
@@ -240,7 +278,7 @@
                               <div class="col-12">
                                   <div class="form-group">
                                       <label for="email-id-vertical">Isi Pengaduan</label>
-                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$upd->ISI}} </textarea>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;text-align: justify;white-space: pre-line;" readonly=""> {{$upd->ISI}} </textarea>
                                   </div>
                               </div>
                           </div>

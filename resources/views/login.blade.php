@@ -81,7 +81,22 @@
                                                         </div>
                                                         <label for="user-password">Password</label>
                                                     </fieldset>
-                                                    <br><br>
+                                                    <div class="form-group d-flex justify-content-between align-items-center">
+                                                        <div class="text-left">
+                                                            <fieldset class="checkbox">
+                                                                <!-- <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                    <input type="checkbox">
+                                                                    <span class="vs-checkbox">
+                                                                        <span class="vs-checkbox--check">
+                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="">Remember me</span>
+                                                                </div> -->
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="text-right"><a href="/forpass" class="card-link" style="color: #0080C9;">Lupa Password?</a></div>
+                                                    </div>
                                                     <button type="submit" class="btn float-right btn-block" style="background-color:#0080C9;color:white;">Login</button>
                                                 </form>
                                             </div>

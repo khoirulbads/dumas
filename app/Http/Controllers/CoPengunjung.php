@@ -31,10 +31,7 @@ class CoPengunjung extends Controller
 
     }
 
-    public function kirim()
-    {
-       // Mail::to("weciez11@gmail.com")->send(new KirimEmail());
-    }
+    
 
     public function edpeng(Request $request,$id)
     {
@@ -72,11 +69,18 @@ class CoPengunjung extends Controller
 
     public function dtadumas()
     {   
-        $idd = dumas::getId();
-        $idv = verifikasi::getId();
-        $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.PENG_ID = '$ses' and a.HAPUS = 0");
-        return view('/pengunjung/dt_dumas',['data'=>$data,'idd'=>$idd,'idv'=>$idv]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idd = dumas::getId();
+            $idv = verifikasi::getId();
+            $ses = Session::get('akun');
+            $kat = DB::SELECT("select*from kategori");
+            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.PENG_ID = '$ses' and a.HAPUS = 0");
+            return view('/pengunjung/dt_dumas',['idd'=>$idd,'idv'=>$idv,'data'=>$data,'kat'=>$kat]);
+
+        }
     }
 
     public function adddumas(Request $request)
@@ -147,22 +151,28 @@ class CoPengunjung extends Controller
         }
 
 
-        // \Mail::send('email.emailku',$data, function($message) use ($data)
-        // {
-        //     $message->from('noreply@dumas.pkmsukorame.com');
-        //     $message->to('weciez11@gmail.com')->subject('Pengaduan Masyarakat');
-        // });
+        \Mail::send('email.emailku',$data, function($message) use ($data)
+        {
+            $message->from('noreply@dumas.pkmsukorame.com');
+            $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
+        });
 
         return redirect('pdatadumas')->with('addpeng','.');
     }
 
     public function detdumas($id)
     {   
-        $data = DB::SELECT("select*from dumas a, pengguna b where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = '$id'");
-        $ver = DB::SELECT("select*from verifikasi where DUMAS_ID = '$id'");
-        $tln = DB::SELECT("select*from tindak_lanjut where DUMAS_ID = '$id'");
-        $res = DB::SELECT("select*from respon where DUMAS_ID = '$id'");
-        return view('/pengunjung/det_dumas',['data'=>$data,'ver'=>$ver,'tln'=>$tln,'res'=>$res]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $data = DB::SELECT("select*from dumas a, pengguna b where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = '$id'");
+            $ver = DB::SELECT("select*from verifikasi where DUMAS_ID = '$id'");
+            $tln = DB::SELECT("select*from tindak_lanjut where DUMAS_ID = '$id'");
+            $res = DB::SELECT("select*from respon where DUMAS_ID = '$id'");
+            return view('/pengunjung/det_dumas',['data'=>$data,'ver'=>$ver,'tln'=>$tln,'res'=>$res]);
+
+        }
     }
 
     public function upddumas(Request $request,$id)
@@ -221,11 +231,17 @@ class CoPengunjung extends Controller
 
     public function dtaresdumas()
     {   
-        $idd = dumas::getId();
-        $idr = respon::getId();
-        $ses = Session::get('akun');
-        $data = DB::SELECT("select*from dumas a, pengguna b, tindak_lanjut c where NOT EXISTS (SELECT * FROM respon WHERE a.DUMAS_ID = respon.DUMAS_ID) and a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'selesai' and a.PENG_ID = '$ses' and a.HAPUS = 0");
-        return view('/pengunjung/res_dumas',['data'=>$data,'idd'=>$idd,'idr'=>$idr]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idd = dumas::getId();
+            $idr = respon::getId();
+            $ses = Session::get('akun');
+            $data = DB::SELECT("select*from dumas a, pengguna b, tindak_lanjut c where NOT EXISTS (SELECT * FROM respon WHERE a.DUMAS_ID = respon.DUMAS_ID) and a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'selesai' and a.PENG_ID = '$ses' and a.HAPUS = 0");
+            return view('/pengunjung/res_dumas',['data'=>$data,'idd'=>$idd,'idr'=>$idr]);
+
+        }
     }
 
     public function resdumas(Request $request)
@@ -249,15 +265,46 @@ class CoPengunjung extends Controller
         $data->TGL = $tg;
         $data->save();
 
+
+        $cek = DB::SELECT("SELECT * , c.ISI as KET FROM pengguna a, dumas b, respon c WHERE a.PENG_ID = b.PENG_ID and b.DUMAS_ID = c.DUMAS_ID and b.DUMAS_ID = $id");
+
+        foreach($cek as $dum){
+            $data = array(
+                'perihal' => 'Pengaduan telah direspon',
+                'nama' => $dum->NAMA,
+                'email' => $dum->EMAIL,
+                'judul' => $dum->JUDUL,
+                'isi' => $dum->ISI,
+                'kat' => $dum->KATEGORI,
+                'lokasi' => $dum->LOKASI,
+                'ket' => $dum->KET,
+                'hal' => 'direspon',
+                'tanggal' => date('Y-m-d H:i:s'),
+            );
+        }
+
+        \Mail::send('email.email_respon',$data, function($message) use ($data)
+            {
+                $message->from('noreply@dumas.pkmsukorame.com');
+                $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
+            }
+        );
+
         return redirect('pdatadumas')->with('addpeng','.');
     }
 
     public function dtastat()
     {   
-        $ses = Session::get('akun');
-        $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
-        $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' ");
-        $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
-        return view('/pengunjung/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+            
+            $ses = Session::get('akun');
+            $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
+            $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' ");
+            $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
+            return view('/pengunjung/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+
+        }
     }
 }

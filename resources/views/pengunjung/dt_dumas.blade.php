@@ -25,25 +25,7 @@
     @endsection
 
     <?php 
-
         $lev = array('Admin','Pimpinan','Pengunjung');
-
-        $kat = array(
-          'Pengelolaan Pengendalian Penduduk',
-          'Pengelolaan Keluarga Berencana dan Kesehatan Reproduksi',
-          'Pengelolaan Pembangunan Keluarga',
-          'Pengelolaan Kebijakan',
-          'Pengelolaan Advokasi dan KIE',
-          'Pengelolaan Penggerakan dan Kemitraan',
-          'Pengelolaan Teknologi Informasi dan Komunikasi',
-          'Pengelolaan Pelatihan, Penelitian dan Pengembangan',
-          'Pengelolaan SDM',
-          'Pengelolaan Keuangan dan Sarana Prasarana',
-          'Pengelolaan Organisasi',
-          'Pengendalian dan Pengawasan',
-          'Tidak Tahu/Tidak Terkategori'
-        );
-
     ?>
 
     @section('content')
@@ -55,12 +37,12 @@
               <div class="content-header-left col-md-9 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masyarakat</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Yang Tersedia </h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Pengaduan Masyarakat
+                                  <li class="breadcrumb-item active">Data Pengaduan Yang Tersedia
                                   </li>
                               </ol>
                           </div>
@@ -93,8 +75,25 @@
                                                     <td>{{$dat->JUDUL}}</td>
                                                     <td><?= date('d M Y H:i',strtotime($dat->TGL)); ?></td>
                                                     <td>{{$dat->NAMA}}</td>
-                                                    <td>{{$dat->STATUS}}</td>
-                                                    <td style="width: 160px;">
+                                                    <?php $cek = DB::SELECT("SELECT*FROM tindak_lanjut WHERE DUMAS_ID = '$dat->DUMAS_ID'");?>
+                                                    @if($cek == null)
+                                                        <td>{{$dat->STATUS}}</td>
+                                                    @else
+                                                      @foreach($cek as $ce)
+
+                                                        @if($ce->STATUS == 'proses')
+                                                            <td>Dalam proses</td>
+                                                        @else
+                                                            <?php $res = DB::SELECT("SELECT*FROM respon WHERE DUMAS_ID = '$dat->DUMAS_ID'");?>
+                                                            @if($res == null)
+                                                              <td>Menunggu Respon <span style="color:red;">*</span></td>
+                                                            @else
+                                                              <td>Selesai</td>
+                                                            @endif
+                                                        @endif
+                                                      @endforeach
+                                                    @endif
+                                                    <td style="width: 120px;">
                                                       <a href="{{ url('/pdumas:det=')}}{{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-info"><i class="feather icon-info"></i></a>
                                                         <!-- <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button> -->
                                                         <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editdumas{{$dat->DUMAS_ID}}"><i class="feather icon-edit"></i></button>
@@ -107,6 +106,10 @@
                                     </div>
 
                                   </div>
+                              </div>
+                              <div class="card-footer">
+                                  
+                              <span style="color:red;">*</span>) Mohon segera merespon hasil pengaduan pada menu data perlu direspon
                               </div>
                           </div>
                       </div>
@@ -149,7 +152,7 @@
                                     <select class="form-control" name="kat" required="">
                                         <option></option>
                                         @foreach($kat as $ka)
-                                        <option>{{$ka}}</option>
+                                        <option style="padding:5px;">{{$ka->KATEGORI}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -157,7 +160,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="email-id-vertical">Isi Pengaduan</label>
-                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="berikan alamat lengkap dan contoh: jalan rusak parah di depan Terminal Gubug Kec. Gubug Kabupaten Grobogan, mohon segera diperbaiki" autocomplete="off" required="" style="height: 270px;resize: none;"> </textarea>
+                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="berikan alamat lengkap dan contoh: jalan rusak parah di depan Terminal Gubug Kec. Gubug Kabupaten Grobogan, mohon segera diperbaiki" autocomplete="off" required="" style="height: 270px;resize: none;"></textarea>
                                 </div>
                             </div>
                           </div>
@@ -170,8 +173,9 @@
                                 <label for="password-vertical">Lampiran</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="lamp" id="inputGroupFile01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <label class="custom-file-label" for="inputGroupFile01">.JPG, .JPEG, .PNG</label>
                                 </div>
+                                <label for="password-vertical" style="color: red;">ukuran maksimal 2MB</label>
                             </div>
                             <div class="form-group">
                                 <input type="hidden" id="contact-info-vertical" class="form-control" name="akun" value="{{Session::get('akun')}}" autocomplete="off" required="" readonly="">
@@ -219,10 +223,10 @@
                                       <label for="password-vertical">Kategori</label>
                                       <select class="form-control" name="kat">
                                         @foreach($kat as $ka)
-                                        <?php if ($ka == $upd->KATEGORI){ ?>
-                                             <option selected="">{{$ka}}</option>
+                                        <?php if ($ka->KATEGORI == $upd->KATEGORI){ ?>
+                                             <option selected="" style="padding:5px;" >{{$ka->KATEGORI}}</option>
                                           <?php }else{ ?>
-                                            <option>{{$ka}}</option>
+                                            <option  style="padding:5px;">{{$ka->KATEGORI}}</option>
                                           <?php }?>
                                         @endforeach
                                       </select>
@@ -231,7 +235,7 @@
                               <div class="col-12">
                                   <div class="form-group">
                                       <label for="email-id-vertical">Isi Pengaduan</label>
-                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;"> {{$upd->ISI}} </textarea>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;white-space: pre-line;"> {{$upd->ISI}} </textarea>
                                   </div>
                               </div>
                           </div>
@@ -244,7 +248,8 @@
                                 <label for="password-vertical">Lampiran</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="lamp" id="inputGroupFile01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <label class="custom-file-label" for="inputGroupFile01">.JPG, .JPEG, .PNG</label>
+                                    <label for="password-vertical" style="color: red;">ukuran maksimal 2MB</label>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -62,7 +62,7 @@
                                   </div>
                                   <div class="form-group">
                                       <label for="email-id-vertical">Isi Pengaduan</label>
-                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$det->ISI}} </textarea>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;text-align: justify;" readonly=""> {{$det->ISI}} </textarea>
                                   </div>
                                   <div class="row">
                                       <div class="col-md-8">
@@ -158,7 +158,7 @@
                                                 </div>
                                                 <div class="timeline-info">
                                                   <p class="font-weight-bold mb-0">Status Tindak Lanjut</p>
-                                                  <span class="font-small-3">pengaduan anda telah diproses 
+                                                  <span class="font-small-3">pengaduan anda sedang diproses 
                                                       <?php if($tm3->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm3->KET.'"</i>.'; }?> </span>
                                                 </div>
                                                 <small class="text-muted"><?= date('d M Y H:i',strtotime($tm3->TGL)); ?></small>

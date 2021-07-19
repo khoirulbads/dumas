@@ -42,7 +42,7 @@
                         </a>
                     </li>
                 </ul>
-              </li>  
+              </li> 
               <li class=" nav-item">
                     <a href="{{ url('/odatastat')}}">
                         <i class="feather icon-bar-chart-2"></i>
@@ -53,7 +53,7 @@
       </div>
   @endsection
 
-
+  
 
     @section('content')
     <div class="app-content content">
@@ -64,12 +64,12 @@
               <div class="content-header-left col-md-9 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masuk</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masyarakat</h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Pengaduan Masuk
+                                  <li class="breadcrumb-item active">Data Data Pengaduan Masyarakat
                                   </li>
                               </ol>
                           </div>
@@ -102,7 +102,7 @@
                                                       <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
-                                                      <td style="width: 80px;">
+                                                      <td style="width: 50px;">
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>
                                                   </tr>
@@ -120,7 +120,7 @@
         </div>
     </div>
 
-    
+
 
     @foreach($data as $ed)
     <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">

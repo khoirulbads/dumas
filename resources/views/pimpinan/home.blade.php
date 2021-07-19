@@ -3,25 +3,51 @@
   @section('menu')
       <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item" style="background-color:#0080C9;"><a href="#"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+              <li class=" nav-item" style="background-color:#0080C9;">
+                    <a href="{{ url('/pimpinan')}}">
+                        <i class="feather icon-home"></i>
+                        <span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+                    </a>
               </li>
-              <li class=" navigation-header"><span>Data</span>
-              </li>
-              <li class=" nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+              <li class=" navigation-header"><span>Data</span></li>
+              <li class=" nav-item">
+                <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                 <ul class="menu-content">
                     <li>
-                        <a href="{{ url('/odatadumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Verifikasi</span></a>
+                        <a href="{{ url('/odatadumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Masuk</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ url('/odataprdumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
+                        <a href="{{ url('/odataverdumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Verifikasi</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jver as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ url('/odatatldumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
+                        <a href="{{ url('/odataprodumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Proses</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jpro as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/odatatladumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Tindaklanjut</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jtla as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                 </ul>
-              </li>  
+              </li> 
               <li class=" nav-item">
-                    <a href="{{ url('/odatastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                    <a href="{{ url('/odatastat')}}">
+                        <i class="feather icon-bar-chart-2"></i>
+                        <span class="menu-title" data-i18n="Email">Data Statistik</span>
+                    </a>
               </li>             
           </ul>
       </div>

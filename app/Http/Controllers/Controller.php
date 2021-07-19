@@ -58,6 +58,40 @@ class Controller extends BaseController
 
     }
 
+    public function sendpass(Request $request)
+    {    
+        $email = $request->email;
+        $cek = DB::SELECT("select*from pengguna where EMAIL = '$email'");
+
+        if($cek == null){
+
+            return redirect('/forpass')->with('gagal','.');
+
+        }else{
+
+            foreach($cek as $dum){
+                $data = array(
+                    'nama' => $dum->NAMA,
+                    'email' => $dum->EMAIL,
+                    'username' => $dum->USERNAME,
+                    'password' => $dum->PASSWORD,
+                    'tanggal' => date('Y-m-d H:i:s'),
+                );
+            }
+
+
+            \Mail::send('email.email_pass',$data, function($message) use ($data)
+                {
+                    $message->from('noreply@dumas.pkmsukorame.com');
+                    $message->to($data['email'])->subject('Pengaduan Masyarakat');
+                }
+            );
+
+            return redirect('/forpass')->with('berhasil','.');
+
+        }
+    }
+
     public function regispeng(Request $request)
     {
         $id = $request->idp;

@@ -11,8 +11,10 @@ use Authenticate;
 use DB;
 use PDF;
 use App\pengguna;
+use App\kategori;
 use App\dumas;
 use App\verifikasi;
+use App\tindak_lanjut;
 use App\sosmed;
 
 class CoAdmin extends Controller
@@ -20,10 +22,18 @@ class CoAdmin extends Controller
     public function home()
     {
         if(Session::get('nama') == null){
-            return redirect('/login')->with('errlog','.');
+            return redirect('/auth')->with('errlog','.');
         }else{
 
-            return view('/admin/home');
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/home',['jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
         }
 
     }
@@ -81,9 +91,22 @@ class CoAdmin extends Controller
 
     public function dtasosmed()
     {   
-        $idp = sosmed::getId();
-        $data = DB::SELECT("select*from sosmed");
-        return view('/admin/dt_sosmed',['data'=>$data,'idp'=>$idp]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idp = sosmed::getId();
+            $data = DB::SELECT("select*from sosmed");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+            return view('/admin/dt_sosmed',['idp'=>$idp,'data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
     }
 
     public function addsosmed(Request $request)
@@ -105,14 +128,6 @@ class CoAdmin extends Controller
         return redirect('datasosmed')->with('addpeng','.');
     }
 
-
-    public function dtapeng()
-    {   
-        $idp = pengguna::getId();
-        $data = DB::SELECT("select*from pengguna");
-        return view('/admin/dt_pengguna',['data'=>$data,'idp'=>$idp]);
-    }
-
     public function updsosmed(Request $request,$id)
     {
         $li = $request->link;
@@ -130,6 +145,28 @@ class CoAdmin extends Controller
         DB::table('sosmed')->where('ID_SOSMED',$id)->delete();
 
         return redirect('datasosmed')->with('delpeng','.');
+    }
+
+
+
+    public function dtapeng()
+    {   
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idp = pengguna::getId();
+            $data = DB::SELECT("select*from pengguna");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+            return view('/admin/dt_pengguna',['idp'=>$idp,'data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
     }
 
     public function addpeng(Request $request)
@@ -220,13 +257,80 @@ class CoAdmin extends Controller
     }
 
 
+    public function dtakat()
+    {   
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idk = kategori::getId();
+            $data = DB::SELECT("select*from kategori where HAPUS = 0 order by KAT_ID");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+            return view('/admin/dt_kategori',['idk'=>$idk,'data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
+    }
+
+    public function addkat(Request $request)
+    {
+        $id = $request->idk;
+        $ka = $request->kat;
+
+        $data = new kategori();
+        if($id == null){
+            $data->KAT_ID = 1;
+        }else{
+            $data->KAT_ID = $id;
+        }
+        $data->KATEGORI = ucfirst($ka);
+        $data->save();
+
+        return redirect('datakategori')->with('addpeng','.');
+    }
+
+    public function updkat(Request $request,$id)
+    {
+        $ka = $request->kat;
+
+        $data = DB::table('kategori')->where('KAT_ID',$id)->update(['KATEGORI'=>$ka]);
+       
+        return redirect()->back()->with('addpeng','.');
+    }
+
+    public function delkat(Request $request,$id)
+    {
+        $data = DB::table('kategori')->where('KAT_ID',$id)->update(['HAPUS'=>'1']);
+       
+        return redirect()->back()->with('addpeng','.');
+    }
+
+
 
     public function dtadumas()
     {   
-        $idd = dumas::getId();
-        $idv = verifikasi::getId();
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
-        return view('/admin/dt_dumas',['data'=>$data,'idd'=>$idd,'idv'=>$idv]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idd = dumas::getId();
+            $idv = verifikasi::getId();
+            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/dt_dumas',['idd'=>$idd,'idv'=>$idv,'data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+        }
     }
 
     public function adddumas(Request $request)
@@ -279,17 +383,6 @@ class CoAdmin extends Controller
         $data->save();
 
         return redirect('datadumas')->with('addpeng','.');
-    }
-
-    public function updstdumas(Request $request,$id)
-    {
-        $st = $request->stat;
-        $kt = $request->ket;
-        $tg = date('Y-m-d H:i:s');
-
-        $data = DB::table('verifikasi')->where('DUMAS_ID',$id)->update(['STATUS'=>$st,'TGL'=>$tg,'KET'=>$kt]);
-       
-        return redirect()->back()->with('addpeng','.');
     }
 
     public function upddumas(Request $request,$id)
@@ -345,18 +438,213 @@ class CoAdmin extends Controller
         return redirect('datadumas')->with('delpeng','.');
     }
 
+    public function verifikasidumas(Request $request,$id)
+    {
+        $st = $request->stat;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+        $data = DB::table('verifikasi')->where('DUMAS_ID',$id)->update(['STATUS'=>$st,'TGL'=>$tg,'KET'=>$kt]);
+
+        $cek = DB::SELECT("select*from pengguna a, dumas b, verifikasi c where a.PENG_ID = b.PENG_ID and b.DUMAS_ID = c.DUMAS_ID and b.DUMAS_ID = $id");
+
+
+        foreach($cek as $dum){
+            $data = array(
+                'perihal' => 'Pengaduan telah diverifikasi',
+                'nama' => $dum->NAMA,
+                'email' => $dum->EMAIL,
+                'judul' => $dum->JUDUL,
+                'isi' => $dum->ISI,
+                'kat' => $dum->KATEGORI,
+                'lokasi' => $dum->LOKASI,
+                'ket' => $dum->KET,
+                'hal' => 'diverifikasi',
+                'tanggal' => date('Y-m-d H:i:s'),
+            );
+        }
+
+
+        \Mail::send('email.email_dumas',$data, function($message) use ($data)
+            {
+                $message->from('noreply@dumas.pkmsukorame.com');
+                $message->to($data['email'])->subject('Pengaduan Masyarakat');
+            }
+        );
+        
+        return redirect()->back()->with('addpeng','.');
+    }
+
     public function dtaverdumas()
     {   
-        $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0");
-        return view('/admin/dt_verdumas',['data'=>$data]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $idt = tindak_lanjut::getId();
+            $data = DB::SELECT("SELECT * FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/dt_verdumas',['idt'=>$idt,'data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
+    }
+
+    public function prosesdumas(Request $request)
+    {
+        $it = $request->idt;
+        $id = $request->idd;
+        $st = $request->sta;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+
+
+       $data = new tindak_lanjut();
+        if($id == null){
+            $data->TLAN_ID = 1;
+        }else{
+            $data->TLAN_ID = $id;
+        }
+        $data->DUMAS_ID = $id;
+        $data->STATUS = $st;
+        $data->KET = $kt;
+        $data->TGL = $tg;
+        $data->save();
+
+
+        $cek = DB::SELECT("select*from pengguna a, dumas b, tindak_lanjut c where a.PENG_ID = b.PENG_ID and b.DUMAS_ID = c.DUMAS_ID and b.DUMAS_ID = $id");
+
+
+        foreach($cek as $dum){
+            $data = array(
+                'perihal' => 'Pengaduan sedang diproses',
+                'nama' => $dum->NAMA,
+                'email' => $dum->EMAIL,
+                'judul' => $dum->JUDUL,
+                'isi' => $dum->ISI,
+                'kat' => $dum->KATEGORI,
+                'lokasi' => $dum->LOKASI,
+                'ket' => $dum->KET,
+                'hal' => 'diproses',
+                'tanggal' => date('Y-m-d H:i:s'),
+            );
+        }
+
+
+        \Mail::send('email.email_dumas',$data, function($message) use ($data)
+            {
+                $message->from('noreply@dumas.pkmsukorame.com');
+                $message->to($data['email'])->subject('Pengaduan Masyarakat');
+            }
+        );
+
+        return redirect('dataverdumas')->with('addpeng','.');
+    }
+
+
+    public function dtaproses()
+    {   
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/dt_produmas',['data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
+    }
+
+    public function tindakdumas(Request $request,$id)
+    {
+        $st = $request->stat;
+        $kt = $request->ket;
+        $tg = date('Y-m-d H:i:s');
+    
+        $data = DB::table('tindak_lanjut')->where('TLAN_ID',$id)->update(['STATUS'=>$st,'KET'=>$kt,'TGL'=>$tg]);
+
+
+        $cek = DB::SELECT("select*from pengguna a, dumas b, tindak_lanjut c where a.PENG_ID = b.PENG_ID and b.DUMAS_ID = c.DUMAS_ID and b.DUMAS_ID = $id");
+
+        foreach($cek as $dum){
+            $data = array(
+                'perihal' => 'Pengaduan telah ditindaklanjut',
+                'nama' => $dum->NAMA,
+                'email' => $dum->EMAIL,
+                'judul' => $dum->JUDUL,
+                'isi' => $dum->ISI,
+                'kat' => $dum->KATEGORI,
+                'lokasi' => $dum->LOKASI,
+                'ket' => $dum->KET,
+                'hal' => 'ditindaklanjut',
+                'tanggal' => date('Y-m-d H:i:s'),
+            );
+        }
+
+        \Mail::send('email.email_dumas',$data, function($message) use ($data)
+            {
+                $message->from('noreply@dumas.pkmsukorame.com');
+                $message->to($data['email'])->subject('Pengaduan Masyarakat');
+            }
+        );
+
+
+
+        return redirect()->back()->with('addpeng','.');
+    }
+
+    public function dtaselesai()
+    {   
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c, tindak_lanjut d where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/dt_tladumas',['data'=>$data,'jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+
+        }
     }
 
 
     public function dtastat()
     {   
-        $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi where STATUS = 'telah verifikasi'");
-        $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut");
-        $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon");
-        return view('/admin/dt_stat',['ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi where STATUS = 'telah verifikasi'");
+            $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut");
+            $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+
+            return view('/admin/dt_stat',['jmasuk'=>$jmasuk,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla,'ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
+
+        }
     }
 }

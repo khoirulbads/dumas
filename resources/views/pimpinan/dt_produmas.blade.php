@@ -1,37 +1,59 @@
 @extends('layout.layppn')
 
-    @section('menu')
+  @section('menu')
       <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class="nav-item"><a href="{{ url('/pimpinan')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+              <li class=" nav-item">
+                    <a href="{{ url('/pimpinan')}}">
+                        <i class="feather icon-home"></i>
+                        <span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+                    </a>
               </li>
-              <li class="navigation-header"><span>Data</span>
-              </li>
-              <li class="nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
+              <li class=" navigation-header"><span>Data</span></li>
+              <li class=" nav-item">
+                <a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
                 <ul class="menu-content">
                     <li>
-                        <a href="{{ url('/odatadumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Verifikasi</span></a>
+                        <a href="{{ url('/odatadumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Masuk</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Proses</span></a>
+                        <a href="{{ url('/odataverdumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Verifikasi</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jver as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ url('/odatatldumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Ditindak lanjuti </span></a>
+                        <a href="{{ url('/odataprodumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Proses</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jpro as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/odatatladumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="Analytics">Tindaklanjut</span>
+                            <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jtla as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
                     </li>
                 </ul>
-              </li>  
+              </li> 
               <li class=" nav-item">
-                    <a href="{{ url('/odatastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
+                    <a href="{{ url('/odatastat')}}">
+                        <i class="feather icon-bar-chart-2"></i>
+                        <span class="menu-title" data-i18n="Email">Data Statistik</span>
+                    </a>
               </li>             
           </ul>
       </div>
-    @endsection
+@endsection
 
-    <?php 
 
-        $sta = array('proses','selesai');
-
-    ?>
 
     @section('content')
     <div class="app-content content">
@@ -81,7 +103,6 @@
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
                                                       <td style="width: 80px;">
-                                                          <button type="button" class="btn btn-icon btn-icon btn-success" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-toggle-right"></i></button>
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>
                                                   </tr>
@@ -99,57 +120,7 @@
         </div>
     </div>
 
-    @foreach($data as $det)
-    <div class="modal fade text-left" id="statdumas{{$det->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary white">
-                    <h5 class="modal-title" id="myModalLabel160">Tindak Lanjut Laporan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <?php
-                        $uds = DB::SELECT("select*from tindak_lanjut where DUMAS_ID = '$det->DUMAS_ID'");
-                    ?>
-
-                    @foreach($uds as $upd)
-                    <form action="{{ url('/odumas:sta=')}}{{$upd->DUMAS_ID}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                        <div class="modal-body">
-                            <div class="form-body">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="password-vertical">Kategori</label>
-                                        <select class="form-control" name="stat" required="">
-                                            @foreach($sta as $st)
-                                            <?php if ($st == $upd->STATUS){ ?>
-                                                 <option value="{{$st}}" selected="">{{$st}}</option>
-                                              <?php }else{ ?>
-                                                <option value="{{$st}}">{{$st}}</option>
-                                              <?php }?>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contact-info-vertical">Keterangan</label>
-                                        <textarea type="text" id="contact-info-vertical" class="form-control" name="ket"autocomplete="off" style="height: 270px;resize: none;"> {{$upd->KET}}</textarea>
-                                    </div>
-                                    
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button>
-                        </div>
-                    </form>
-                    @endforeach
-            </div>
-        </div>
-    </div>
-    @endforeach
+    
 
     @foreach($data as $ed)
     <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
@@ -178,7 +149,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="email-id-vertical">Isi Pengaduan</label>
-                                        <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;" readonly=""> {{$upd->ISI}} </textarea>
+                                        <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;text-align: justify;white-space: pre-line;" readonly=""> {{$upd->ISI}} </textarea>
                                     </div>
                                 </div>
                             </div>

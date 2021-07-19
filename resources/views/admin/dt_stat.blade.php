@@ -1,29 +1,66 @@
 @extends('layout.layadm')
 
-    @section('menu')
-        <div class="main-menu-content">
-          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item "><a href="{{ url('/admin')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-              </li>
-              <li class=" navigation-header"><span>Data</span>
-              </li>
-              <li class=" nav-item">
-                  <a href="{{ url('/datapengguna')}}"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Email">Data Pengguna</span></a>
-              </li> 
-              <li class=" nav-item"><a href="#"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Dashboard">Data Dumas</span></a>
-                  <ul class="menu-content">
-                      <li><a href="{{ url('/datadumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Data Masuk</span></a>
-                      </li>
-                      <li><a href="{{ url('/dataverdumas')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">Data Diverifikasi</span></a>
-                      </li>
-                  </ul>
-              </li>  
-              <li class=" nav-item" style="background-color:#0080C9;">
-                  <a href="{{ url('/datastat')}}"><i class="feather icon-bar-chart-2"></i><span class="menu-title" data-i18n="Email">Data Statistik</span></a>
-              </li>              
-          </ul>
-      </div>
-    @endsection
+@section('menu')
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item">
+                <a href="{{ url('/admin')}}">
+                    <i class="feather icon-home"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+                </a>
+            </li>
+            <li class=" navigation-header"><span>Data</span></li>
+            <li class=" nav-item ">
+                <a href="{{ url('/datapengguna')}}">
+                    <i class="feather icon-users"></i>
+                    <span class="menu-title" data-i18n="Email">Data Pengguna</span>
+                </a>
+            </li>
+            <li class=" nav-item ">
+                <a href="{{ url('/datakategori')}}">
+                    <i class="feather icon-tag"></i><span class="menu-title" data-i18n="Email">Data Kategori</span>
+                </a>
+            </li>
+            <li class=" nav-item">
+                <a href="#"><i class="feather icon-mail"></i>
+                    <span class="menu-title" data-i18n="Dashboard">Data Dumas</span>
+                </a>
+              <ul class="menu-content">
+                  <li>
+                    <a href="{{ url('/datadumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="Analytics">telah masuk</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/dataverdumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah diverifikasi</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jver as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/dataprodumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">sedang diproses</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jpro as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('/datatladumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah ditindak</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtla as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+              </ul>
+            </li> 
+            <li class=" nav-item" style="background-color:#0080C9;">
+                <a href="{{ url('/datastat')}}">
+                    <i class="feather icon-bar-chart-2"></i>
+                    <span class="menu-title" data-i18n="Email">Data Statistik</span>
+                </a>
+            </li>             
+        </ul>
+    </div>
+@endsection
 
     <?php 
 
