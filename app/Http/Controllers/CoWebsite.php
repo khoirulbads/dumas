@@ -26,7 +26,7 @@ class CoWebsite extends Controller
         if ($cek != null) {
             
         }else{
-            $save = DB::table('visitor_counter')->insert(['IP' => $ip_address ]);  
+            $save = DB::table('visitor_counter')->insert(['IP' => $ip ]);  
         }
 
         $visit = DB::SELECT("SELECT COUNT(*) as jum FROM visitor_counter");
