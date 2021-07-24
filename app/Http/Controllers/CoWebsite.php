@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Authenticate;
 use DB;
 use PDF;
+use App\visitor;
 use App\pengguna;
 use App\dumas;
 use App\verifikasi;
@@ -26,7 +27,10 @@ class CoWebsite extends Controller
         if ($cek != null) {
             
         }else{
-            $save = DB::table('visitor_counter')->insert(['IP' => $ip ]);  
+            // $save = DB::table('visitor_counter')->insert(['IP' => $ip]);  
+            $data = new visitor(); 
+            $data->IP = $ip;
+            $data->save();
         }
 
         $visit = DB::SELECT("SELECT COUNT(*) as jum FROM visitor_counter");
