@@ -42,7 +42,13 @@
                         </a>
                     </li>
                 </ul>
-              </li>  
+              </li>
+              <li class=" nav-item">
+                    <a href="{{ url('/odatakatdumas')}}">
+                        <i class="feather icon-tag"></i>
+                        <span class="menu-title" data-i18n="Email">Data Kategori</span>
+                    </a>
+              </li>    
               <li class=" nav-item">
                     <a href="{{ url('/odatastat')}}">
                         <i class="feather icon-bar-chart-2"></i>
@@ -95,8 +101,8 @@
                                                       <th>Aksi</th>
                                                   </tr>
                                               </thead>
-                                              @foreach($data as $dat)
                                               <tbody>
+                                                @foreach($data as $dat)
                                                   <tr>
                                                       <td>{{$dat->JUDUL}}</td>
                                                       <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
@@ -106,8 +112,8 @@
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>
                                                   </tr>
+                                                @endforeach
                                               </tbody>
-                                              @endforeach
                                           </table>
                                       </div>
                                   </div>

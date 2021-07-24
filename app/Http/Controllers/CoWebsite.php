@@ -17,16 +17,21 @@ use App\verifikasi;
 class CoWebsite extends Controller
 {
     public function home()
-    {
+    {   
         $countPengunjung = 10;
         $ip_address=$_SERVER['REMOTE_ADDR']; 
         $cek = DB::select("select * from visitor_counter where IP='$ip_address'");
         if ($cek == null) {
-                $save = DB::table('visitor_counter')->insert([
-                        'IP' => $ip_address
-                        ]);                
+            $save = DB::table('visitor_counter')->insert([
+                'IP' => $ip_address
+            ]);                
         }
-        return view('/website/index');
+
+        $peng = DB::SELECT("SELECT*FROM pengguna");
+        $pelapor = DB::SELECT("SELECT  COUNT(DISTINCT a.PENG_ID) as jum FROM pengguna a, dumas b WHERE a.PENG_ID = b.PENG_ID AND a.LEVEL = 'Pengunjung' GROUP BY b.PENG_ID");
+        $masuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, verifikasi b WHERE a.DUMAS_ID = b.DUMAS_ID");
+        $tindak = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.STATUS = 'selesai'");
+        return view('/website/index',['peng'=>$peng,'pel'=>$pelapor,'masuk'=>$masuk,'tindak'=>$tindak]);
     }
     
     public function kontak()

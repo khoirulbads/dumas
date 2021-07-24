@@ -42,8 +42,8 @@
                         </a>
                     </li>
                 </ul>
-              </li> 
-              <li class=" nav-item">
+              </li>  
+              <li class=" nav-item" style="background-color:#0080C9;">
                     <a href="{{ url('/odatakatdumas')}}">
                         <i class="feather icon-tag"></i>
                         <span class="menu-title" data-i18n="Email">Data Kategori</span>
@@ -57,25 +57,23 @@
               </li>             
           </ul>
       </div>
-@endsection
+  @endsection
 
 
 
     @section('content')
     <div class="app-content content">
-       <!--  <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div> -->
         <div class="content-wrapper">
           <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
+              <div class="content-header-left col-md-12 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masyarakat</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan berdasarkan Kategori</h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Data Pengaduan Masyarakat
+                                  <li class="breadcrumb-item active">Data Kategori
                                   </li>
                               </ol>
                           </div>
@@ -94,25 +92,78 @@
                                           <table class="table add-rows">
                                               <thead>
                                                   <tr>
-                                                      <th>Judul</th>
-                                                      <th>Tanggal</th>
-                                                      <th>Penulis</th>
-                                                      <th>Status</th>
-                                                      <th>Aksi</th>
+                                                      <th>#</th>
+                                                      <th>Nama Kategori</th>
+                                                      <th>Jumlah Dumas</th>
                                                   </tr>
                                               </thead>
                                               <tbody>
-                                                @foreach($data as $dat)
+
+                                              <?php $no = 1; ?>
+                                              @foreach($data as $dat)
                                                   <tr>
-                                                      <td>{{$dat->JUDUL}}</td>
-                                                      <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
-                                                      <td>{{$dat->NAMA}}</td>
-                                                      <td>{{$dat->STATUS}}</td>
-                                                      <td style="width: 80px;">
-                                                          <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
+                                                      <td>{{$no++}}</td>
+                                                      <td>{{$dat->KATEGORI}}</td>
+                                                      <td style="text-align: center;">
+                                                          <?php $dum = DB::SELECT("SELECT *,COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND KATEGORI = '$dat->KATEGORI' AND b.STATUS = 'selesai'GROUP BY KATEGORI");?>
+                                                      
+                                                          @if($dum == null)
+                                                            Belum Ada Pengaduan   
+                                                          @else
+                                                          @foreach($dum as $jdum)
+                                                              {{$jdum->jum}} Pengaduan
+                                                          @endforeach
+                                                          @endif
                                                       </td>
+                                                      
                                                   </tr>
-                                                @endforeach
+                                              @endforeach
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+              <br>
+              <section id="add-row">
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="card">
+                              <div class="card-content">
+                                  <div class="card-body">
+                                      <div class="table-responsive">
+                                          <table class="table add-rows">
+                                              <thead>
+                                                  <tr>
+                                                      <th>#</th>
+                                                      <th>Nama Kategori</th>
+                                                      <th>Jumlah Dumas</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+
+                                              <?php $no = 1; ?>
+                                              @foreach($data as $dat)
+                                                  <tr>
+                                                      <td>{{$no++}}</td>
+                                                      <td>{{$dat->KATEGORI}}</td>
+                                                      <td style="text-align: center;">
+                                                          <?php $dum = DB::SELECT("SELECT *,COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND KATEGORI = '$dat->KATEGORI' AND b.STATUS = 'selesai'GROUP BY KATEGORI");?>
+                                                      
+                                                          @if($dum == null)
+                                                            Belum Ada Pengaduan   
+                                                          @else
+                                                          @foreach($dum as $jdum)
+                                                              {{$jdum->jum}} Pengaduan
+                                                          @endforeach
+                                                          @endif
+                                                      </td>
+                                                      
+                                                  </tr>
+                                              @endforeach
                                               </tbody>
                                           </table>
                                       </div>
@@ -128,61 +179,7 @@
 
     
 
-    @foreach($data as $ed)
-    <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary white">
-                    <h5 class="modal-title" id="myModalLabel160">Detail Laporan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <?php
-                    $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
-                ?>
-                @foreach($upd as $upd)
-                <div class="modal-body">
-                      <div class="form-body">
-                          <div class="row">
-                              <div class="col-md-7">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-vertical">Judul</label>
-                                        <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" readonly=""  style="background-color: white;">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-vertical">Isi Pengaduan</label>
-                                        <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;text-align: justify;white-space: pre-line;" readonly=""> {{$upd->ISI}} </textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                              <div class="form-group">
-                                  <label for="password-vertical">Kategori</label>
-                                  <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
-                              </div>
-                              <div class="form-group">
-                                  <label for="contact-info-vertical">Lokasi</label>
-                                  <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$upd->LOKASI}}" autocomplete="off" readonly="" style="background-color: white;">
-                              </div>
-                              <div class="form-group">
-                                  <label for="password-vertical">Lampiran</label>
-                                  <center>
-                                  <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="max-width: 100%;max-height: 300px;margin: 10px 0px 10px 0px;border-radius: 5px;">
-                                  </center>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    @endforeach
+    
 
   
   @endsection

@@ -43,6 +43,12 @@
                     </li>
                 </ul>
               </li> 
+              <li class=" nav-item">
+                    <a href="{{ url('/odatakatdumas')}}">
+                        <i class="feather icon-tag"></i>
+                        <span class="menu-title" data-i18n="Email">Data Kategori</span>
+                    </a>
+              </li> 
               <li class=" nav-item"  style="background-color:#0080C9;">
                     <a href="{{ url('/odatastat')}}">
                         <i class="feather icon-bar-chart-2"></i>

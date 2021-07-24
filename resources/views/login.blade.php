@@ -57,12 +57,48 @@
                                 <div class="col-lg-6 col-12 p-0">
                                     <div class="card rounded-0 mb-0 px-2" style="text-align: center;">
                                         <div class="card-header pb-1">
-                                            <div class="card-title">
+                                            <div class="card-title" style="text-align: center;">
                                                 <h4>Login</h4>
                                             </div>
-                                            <img src="">
                                         </div>
-                                        <p class="px-2">Welcome back, please login to your account.</p>
+                                        <p class="px-2">Selamat datang kembali, silakan login ke akun Anda.</p>
+                                        <?php if(Session::get('email')){ ?>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <p class="mb-0">
+                                                    email yang anda masukkan sudah terdaftar 
+                                                </p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="feather icon-x-circle"></i></span>
+                                                </button>
+                                            </div>
+                                        <?php }elseif(Session::get('username')){ ?>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <p class="mb-0">
+                                                    username yang anda masukkan sudah terdaftar
+                                                </p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="feather icon-x-circle"></i></span>
+                                                </button>
+                                            </div>
+                                        <?php }elseif(Session::get('regis')){ ?>
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <p class="mb-0">
+                                                    Akun anda telah terdaftar silahkan login dibawah
+                                                </p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="feather icon-x-circle"></i></span>
+                                                </button>
+                                            </div>
+                                        <?php }elseif(Session::get('gagal')){ ?>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <p class="mb-0">
+                                                    username dan password anda tidak cocok !!!
+                                                </p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true"><i class="feather icon-x-circle"></i></span>
+                                                </button>
+                                            </div>
+                                        <?php } ?>
                                         <div class="card-content">
                                             <div class="card-body pt-1">
                                                 <form action="{{ url('/actlog')}}" method="get">
@@ -107,7 +143,7 @@
                                                 if(count($data) >= 1){
                                                 ?> 
                                                 <div class="divider">
-                                                    <div class="divider-text">OR</div>
+                                                    <div class="divider-text">ATAU</div>
                                                 </div>
                                                 <a href="#" class="btn btn-outline-primary btn-block" style="margin-bottom: 20px;" data-toggle="modal" data-target="#daftar">Register</a>
                                                 <br>
@@ -246,7 +282,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Simpan</button>
+                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Daftar</button>
               </div>
               </form>
           </div>

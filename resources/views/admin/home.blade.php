@@ -29,7 +29,7 @@
               <ul class="menu-content">
                   <li>
                     <a href="{{ url('/datadumas')}}">
-                        <i class="feather icon-circle"></i>
+                        <i class="feather icon-download"></i>
                         <span class="menu-item" data-i18n="Analytics">telah masuk</span>
                         <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
                     </a>
@@ -67,7 +67,7 @@
     </div>
 @endsection
 
-  @section('content')
+@section('content')
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -104,7 +104,100 @@
                     </div>              
                 </section>
 
+
+                <section id="statistics-card">
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                                <h2 class="text-bold-700">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</h2>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                    <div class="avatar-content">
+                                                        <i class="feather icon-download text-info font-medium-5"></i>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Masuk</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                                <h2 class="text-bold-700">@foreach($jver as $jm){{$jm->jum}}@endforeach</h2>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                    <div class="avatar-content">
+                                                        <i class="feather icon-toggle-right text-info font-medium-5"></i>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Verifikasi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                                <h2 class="text-bold-700">@foreach($jpro as $jm){{$jm->jum}}@endforeach</h2>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                    <div class="avatar-content">
+                                                        <i class="feather icon-refresh-cw text-info font-medium-5"></i>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Diproses</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                                <h2 class="text-bold-700">@foreach($jtla as $jm){{$jm->jum}}@endforeach</h2>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                    <div class="avatar-content">
+                                                        <i class="feather icon-check-circle text-info font-medium-5"></i>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Selesai</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
             </div>
         </div>
     </div>
-  @endsection
+
+@endsection

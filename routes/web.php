@@ -39,6 +39,9 @@ Route::get('/odataverdumas', 'CoPimpinan@dtaverdumas');
 Route::get('/odataprodumas', 'CoPimpinan@dtaproses');
 Route::get('/odatatladumas', 'CoPimpinan@dtaselesai');
 
+Route::get('/odatakatdumas', 'CoPimpinan@dtakatdum');
+Route::get('/okategori:det={id}', 'CoPimpinan@dtadetkat');
+
 Route::get('/odatastat', 'CoPimpinan@dtastat');
 
 

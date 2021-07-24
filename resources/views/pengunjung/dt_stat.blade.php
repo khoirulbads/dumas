@@ -66,10 +66,11 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jumlah Diverifikasi', 'Jumlah Ditindak Lanjuti', 'Jumlah Selesai'],
+                labels: ['Jumlah Belum Diverifikasi','Jumlah Diverifikasi', 'Jumlah Ditindak Lanjuti', 'Jumlah Selesai'],
                 datasets: [{
                     label: 'Jumlah Pangaduan per Kategori',
                     data: [ 
+                            <?php foreach ($bel as $bel){ ?>'<?php echo $bel->jum; ?>' <?php }?> ,
                             <?php foreach ($ver as $ver){ ?>'<?php echo $ver->jum; ?>' <?php }?> ,
                             <?php foreach ($tln as $tln){ ?>'<?php echo $tln->jum; ?>' <?php }?> , 
                             <?php foreach ($sel as $sel){ ?>'<?php echo $sel->jum; ?>' <?php }?>
@@ -78,7 +79,7 @@
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
-                        // 'rgba(75, 192, 192, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
                         // 'rgba(153, 102, 255, 0.2)',
                         // 'rgba(255, 159, 64, 0.2)'
                     ],
@@ -86,7 +87,7 @@
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        // 'rgba(75, 192, 192, 1)',
+                        'rgba(75, 192, 192, 1)',
                         // 'rgba(153, 102, 255, 1)',
                         // 'rgba(255, 159, 64, 1)'
                     ],

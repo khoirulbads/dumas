@@ -31,6 +31,156 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway%3A200%2C300%2C400%2C500%2C600%2C700%2C400italic&subset=latin%2Ccyrillic-ext%2Cgreek-ext%2Ccyrillic&ver=5.2.5' type='text/css' media='all'>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CRaleway:300,400,500,600,700" rel="stylesheet">
 
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+
+    <style type="text/css">
+        
+        .steps {
+          position: relative;
+        }
+        .steps:before {
+          top: 90px;
+          bottom: 0;
+          position: absolute;
+          content: " ";
+          width: 2px;
+          background-color: #339DD9;
+          left: 50%;
+          margin-left: -1px;
+        }
+
+        .timeline {
+          margin: 0px auto;
+          overflow: hidden;
+          position: relative;
+          padding: 0px;
+          list-style-type: none;
+        }
+        .timeline .timeline-box {
+          position: relative;
+          float: left;
+          clear: left;
+          width: 45%;
+          margin: 1em 2.5%;
+          list-style-type: none;
+          display: block;
+          padding: 25px;
+          background: #f8f8f8;
+          z-index: 15;
+        }
+
+        .timeline .timeline-box .timeline-title {
+          color: #3c3c3c;
+          font-weight: 700;
+          font-size: 1em;
+          float: left;
+          padding-left: 25px;
+          padding-top: 8px;
+        }
+        .timeline .timeline-box .timeline-details {
+          clear: both;
+          padding-top: 5px;
+        }
+        .timeline .timeline-box span {
+          position: absolute;
+          top: -15px;
+          right: 24px;
+          font-size: 8em;
+          font-weight: 700;
+          color: #339DD9;
+          opacity: 0.1;
+          z-index: -1;
+        }
+        @media all and (max-width: 600px) {
+          .timeline .timeline-box {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+        .timeline .timeline-box:hover:after {
+          background: #339DD9;
+        }
+        @media all and (min-width: 650px) {
+          .timeline .timeline-box:after {
+            display: block;
+            content: ' ';
+            height: 9px;
+            width: 9px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            right: -6.55%;
+            top: 1.5em;
+            border: 2px solid #339DD9;
+          }
+        }
+        .timeline .timeline-box:first-child {
+          margin-bottom: 2.5em;
+        }
+        .timeline .timeline-box:nth-of-type(1n):before {
+          position: absolute;
+          top: 15px;
+          right: -10px;
+          display: inline-block;
+          border-top: 10px solid transparent;
+          border-left: 10px solid #f8f8f8;
+          border-right: 0 solid #f8f8f8;
+          border-bottom: 10px solid transparent;
+          content: " ";
+        }
+        .timeline .timeline-box:nth-of-type(2n) {
+          float: right;
+          clear: right;
+        }
+        .timeline .timeline-box:nth-of-type(2n):before {
+          right: auto;
+          left: -10px;
+          position: absolute;
+          top: 15px;
+          display: inline-block;
+          border-top: 10px solid transparent;
+          border-right: 10px solid #f8f8f8;
+          border-left: 0 solid #f8f8f8;
+          border-bottom: 10px solid transparent;
+          content: " ";
+        }
+        @media all and (min-width: 600px) {
+          .timeline .timeline-box:nth-of-type(2n) {
+            margin-top: 3em;
+          }
+        }
+        .timeline .timeline-box:nth-child(2n):after {
+          left: -6.5%;
+          right: auto;
+        }
+
+        .timeline-box:hover, .timeline-box:focus {
+          transform: translate(0, -5px);
+          -webkit-transform: translate(0, -5px);
+          -ms-transform: translate(0, -5px);
+        }
+
+        .timeline-box:hover, .timeline-box:focus {
+          -webkit-box-shadow: 0px 3px 0px 0px #339DD9;
+          -moz-box-shadow: 0px 3px 0px 0px #339DD9;
+          box-shadow: 0px 3px 0px 0px #339DD9;
+        }
+
+        .timeline-box {
+          transition: all 300ms ease-in-out;
+          -webkit-transition: all 300ms ease-in-out;
+          -moz-transition: all 300ms ease-in-out;
+          -o-transition: all 300ms ease-in-out;
+        }
+        .steps-area {
+          padding: 90px 0;
+        }
+
+    </style>
+
 
 
 </head>
@@ -181,69 +331,108 @@ $sosmed = DB::select("select * from sosmed");
 
 
 
-        <div class="ppb_wrapper  ">
-            <div class="one withsmallpadding ">
-                <div class="page_content_wrapper pt20" style="text-align:center">
-                    <h2 class="ppb_title">Komentar Pelapor</h2>
-                    <br>
-                    <div class="testimonial_slider_wrapper">
-                        <div class="flexslider" data-height="750">
-                            <ul class="slides">
-                            @foreach ($komentar as $kom )
-                                <li>
-                                    <div class="testimonial_slider_wrapper">{{$kom->KOMENTAR}}
-                                        <div class="testimonial_slider_meta">
-                                            <h6>{{$kom->KOMENTATOR}}</h6>
-                                            </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="one withsmallpadding withbg fullwidth parallax" style="height:200px;" data-image="assets/website/upload/1600x1200-13.jpg" data-width="1600" data-height="1200">
-                <div class="page_content_wrapper"><h1><center>PENGADUAN MASYARAKAT</h1></center></div>
-            </div>
-            <div class="one withsmallpadding " style="background:#f3f3f3;">
+        <div class="ppb_wrapper">
+            <div class="one withsmallpadding " style="background:#fff;">
                 <div class="page_content_wrapper pt20">
-                    <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-eye"></i>
+                    <!-- <div class="one_fourth">
+                        <div class="animate_counter_wrapper"><i data-feather="eye" style="height: 48px; width: 80px;"></i>
                             <br>
                             <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">12</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Pengunjung</div>
+                            <div class="counter_subject" style="color:grey;">Pengunjung</div>
+                        </div>
+                    </div> -->
+                    <div class="one_fourth">
+                        <div class="animate_counter_wrapper"><i data-feather="eye" style="height: 48px; width: 80px;"></i>
+                            <br>
+                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">12</div>
+                            <div class="count_separator"><span></span></div>
+                            <div class="counter_subject" style="color:grey;">PENGUNJUNG</div>
                         </div>
                     </div>
                     <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-user"></i>
+                        <div class="animate_counter_wrapper"><i data-feather="users" style="height: 48px; width: 80px;"></i>
                             <br>
-                            <div id="1584612796254376806" class="odometer" style="font-size:44px;line-height:44px;">0</div>
+                            <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($pel as $pel){{$pel->jum}}@endforeach</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Pelapor</div>
+                            <div class="counter_subject" style="color:grey;">PELAPOR</div>
                         </div>
                     </div>
                     <div class="one_fourth">
-                        <div class="animate_counter_wrapper"><i class="fa fa-th-list"></i>
+                        <div class="animate_counter_wrapper"><i data-feather="archive" style="height: 48px; width: 80px;"></i>
                             <br>
-                            <div id="1584612796413307740" class="odometer" style="font-size:44px;line-height:44px;">0</div>
+                            <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($masuk as $msk){{$msk->jum}}@endforeach</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Laporan Masuk</div>
+                            <div class="counter_subject" style="color:grey;">PENGADUAN MASUK</div>
                         </div>
                     </div>
                     <div class="one_fourth last">
-                        <div class="animate_counter_wrapper"><i class="fa fa-check-square-o"></i>
+                        <div class="animate_counter_wrapper"><i data-feather="check-circle" style="height: 48px; width: 80px;"></i>
                             <br>
-                            <div id="1584612796678726464" class="odometer" style="font-size:44px;line-height:44px;">0</div>
+                            <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($tindak as $tdk){{$tdk->jum}}@endforeach</div>
                             <div class="count_separator"><span></span></div>
-                            <div class="counter_subject">Laporan direspon</div>
+                            <div class="counter_subject" style="color:grey;">PENGADUAN DITINDAK</div>
                         </div>
                     </div>
                     <p>
                     </p>
                 </div>
             </div>
+            <div class="one withsmallpadding withbg fullwidth parallax" style="height:200px;" data-image="assets/website/upload/1600x1200-13.jpg" data-width="1600" data-height="1200">
+                <div class="page_content_wrapper"><h1><center>PENGADUAN MASYARAKAT</center></h1></div>
+            </div>
+            <div class="one withsmallpadding">
+                <div class="page_content_wrapper" style="width: 100%;">
+                    <h2 class="ppb_title" style="text-align: center;">PROSES PENGADUAN</h2>
+                    <br>
+                    <div class="testimonial_slider_wrapper">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <center>
+                                    <img src="assets/img/bg2.jpg" style="padding-top: 60px;">
+                                </center>
+                            </div>
+                            <div class="col-md-8">
+                                <section class="steps steps-area" style="margin-top:-50px;">
+                                    <ul class="timeline">
+                                        <li class="timeline-box wow fadeInLeft">
+                                            <i class="icon-layers"></i>
+                                            <p class="timeline-title">1. TULIS PENGADUAN</p>
+                                            <p class="timeline-details">Laporkan keluhan atau aspirasi anda dengan jelas. </p>
+                                            <span><i data-feather="file-plus" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
+                                        </li>
+                                        <li class="timeline-box wow fadeInRight">
+                                            <i class="icon-chat"></i>
+                                            <p class="timeline-title">2. PROSES VERIFIKASI</p>
+                                            <p class="timeline-details">Dalam 3 hari, laporan anda akan diverifikasi oleh admin dan akand diteruskan kepada instansi berwenang </p>
+                                            <span><i data-feather="pocket" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
+                                        </li>
+                                        <li class="timeline-box  wow fadeInLeft">
+                                            <i class="icon-tools"></i>
+                                            <p class="timeline-title">3. PROSES TINDAK LANJUT</p>
+                                            <p class="timeline-details"> Dan dalam beberapa hari, instansi akan menindaklanjuti dan membalas laporan anda. </p>
+                                            <span><i data-feather="clock" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
+                                        </li>
+                                        <li class="timeline-box wow fadeInRight">
+                                            <i class="icon-trophy"></i>
+                                            <p class="timeline-title">4. BERI TANGGAPAN</p>
+                                            <p class="timeline-details">Anda dapat menanggapi kembali balasan yang diberikan oleh instansi setelah laporan berhasil ditindaklanjuti. </p>
+                                            <span><i data-feather="message-square" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
+                                        </li>
+                                        <li class="timeline-box wow fadeInRight">
+                                            <i class="icon-trophy"></i>
+                                            <p class="timeline-title">5. SELESAI</p>
+                                            <p class="timeline-details">Pengaduan anda telah selesai. </p>
+                                            <span><i data-feather="check-square" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
+                                        </li>
+                                    </ul>                                  
+                                </section>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             
         </div>
 
@@ -307,7 +496,11 @@ $sosmed = DB::select("select * from sosmed");
     <script src="assets/website/revslider/public/assets/js/extensions/revolution.extension.parallax.min.js"></script>  
     <script src="assets/website/revslider/public/assets/js/extensions/revolution.extension.actions.min.js"></script> 
     <script src="assets/website/revslider/public/assets/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
     <script>
+
+        feather.replace()
+
         function setREVStartSize(e) {
             try {
                 e.c = jQuery(e.c);

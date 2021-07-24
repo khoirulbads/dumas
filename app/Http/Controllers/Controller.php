@@ -108,7 +108,21 @@ class Controller extends BaseController
             $request->file('foto')->move("assets/foto/", $foto);
         }
 
-       $data = new pengguna();
+
+        $cek = DB::SELECT("SELECT*FROM pengguna where EMAIL = '$em'");
+        $cek2 = DB::SELECT("SELECT*FROM pengguna where USERNAME = '$us'");
+
+        if(count($cek) != null){
+
+            return redirect('/auth')->with('email','.');
+
+        }elseif(count($cek2) != null){
+
+            return redirect('/auth')->with('username','.');
+        
+        }else{
+
+            $data = new pengguna();
             $data->PENG_ID = $id;
             $data->NAMA = ucfirst($na);
             $data->EMAIL = $em;
@@ -118,7 +132,10 @@ class Controller extends BaseController
             $data->FOTO = $foto;
             $data->save();
 
-        return redirect('/')->with('addpeng','.');
+        return redirect('/auth')->with('regis','.');
+
+        }
+   
 
     }
 
