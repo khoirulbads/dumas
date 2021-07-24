@@ -28,7 +28,7 @@ class CoWebsite extends Controller
         }
 
         $peng = DB::SELECT("SELECT*FROM pengguna");
-        $pelapor = DB::SELECT("SELECT  COUNT(DISTINCT a.PENG_ID) as jum FROM pengguna a, dumas b WHERE a.PENG_ID = b.PENG_ID AND a.LEVEL = 'Pengunjung' GROUP BY b.PENG_ID");
+        $pelapor = DB::SELECT("SELECT  COUNT(DISTINCT a.PENG_ID) as jum FROM pengguna a, dumas b WHERE a.PENG_ID = b.PENG_ID AND a.LEVEL = 'Pengunjung'");
         $masuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, verifikasi b WHERE a.DUMAS_ID = b.DUMAS_ID");
         $tindak = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.STATUS = 'selesai'");
         return view('/website/index',['peng'=>$peng,'pel'=>$pelapor,'masuk'=>$masuk,'tindak'=>$tindak]);
