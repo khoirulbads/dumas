@@ -24,14 +24,10 @@ class CoWebsite extends Controller
 
         $cek = DB::SELECT("SELECT * FROM visitor_counter WHERE IP = '$ip'");
 
-        if ($cek != null) {
+        
+            $save = DB::table('visitor_counter')->insert(['IP' => $ip]);  
             
-        }else{
-            // $save = DB::table('visitor_counter')->insert(['IP' => $ip]);  
-            $data = new visitor(); 
-            $data->IP = $ip;
-            $data->save();
-        }
+        
 
         $visit = DB::SELECT("SELECT COUNT(*) as jum FROM visitor_counter");
         $pelapor = DB::SELECT("SELECT  COUNT(DISTINCT a.PENG_ID) as jum FROM pengguna a, dumas b WHERE a.PENG_ID = b.PENG_ID AND a.LEVEL = 'Pengunjung'");
