@@ -342,7 +342,7 @@ $sosmed = DB::select("select * from sosmed");
                             <div class="counter_subject" style="color:grey;">Pengunjung</div>
                         </div>
                     </div> -->
-                    <div class="one_fourth">
+                    <div class="one_fourth" style="margin-bottom: 25px;">
                         <div class="animate_counter_wrapper"><i data-feather="eye" style="height: 48px; width: 80px;"></i>
                             <br>
                             <div  class="odometer" style="font-size:44px;line-height:44px;">@foreach($visit as $vis){{$vis->jum}}@endforeach</div>
@@ -350,7 +350,7 @@ $sosmed = DB::select("select * from sosmed");
                             <div class="counter_subject" style="color:grey;">PENGUNJUNG</div>
                         </div>
                     </div>
-                    <div class="one_fourth">
+                    <div class="one_fourth" style="margin-bottom: 25px;">
                         <div class="animate_counter_wrapper"><i data-feather="users" style="height: 48px; width: 80px;"></i>
                             <br>
                             <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($pel as $pel){{$pel->jum}}@endforeach</div>
@@ -358,7 +358,7 @@ $sosmed = DB::select("select * from sosmed");
                             <div class="counter_subject" style="color:grey;">PELAPOR</div>
                         </div>
                     </div>
-                    <div class="one_fourth">
+                    <div class="one_fourth" style="margin-bottom: 25px;">
                         <div class="animate_counter_wrapper"><i data-feather="archive" style="height: 48px; width: 80px;"></i>
                             <br>
                             <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($masuk as $msk){{$msk->jum}}@endforeach</div>
@@ -366,7 +366,7 @@ $sosmed = DB::select("select * from sosmed");
                             <div class="counter_subject" style="color:grey;">PENGADUAN MASUK</div>
                         </div>
                     </div>
-                    <div class="one_fourth last">
+                    <div class="one_fourth last" style="margin-bottom: 25px;">
                         <div class="animate_counter_wrapper"><i data-feather="check-circle" style="height: 48px; width: 80px;"></i>
                             <br>
                             <div class="odometer" style="font-size:44px;line-height:44px;">@foreach($tindak as $tdk){{$tdk->jum}}@endforeach</div>
