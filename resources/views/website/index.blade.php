@@ -345,7 +345,7 @@ $sosmed = DB::select("select * from sosmed");
                     <div class="one_fourth">
                         <div class="animate_counter_wrapper"><i data-feather="eye" style="height: 48px; width: 80px;"></i>
                             <br>
-                            <div id="1584612796597484876" class="odometer" style="font-size:44px;line-height:44px;">12</div>
+                            <div  class="odometer" style="font-size:44px;line-height:44px;">@foreach($visit as $vis){{$vis->jum}}@endforeach</div>
                             <div class="count_separator"><span></span></div>
                             <div class="counter_subject" style="color:grey;">PENGUNJUNG</div>
                         </div>
