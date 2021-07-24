@@ -18,13 +18,15 @@ class CoWebsite extends Controller
 {
     public function home()
     {   
-        $countPengunjung = 10;
+        
         $ip_address=$_SERVER['REMOTE_ADDR'];
-        $cek = DB::select("select * from visitor_counter where IP='$ip_address; '");
-        if ($cek == null) {
-            $save = DB::table('visitor_counter')->insert([
-                'IP' => $ip_address
-            ]);                
+
+        $cek = DB::SELECT("SELECT * FROM visitor_counter WHERE IP = ' $ip_address '");
+
+        if ($cek = null) {
+            $save = DB::table('visitor_counter')->insert(['IP' => $ip_address ]);                
+        }else{
+
         }
 
         $visit = DB::SELECT("SELECT COUNT(*) as jum FROM visitor_counter");
