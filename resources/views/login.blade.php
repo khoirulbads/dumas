@@ -131,7 +131,7 @@
                                                                 </div> -->
                                                             </fieldset>
                                                         </div>
-                                                        <div class="text-right"><a href="/forpass" class="card-link" style="color: #0080C9;">Lupa Password?</a></div>
+                                                        <div class="text-right"><a href="{{ url('/forpass')}}" class="card-link" style="color: #0080C9;">Lupa Password?</a></div>
                                                     </div>
                                                     <button type="submit" class="btn float-right btn-block" style="background-color:#0080C9;color:white;">Login</button>
                                                 </form>
