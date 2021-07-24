@@ -399,6 +399,7 @@ $sosmed = DB::select("select * from sosmed");
                                             <i class="icon-layers"></i>
                                             <p class="timeline-title">1. TULIS PENGADUAN</p>
                                             <p class="timeline-details">Laporkan keluhan atau aspirasi anda dengan jelas. </p>
+                                            <br>
                                             <span><i data-feather="file-plus" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
                                         </li>
                                         <li class="timeline-box wow fadeInRight">
@@ -423,6 +424,7 @@ $sosmed = DB::select("select * from sosmed");
                                             <i class="icon-trophy"></i>
                                             <p class="timeline-title">5. SELESAI</p>
                                             <p class="timeline-details">Pengaduan anda telah selesai. </p>
+                                            <br>
                                             <span><i data-feather="check-square" style="height: 108px; width: 80px;transform: rotate(10deg);"></i></span>
                                         </li>
                                     </ul>                                  
