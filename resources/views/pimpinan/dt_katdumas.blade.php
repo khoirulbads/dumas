@@ -127,59 +127,11 @@
                       </div>
                   </div>
               </section>
-              <br>
-              <section id="add-row">
-                  <div class="row">
-                      <div class="col-12">
-                          <div class="card">
-                              <div class="card-content">
-                                  <div class="card-body">
-                                      <div class="table-responsive">
-                                          <table class="table add-rows">
-                                              <thead>
-                                                  <tr>
-                                                      <th>#</th>
-                                                      <th>Nama Kategori</th>
-                                                      <th>Jumlah Dumas</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-
-                                              <?php $no = 1; ?>
-                                              @foreach($data as $dat)
-                                                  <tr>
-                                                      <td>{{$no++}}</td>
-                                                      <td>{{$dat->KATEGORI}}</td>
-                                                      <td style="text-align: center;">
-                                                          <?php $dum = DB::SELECT("SELECT *,COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND KATEGORI = '$dat->KATEGORI' AND b.STATUS = 'selesai'GROUP BY KATEGORI");?>
-                                                      
-                                                          @if($dum == null)
-                                                            Belum Ada Pengaduan   
-                                                          @else
-                                                          @foreach($dum as $jdum)
-                                                              {{$jdum->jum}} Pengaduan
-                                                          @endforeach
-                                                          @endif
-                                                      </td>
-                                                      
-                                                  </tr>
-                                              @endforeach
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </section>
+              
             </div>
         </div>
     </div>
 
-    
-
-    
 
   
   @endsection
