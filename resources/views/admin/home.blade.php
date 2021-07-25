@@ -29,7 +29,7 @@
               <ul class="menu-content">
                   <li>
                     <a href="{{ url('/datadumas')}}">
-                        <i class="feather icon-download"></i>
+                        <i class="feather icon-circle"></i>
                         <span class="menu-item" data-i18n="Analytics">telah masuk</span>
                         <span class="badge badge badge-pill float-right" style="background-color: #323859">@foreach($jmasuk as $jm){{$jm->jum}}@endforeach</span>
                     </a>
