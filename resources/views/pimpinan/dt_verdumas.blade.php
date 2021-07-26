@@ -21,6 +21,13 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('/odatatlkdumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="eCommerce">Tolak</span>
+                            <span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtlk as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('/odataverdumas')}}">
                             <i class="feather icon-circle"></i>
                             <span class="menu-item" data-i18n="Analytics">Verifikasi</span>
@@ -129,50 +136,7 @@
         </div>
 
 
-        @foreach($data as $det)
-        <div class="modal fade text-left" id="statdumas{{$det->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary white">
-                        <h5 class="modal-title" id="myModalLabel160">Proses Laporan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="{{ url('/dumas:proses')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                        <div class="modal-body">
-                            <div class="form-body">
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    @foreach($idt as $id)
-                                      <input type="hidden" name="idt" value="{{$id->TLAN_ID+1}}" readonly="">
-                                    @endforeach
-                                      <input type="hidden" name="idd" value="{{$det->DUMAS_ID}}">
-
-                                    <div class="form-group">
-                                        <label for="password-vertical">Kategori</label>
-                                        <input type="text" class="form-control" name="sta" value="proses" required="" readonly="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contact-info-vertical">Keterangan</label>
-                                        <textarea type="text" id="contact-info-vertical" class="form-control" name="ket" autocomplete="off" style="height: 270px;resize: none;" placeholder="isi jika diperlukan"></textarea>
-                                    </div>
-                                    
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Simpan</button>
-                        </div>
-                    </form>
-                    
-                </div>
-            </div>
-        </div>
-        @endforeach
+       
 
 
         @foreach($data as $ed)

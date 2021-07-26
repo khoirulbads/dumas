@@ -254,7 +254,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="first-name-vertical">No Ponsel</label>
+                                        <label for="first-name-vertical">No Ponsel <span style="color:red;">*</span></label>
                                         <input type="text" id="first-name-vertical" class="form-control" name="nopon" value="{{$upd->NO_PONSEL}}" autocomplete="off" required="">
                                     </div>
                                 </div>
@@ -294,7 +294,8 @@
                                         <textarea class="form-control" name="tentang" style="height: 150px;resize: none;">{{$upd->TENTANG}}</textarea>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
+                            <span style="color:red;">*</span>) mohon mengisi nomor tanpa menggunakan 0 / +62
                       </div>
                   </div>
                   <div class="modal-footer">

@@ -35,6 +35,13 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ url('/datatlkdumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah ditolak</span>
+                        <span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtlk as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ url('/dataverdumas')}}">
                         <i class="feather icon-circle"></i>
                         <span class="menu-item" data-i18n="eCommerce">telah diverifikasi</span>
@@ -135,6 +142,27 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                                <h2 class="text-bold-700">@foreach($jtlk as $jm){{$jm->jum}}@endforeach</h2>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                    <div class="avatar-content">
+                                                        <i class="feather icon-x-circle text-info font-medium-5"></i>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
+                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Ditolak</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="card text-center">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
                                                 <h2 class="text-bold-700">@foreach($jver as $jm){{$jm->jum}}@endforeach</h2>
                                             </div>
                                             <div class="col-md-4">
@@ -171,29 +199,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 col-sm-6">
-                            <div class="card text-center">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-8" style="padding-top: 10px;text-align: left;">
-                                                <h2 class="text-bold-700">@foreach($jtla as $jm){{$jm->jum}}@endforeach</h2>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="avatar bg-rgba-info p-50 m-0 mb-1">
-                                                    <div class="avatar-content">
-                                                        <i class="feather icon-check-circle text-info font-medium-5"></i>
-                                                    </div>
-                                                </div>
-                                            </div>                                       
+                        
+                    </div>
+                    <center>
+                    <div class="col-xl-3 col-md-4 col-sm-6" style="text-align:center;">
+                        <div class="card text-center">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8" style="padding-top: 10px;text-align: left;">
+                                            <h2 class="text-bold-700">@foreach($jtla as $jm){{$jm->jum}}@endforeach</h2>
                                         </div>
-                                        <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Selesai</p>
+                                        <div class="col-md-4">
+                                            <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-check-circle text-info font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                        </div>                                       
                                     </div>
+                                    <p class="mb-0 line-ellipsis" style="text-align:left;">Pengaduan Selesai</p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                    </center>
                 </section>
 
             </div>

@@ -24,6 +24,7 @@
             <li class=" nav-item">
                 <a href="#"><i class="feather icon-mail"></i>
                     <span class="menu-title" data-i18n="Dashboard">Data Dumas</span>
+                </a>
               <ul class="menu-content">
                   <li>
                     <a href="{{ url('/datadumas')}}">
@@ -83,12 +84,12 @@
               <div class="content-header-left col-md-12 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Sosmed</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Tidak Diverifikasi</h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Sosmed
+                                  <li class="breadcrumb-item active">Data Pengaduan Tidak Diverifikasi
                                   </li>
                               </ol>
                           </div>
@@ -103,36 +104,36 @@
                           <div class="card">
                               <div class="card-content">
                                   <div class="card-body">
-
-                                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Sosmed</button>
+                                      <!-- <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#primary"><i class="feather icon-plus-circle"></i> Tambah Data</button>  -->
                                     <div class="table-responsive">
                                         <table class="table add-rows">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Link</th>
-                                                    <th>Icon</th>
-                                                    <th>Preview</th>
+                                                    <th>Judul</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Penulis</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
+                                            @foreach($data as $dat)
                                             <tbody>
-                                              @foreach($data as $dat)
                                                 <tr>
-                                                    <td>{{$dat->ID_SOSMED}}</td>
-                                                    <td>{{$dat->LINK}}</td>
-                                                    <td>{{$dat->LOGO}}</td>
-                                                    <td style="text-align:center;"><i class="{{$dat->LOGO}} fa-2x "></i></td>
+                                                    <td>{{$dat->JUDUL}}</td>
+                                                    <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
+                                                    <td>{{$dat->NAMA}}</td>
+                                                    <td>{{$dat->STATUS}}</td>
                                                     <td style="width: 80px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-warning" data-toggle="modal" data-target="#editpeng{{$dat->ID_SOSMED}}"><i class="feather icon-edit"></i></button>
-                                                        <a href="{{ url('/sosmed:del=')}}{{$dat->ID_SOSMED}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
+                                                        <button type="button" class="btn btn-icon btn-icon btn-danger" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-x-circle"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
+                                                        <!-- <a href="/dumas:del={{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a> -->
                                                     </td>
                                                 </tr>
-                                              @endforeach
                                             </tbody>
+                                            @endforeach
                                         </table>
-                                      <span style="color:black;font-weight: bold">*) jika preview tidak tampil mohon mengganti dengan kode lain</span>
                                     </div>
+
                                   </div>
                               </div>
                           </div>
@@ -143,101 +144,109 @@
           </div>
         </div>
 
-    <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Tambah Sosmed</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <form action="{{url('/add_sosmed')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
-              <div class="modal-body">
-                    <div class="form-body">
-                        <div class="row">
-                            @foreach($idp as $id)
-                              <input type="hidden" name="idp" value="{{$id->ID_SOSMED+1}}" readonly="">
-                            @endforeach
-                          <div class="col-md-12">
-                            <div class="row">
-                              <div class="col-8">
-                                  <div class="form-group">
-                                      <label for="first-name-vertical">Link</label>
-                                      <input type="text" id="first-name-vertical" class="form-control" name="link" placeholder="https://web.facebook.com/" autocomplete="off" required="">
-                                  </div>
-                              </div>
-                              <div class="col-4">
-                                  <div class="form-group">
-                                      <label for="first-name-vertical">Icon</label>
-                                      <input type="text" id="first-name-vertical" class="form-control" name="logo" placeholder="fa fa-icons" autocomplete="off" required="">
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Simpan</button>
-              </div>
-              </form>
-          </div>
-      </div>
-  </div>
+    
 
-
-
-  
   @foreach($data as $ed)
-  <div class="modal fade text-left" id="editpeng{{$ed->ID_SOSMED}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-md" role="document">
+  <div class="modal fade text-left" id="statdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
           <div class="modal-content">
               <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Edit Icons</h5>
+                  <h5 class="modal-title" id="myModalLabel160">Penolakan Laporan</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
               <?php
-                  $upd = DB::SELECT("select*from sosmed where ID_SOSMED = '$ed->ID_SOSMED'");
+                  $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
               ?>
               @foreach($upd as $upd)
-              <form action="{{ url('/sosmed:upd=')}}{{$upd->ID_SOSMED}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
+                  <div class="modal-body">
+                      <div class="form-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="password-vertical">Status</label>
+                                  <!-- <select class="form-control" name="stat" required="">
+                                    <option></option>
+                                    <option>tidak verifikasi</option>
+                                    <option>telah verifikasi</option>
+                                  </select> -->
+                                  <input type="text" class="form-control" name="stat" value="{{$upd->STATUS}}" readonly>
+                              </div>
+                              <div class="form-group">
+                                  <label for="contact-info-vertical">Dengan Keterangan</label>
+                                  <textarea type="text" id="contact-info-vertical" class="form-control" name="ket" autocomplete="off" style="height: 270px;resize: none;" readonly="">{{$upd->KET}}</textarea>
+                              </div>
+                              
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach
+                  <div class="modal-footer">
+                    <!-- <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button> -->
+                  </div>
+          </div>
+      </div>
+  </div>
+  @endforeach
+
+  @foreach($data as $ed)
+  <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-primary white">
+                  <h5 class="modal-title" id="myModalLabel160">Detail Laporan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <?php
+                  $upd = DB::SELECT("select*from dumas where DUMAS_ID = '$ed->DUMAS_ID'");
+              ?>
+              @foreach($upd as $upd)
               <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                          <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="form-group">
-                                        <label for="first-name-vertical">Link</label>
-                                        <input type="text" id="first-name-vertical" class="form-control" name="link" value="{{$upd->LINK}}" autocomplete="off" required="">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="first-name-vertical">Icon</label>
-                                        <input type="text" id="first-name-vertical" class="form-control" name="logo" value="{{$upd->LOGO}}" autocomplete="off" required="">
-                                    </div>
-                                </div>
+                            <div class="col-md-7">
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="first-name-vertical">Judul</label>
+                                      <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->JUDUL}}" autocomplete="off" readonly=""  style="background-color: white;">
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <label for="email-id-vertical">Isi Pengaduan</label>
+                                      <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 270px;resize: none;background-color: white;text-align: justify;white-space: pre-line;" readonly=""> {{$upd->ISI}} </textarea>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="password-vertical">Kategori</label>
+                                <input type="text" id="password-vertical" class="form-control" name="kat" value="{{$upd->KATEGORI}}" autocomplete="off" readonly=""  style="background-color: white;">
                             </div>
+                            <div class="form-group">
+                                <label for="contact-info-vertical">Lokasi</label>
+                                <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" value="{{$upd->LOKASI}}" autocomplete="off" readonly="" style="background-color: white;">
+                            </div>
+                            <div class="form-group">
+                                <label for="password-vertical">Lampiran</label>
+                                <center>
+                                <img src="assets/lampiran/{{$upd->LAMPIRAN}}" style="max-width: 100%;max-height: 300px;margin: 10px 0px 10px 0px;border-radius: 5px;">
+                                </center>
+                            </div>
+                          </div>
                         </div>
                     </div>
                   </div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button>
-              </div>
-              </form>
               @endforeach
           </div>
       </div>
   </div>
   @endforeach
 
-    @endsection
+@endsection
 
             

@@ -33,6 +33,13 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ url('/datatlkdumas')}}">
+                        <i class="feather icon-circle"></i>
+                        <span class="menu-item" data-i18n="eCommerce">telah ditolak</span>
+                        <span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtlk as $jm){{$jm->jum}}@endforeach</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ url('/dataverdumas')}}">
                         <i class="feather icon-circle"></i>
                         <span class="menu-item" data-i18n="eCommerce">telah diverifikasi</span><span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jver as $jm){{$jm->jum}}@endforeach</span>
@@ -104,27 +111,28 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jumlah Diverifikasi', 'Jumlah Ditindak Lanjuti', 'Jumlah Selesai'],
+                labels: ['Tidak Diverifikasi','Diverifikasi', 'Ditindak Lanjuti', 'Selesai'],
                 datasets: [{
                     label: 'Jumlah Pangaduan per Kategori',
                     data: [ 
+                            <?php foreach ($tdk as $tdk){ ?>'<?php echo $tdk->jum; ?>' <?php }?> ,
                             <?php foreach ($ver as $ver){ ?>'<?php echo $ver->jum; ?>' <?php }?> ,
                             <?php foreach ($tln as $tln){ ?>'<?php echo $tln->jum; ?>' <?php }?> , 
                             <?php foreach ($sel as $sel){ ?>'<?php echo $sel->jum; ?>' <?php }?>
                           ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
-                        // 'rgba(75, 192, 192, 0.2)',
                         // 'rgba(153, 102, 255, 0.2)',
                         // 'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
-                        // 'rgba(75, 192, 192, 1)',
                         // 'rgba(153, 102, 255, 1)',
                         // 'rgba(255, 159, 64, 1)'
                     ],

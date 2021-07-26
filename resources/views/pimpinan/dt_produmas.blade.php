@@ -21,6 +21,13 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('/odatatlkdumas')}}">
+                            <i class="feather icon-circle"></i>
+                            <span class="menu-item" data-i18n="eCommerce">Tolak</span>
+                            <span class="badge badge  badge-pill float-right" style="background-color: #323859">@foreach($jtlk as $jm){{$jm->jum}}@endforeach</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('/odataverdumas')}}">
                             <i class="feather icon-circle"></i>
                             <span class="menu-item" data-i18n="Analytics">Verifikasi</span>

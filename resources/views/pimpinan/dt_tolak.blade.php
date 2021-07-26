@@ -74,15 +74,15 @@
         <div class="header-navbar-shadow"></div> -->
         <div class="content-wrapper">
           <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
+              <div class="content-header-left col-md-12 col-12 mb-2">
                   <div class="row breadcrumbs-top">
                       <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Masuk</h2>
+                          <h2 class="content-header-title float-left mb-0">Data Pengaduan Tidak Diverifikasi</h2>
                           <div class="breadcrumb-wrapper col-12">
                               <ol class="breadcrumb">
                                   <li class="breadcrumb-item"><a href="index.html">Data</a>
                                   </li>
-                                  <li class="breadcrumb-item active">Data Pengaduan Masuk
+                                  <li class="breadcrumb-item active">Data Pengaduan Tidak Diverifikasi
                                   </li>
                               </ol>
                           </div>
@@ -116,6 +116,7 @@
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
                                                       <td style="width: 80px;">
+                                                          <button type="button" class="btn btn-icon btn-icon btn-danger" data-toggle="modal" data-target="#statdumas{{$dat->DUMAS_ID}}"><i class="feather icon-x-circle"></i></button>
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
                                                       </td>
                                                   </tr>
@@ -133,6 +134,51 @@
         </div>
     </div>
 
+    
+    @foreach($data as $ed)
+    <div class="modal fade text-left" id="statdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-sm" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-primary white">
+                  <h5 class="modal-title" id="myModalLabel160">Penolakan Laporan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <?php
+                  $upd = DB::SELECT("select*from verifikasi where DUMAS_ID = '$ed->DUMAS_ID'");
+              ?>
+              @foreach($upd as $upd)
+                  <div class="modal-body">
+                      <div class="form-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="password-vertical">Status</label>
+                                  <!-- <select class="form-control" name="stat" required="">
+                                    <option></option>
+                                    <option>tidak verifikasi</option>
+                                    <option>telah verifikasi</option>
+                                  </select> -->
+                                  <input type="text" class="form-control" name="stat" value="{{$upd->STATUS}}" readonly>
+                              </div>
+                              <div class="form-group">
+                                  <label for="contact-info-vertical">Dengan Keterangan</label>
+                                  <textarea type="text" id="contact-info-vertical" class="form-control" name="ket" autocomplete="off" style="height: 270px;resize: none;" readonly="">{{$upd->KET}}</textarea>
+                              </div>
+                              
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach
+                  <div class="modal-footer">
+                    <!-- <button class="btn btn-primary"><i class="feather icon-edit"></i> Ubah</button> -->
+                  </div>
+          </div>
+      </div>
+  </div>
+  @endforeach
     
 
     @foreach($data as $ed)
@@ -191,7 +237,8 @@
     </div>
     @endforeach
 
+
   
-  @endsection
+@endsection
 
             

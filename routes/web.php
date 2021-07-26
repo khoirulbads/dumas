@@ -35,6 +35,7 @@ Route::get('/pimpinan', 'CoPimpinan@home');
 Route::post('/edpeng:pimpinan={id}', 'CoPimpinan@edpeng');
 
 Route::get('/odatadumas', 'CoPimpinan@dtadumas');
+Route::get('/odatatlkdumas', 'CoPimpinan@dtatlkdumas');
 Route::get('/odataverdumas', 'CoPimpinan@dtaverdumas');
 Route::get('/odataprodumas', 'CoPimpinan@dtaproses');
 Route::get('/odatatladumas', 'CoPimpinan@dtaselesai');
@@ -74,6 +75,8 @@ Route::post('/dumas:verifikasi={id}', 'CoAdmin@verifikasidumas');
 
 Route::get('/dataverdumas', 'CoAdmin@dtaverdumas');
 Route::post('/dumas:proses', 'CoAdmin@prosesdumas');
+
+Route::get('/datatlkdumas', 'CoAdmin@dtatlkdumas');
 
 Route::get('/dataprodumas', 'CoAdmin@dtaproses');
 Route::post('/dumas:tindak={id}', 'CoAdmin@tindakdumas');
