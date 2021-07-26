@@ -118,13 +118,15 @@
                                                   <p class="font-weight-bold mb-0">Status Verifikasi</p>
                                                   <span class="font-small-3">menunggu diverifikasi</span>
                                                 </div>
-                                            <?php }else if ($tm2->STATUS == 'tidak verifikasi' ){ ?>
-                                                <div class="timeline-icon bg-light">
-                                                    <i class="feather icon-clock font-medium-2 align-middle"></i>
+                                            <?php }else if ($tm2->STATUS == 'tidak verifikasi'){ ?>
+                                                <div class="timeline-icon bg-danger">
+                                                    <i class="feather icon-x-circle font-medium-2 align-middle"></i>
                                                 </div>
                                                 <div class="timeline-info">
                                                   <p class="font-weight-bold mb-0">Status Verifikasi</p>
-                                                  <span class="font-small-3"></span>
+                                                  <span class="font-small-3">pengaduan anda tidak diverifikasi atau ditolak
+                                                      <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm2->KET.'"</i>.'; }?> 
+                                                  </span>
                                                 </div>
                                             <?php }else{ ?>
                                                 <div class="timeline-icon bg-info">
@@ -133,7 +135,8 @@
                                                 <div class="timeline-info">
                                                   <p class="font-weight-bold mb-0">Status Verifikasi</p>
                                                   <span class="font-small-3">pengaduan anda telah diverifikasi 
-                                                              <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm2->KET.'"</i>.'; }?> </span>
+                                                      <?php if($tm2->KET == null){ }else{ echo 'dengan keterangan : <i>"'.$tm2->KET.'"</i>.'; }?> 
+                                                  </span>
                                                 </div>
                                                 <small class="text-muted"><?= date('d M Y H:i',strtotime($tm2->TGL)); ?></small>
                                             <?php } ?>
