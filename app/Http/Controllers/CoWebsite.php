@@ -14,6 +14,7 @@ use App\visitor;
 use App\pengguna;
 use App\dumas;
 use App\verifikasi;
+use App\saran;
 
 class CoWebsite extends Controller
 {
@@ -37,24 +38,42 @@ class CoWebsite extends Controller
         $tindak = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, tindak_lanjut b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.STATUS = 'selesai'");
         return view('/website/index',['visit'=>$visit,'pel'=>$pelapor,'masuk'=>$masuk,'tindak'=>$tindak]);
     }
-    
-    public function kontak()
-    {
-            return view('/website/kontak');
-    }
+
+
     
     public function tentang()
     {
             return view('/website/tentang');
     }
     
-    public function addsaran(Request $req)
+    public function kontak()
     {
-        $save = DB::table('saran')->insert([
-                'EMAIL' => $req->email, 
-                'NAMA' => $req->nama,
-                'ISI' => $req->isi
-                ]);
+        $ids = saran::getId();
+
+        return view('/website/kontak',['ids'=>$ids]);
+    }
+    
+    public function addsaran(Request $req)
+    {   
+
+        $id = $req->ids;
+        $na = $req->nama;
+        $em = $req->email;
+        $is = $req->isi;
+        $tg = date('Y-m-d');
+
+       $data = new saran();
+        if($id == null){
+            $data->SARAN_ID = 1;
+        }else{
+            $data->SARAN_ID = $id;
+        }
+        $data->NAMA = $na;
+        $data->EMAIL = $em;
+        $data->ISI = $is;
+        $data->TGL = $tg;
+        $data->save();
+
 
         return redirect("/kontak");
     }

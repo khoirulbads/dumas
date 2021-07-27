@@ -98,7 +98,7 @@ $sosmed = DB::select("select * from sosmed");
                         <img src="assets/website/images/newlogo1.png" alt="" width="50" height="50">
                     </a>
                     <!-- End logo -->
-                    <a href="/auth">
+                    <a href="{{url('auth')}}">
                         <div class="header_action">
                             MASUK 
                         </div>
@@ -182,6 +182,10 @@ $sosmed = DB::select("select * from sosmed");
                             <form class="quform" action="{{ url('/add-saran')}}" method="post" enctype="multipart/form-data" onclick="">
                                 {{ csrf_field() }}
                                 <div class="quform-elements">
+
+                                    @foreach($ids as $id)
+                                        <input type="hidden" name="ids" value="{{$id->SARAN_ID+1}}" readonly="">
+                                    @endforeach
                                     <div class="quform-element">
                                         <p>
 
