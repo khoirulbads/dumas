@@ -116,7 +116,7 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Nama</th>
-                                                    <th>Isi</th>
+                                                    <th>Email</th>
                                                     <th>Tgl</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -126,10 +126,10 @@
                                                 <tr>
                                                     <td>{{$dat->SARAN_ID}}</td>
                                                     <td>{{$dat->NAMA}}</td>
-                                                    <td>{{$dat->ISI}}</td>
+                                                    <td>{{$dat->EMAIL}}</td>
                                                     <td style="width:110px;"><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                     <td  style="width:20px;">
-                                                        <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#statdumas{{$dat->SARAN_ID}}"><i class="feather icon-message-square"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#detKritik{{$dat->SARAN_ID}}"><i class="feather icon-message-square"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -145,7 +145,53 @@
               </section>
             </div>
           </div>
-        </div>
+    </div>
+
+    @foreach($data as $ed)
+  <div class="modal fade text-left" id="detKritik{{$ed->SARAN_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-primary white">
+                  <h5 class="modal-title" id="myModalLabel160">Detail Kritik dan Saran</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <?php
+                  $upd = DB::SELECT("select*from saran where SARAN_ID = '$ed->SARAN_ID'");
+              ?>
+              @foreach($upd as $upd)
+              <div class="modal-body">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="first-name-vertical">Nama Pengisi</label>
+                                    <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->NAMA}}" autocomplete="off" readonly=""  style="background-color: white;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="first-name-vertical">Email </label>
+                                    <input type="text" id="first-name-vertical" class="form-control" name="judul" value="{{$upd->EMAIL}}" autocomplete="off" readonly=""  style="background-color: white;">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="email-id-vertical">Kritik dan Saran</label>
+                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" autocomplete="off" required="" style="height: 300px;resize: none;background-color: white;text-align: justify;white-space: pre-line;" readonly=""> {{$upd->ISI}} </textarea>
+                                </div>
+                              </div>
+                          </div>
+                          
+                        </div>
+                    </div>
+                  </div>
+              @endforeach
+          </div>
+      </div>
+  </div>
+  @endforeach
 
     
 

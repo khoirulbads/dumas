@@ -699,7 +699,7 @@ class CoAdmin extends Controller
             return redirect('/auth')->with('errlog','.');
         }else{
 
-            $data = DB::SELECT("select*from saran");
+            $data = DB::SELECT("select*, LEFT(ISI, 40) as isi from saran");
             $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
 
             $jtolak = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'tidak verifikasi' and a.HAPUS = 0");
