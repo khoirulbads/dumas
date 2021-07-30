@@ -162,8 +162,8 @@ class CoPengunjung extends Controller
 
         \Mail::send('email.emailku',$data, function($message) use ($data)
         {
-            $message->from('noreply@dumas.pkmsukorame.com');
-            $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
+            $message->from($data['email']);
+            $message->to('bengkulupengawasan@gmail.com')->subject('Pengaduan Masyarakat');
         });
 
         return redirect('pdatadumas')->with('addpeng','.');
@@ -294,8 +294,8 @@ class CoPengunjung extends Controller
 
         \Mail::send('email.email_respon',$data, function($message) use ($data)
             {
-                $message->from('noreply@dumas.pkmsukorame.com');
-                $message->to('aldilacinderatama@gmail.com')->subject('Pengaduan Masyarakat');
+                $message->from($data['nama']);
+                $message->to('bengkulupengawasan@gmail.com')->subject('Pengaduan Masyarakat');
             }
         );
 
@@ -309,10 +309,10 @@ class CoPengunjung extends Controller
         }else{
             
             $ses = Session::get('akun');
-            $bel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND a.STATUS = 'belum verifikasi' AND b.PENG_ID = '$ses'");
-            $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND a.STATUS = 'telah verifikasi' AND  b.PENG_ID = '$ses'");
-            $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' ");
-            $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses'");
+            $bel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND a.STATUS = 'belum verifikasi' AND b.PENG_ID = '$ses' and b.HAPUS = 0 ");
+            $ver = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM verifikasi a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND a.STATUS = 'telah verifikasi' AND  b.PENG_ID = '$ses' and b.HAPUS = 0 ");
+            $tln = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM tindak_lanjut a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' and b.HAPUS = 0 ");
+            $sel = DB::SELECT("SELECT DISTINCT COUNT(*) as jum FROM respon a, dumas b WHERE a.DUMAS_ID = b.DUMAS_ID AND b.PENG_ID = '$ses' and b.HAPUS = 0");
             return view('/pengunjung/dt_stat',['bel'=>$bel,'ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
 
         }

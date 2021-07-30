@@ -155,7 +155,7 @@ $sosmed = DB::select("select * from sosmed");
                         <div class="one_third">
 
                             <h4>Hubungi Kami</h4>
-                            {{$set->HUBUNGI}}
+                            <span style="text-align: justify;">{{$set->HUBUNGI}}</span>
                         </div>
 
                         <div class="one_third center">

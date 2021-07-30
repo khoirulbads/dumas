@@ -16,6 +16,7 @@ use App\dumas;
 use App\verifikasi;
 use App\tindak_lanjut;
 use App\sosmed;
+use App\saran;
 
 class CoAdmin extends Controller
 {
@@ -690,5 +691,26 @@ class CoAdmin extends Controller
             return view('/admin/dt_stat',['jmasuk'=>$jmasuk,'jtlk'=>$jtolak,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla,'tdk'=>$tdk,'ver'=>$ver,'tln'=>$tln,'sel'=>$sel]);
 
         }
+    }
+
+    public function dtaksa()
+    {
+        if(Session::get('nama') == null){
+            return redirect('/auth')->with('errlog','.');
+        }else{
+
+            $data = DB::SELECT("select*from saran");
+            $jmasuk = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'belum verifikasi' and a.HAPUS = 0");
+
+            $jtolak = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'tidak verifikasi' and a.HAPUS = 0");
+
+            $jver = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and c.STATUS = 'telah verifikasi' and a.HAPUS = 0 and NOT EXISTS (SELECT * FROM tindak_lanjut WHERE a.DUMAS_ID = tindak_lanjut.DUMAS_ID)");
+
+            $jpro = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'proses' and a.HAPUS = 0");
+
+            $jtla = DB::SELECT("SELECT COUNT(*) as jum FROM dumas a, pengguna b, verifikasi c, tindak_lanjut d WHERE a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.DUMAS_ID = d.DUMAS_ID and c.STATUS = 'telah verifikasi' and d.STATUS = 'selesai' and a.HAPUS = 0");
+            return view('/admin/dt_kritik',['data'=>$data,'jmasuk'=>$jmasuk,'jtlk'=>$jtolak,'jver'=>$jver,'jpro'=>$jpro,'jtla'=>$jtla]);
+        }
+
     }
 }

@@ -60,7 +60,7 @@ class CoWebsite extends Controller
         $na = $req->nama;
         $em = $req->email;
         $is = $req->isi;
-        $tg = date('Y-m-d');
+        $tg = date('Y-m-d H:i:s');
 
        $data = new saran();
         if($id == null){
@@ -73,6 +73,24 @@ class CoWebsite extends Controller
         $data->ISI = $is;
         $data->TGL = $tg;
         $data->save();
+
+        $kritik = DB::SELECT("select*from saran");
+
+        foreach($kritik as $ksa){
+            $data = array(
+                'nama' => $ksa->NAMA,
+                'email' => $ksa->EMAIL,
+                'isi' => $ksa->ISI,
+                'tgl' => $ksa->TGL,
+            );
+        }
+
+
+        \Mail::send('email.email_kritik',$data, function($message) use ($data)
+        {
+            $message->from($data['email']);
+            $message->to('bengkulupengawasan@gmail.com')->subject('Pengaduan Masyarakat');
+        });
 
 
         return redirect("/kontak");

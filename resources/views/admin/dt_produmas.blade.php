@@ -64,7 +64,13 @@
                     <i class="feather icon-bar-chart-2"></i>
                     <span class="menu-title" data-i18n="Email">Data Statistik</span>
                 </a>
-            </li>             
+            </li>
+            <li class=" nav-item">
+                <a href="{{ url('/datakritik')}}">
+                    <i class="feather icon-message-square"></i>
+                    <span class="menu-title" data-i18n="Email">Data Kritik & Saran</span>
+                </a>
+            </li>          
         </ul>
     </div>
 @endsection
