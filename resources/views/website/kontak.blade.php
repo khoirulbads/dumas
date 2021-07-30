@@ -198,7 +198,7 @@ $sosmed = DB::select("select * from sosmed");
                                         <p>
 
                                             <span class="wpcf7-form-control-wrap your-email">
-                                                <input id="email" type="text" name="email" size="40" class="input1" aria-required="true" aria-invalid="false" placeholder="example@example.com">
+                                                <input id="email" type="email" name="email" size="40" class="input1" aria-required="true" aria-invalid="false" placeholder="example@example.com">
                                             </span> 
                                         </p>
                                     </div>

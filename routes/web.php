@@ -86,7 +86,7 @@ Route::get('/datatladumas', 'CoAdmin@dtaselesai');
 Route::get('/datastat', 'CoAdmin@dtastat');
 
 Route::get('/datakritik', 'CoAdmin@dtaksa');
-
+Route::get('/kritik:del={id}', 'CoAdmin@delksa');
 
 
 

@@ -72,9 +72,10 @@ class CoWebsite extends Controller
         $data->EMAIL = $em;
         $data->ISI = $is;
         $data->TGL = $tg;
+        $data->HAPUS = '0';
         $data->save();
 
-        $kritik = DB::SELECT("select*from saran");
+        $kritik = DB::SELECT("select*from saran where SARAN_ID = '$ids'");
 
         foreach($kritik as $ksa){
             $data = array(

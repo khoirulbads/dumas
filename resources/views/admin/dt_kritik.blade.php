@@ -121,19 +121,21 @@
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
-                                            @foreach($data as $dat)
+                                            <?php $no = 1?> 
                                             <tbody>
+                                            @foreach($data as $dat)
                                                 <tr>
-                                                    <td>{{$dat->SARAN_ID}}</td>
+                                                    <td>{{$no++}}</td>
                                                     <td>{{$dat->NAMA}}</td>
                                                     <td>{{$dat->EMAIL}}</td>
                                                     <td style="width:110px;"><?= date('d M Y',strtotime($dat->TGL)); ?></td>
-                                                    <td  style="width:20px;">
+                                                    <td  style="width:80px;">
                                                         <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#detKritik{{$dat->SARAN_ID}}"><i class="feather icon-message-square"></i></button>
+                                                        <a href="{{ url('/kritik:del=')}}{{$dat->SARAN_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                     </td>
-                                                </tr>
-                                            </tbody>
+                                                </tr> 
                                             @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
 
