@@ -179,7 +179,7 @@ $sosmed = DB::select("select * from sosmed");
                     <h2 class="widgettitle"></h2>
                     <div class="textwidget">
                         <div style="text-align:left;margin-top:10px; color:white"><br><br>
-                            <img src="https://latbang-bkkbnjatim.com/wp-content/uploads/2020/06/logo-bkkbn-new-normal.png" alt="" width="200" height="200">
+                            <img src="assets/img/BKKBN Bengkulu.png" alt="" width="200" height="200">
                         </div>
                     </div>
                 </li>
