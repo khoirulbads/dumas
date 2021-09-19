@@ -74,7 +74,7 @@
                                                 </div>
                                             <?php }elseif(Session::get('berhasil')){ ?>
                                                 <div class="alert" style=" color: #004085; background-color: #cce5ff; border-color: #b8daff;margin-bottom: 0px;">
-                                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                                                    <button type="button" class="close" data-dismiss="alert" style="color: #004085;"><span aria-hidden="true" >&times;</span></button>
                                                      silahkan cek password anda di email anda !!!
                                                 </div>
                                             <?php }else{

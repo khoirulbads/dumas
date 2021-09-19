@@ -164,11 +164,8 @@
               <div class="modal-body">
                     <div class="form-body">
                         <div class="row">
-                          @foreach($idd as $id)
-                            <input type="hidden" name="idd" value="{{$id->DUMAS_ID+1}}" readonly="">
-                          @endforeach
-                          @foreach($idv as $id)
-                            <input type="hidden" name="idv" value="{{$id->DUMAS_ID+1}}" readonly="">
+                          @foreach($idk as $id)
+                            <input type="hidden" name="idd" value="{{$id->PENG_ID+1}}" readonly="">
                           @endforeach
                           <div class="col-md-8">
                             <div class="col-12">
