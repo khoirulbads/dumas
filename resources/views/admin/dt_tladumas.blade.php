@@ -147,7 +147,6 @@
         </div>
     </div>
 
- 
 
     @foreach($data as $ed)
     <div class="modal fade text-left" id="infodumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
