@@ -81,7 +81,6 @@ Route::get('/dataprodumas', 'CoAdmin@dtaproses');
 Route::post('/dumas:tindak={id}', 'CoAdmin@tindakdumas');
 
 Route::get('/datatladumas', 'CoAdmin@dtaselesai');
-
 Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
 
 Route::get('/datastat', 'CoAdmin@dtastat');
