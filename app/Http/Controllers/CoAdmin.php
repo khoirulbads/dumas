@@ -433,24 +433,6 @@ class CoAdmin extends Controller
         return redirect()->back()->with('addpeng','.');
     }
 
-    public function deldumas($id)
-    {
-        $gam = DB::SELECT("select*from dumas where DUMAS_ID = '$id'");
-        foreach ($gam as $key) {
-               if($key->LAMPIRAN == 'default.png'){
-
-                }else{
-                    $image_path = "assets/lampiran/$key->LAMPIRAN";
-                    if(File::exists($image_path)) {
-                    File::delete($image_path);
-                    }
-                }
-            }
-        DB::table('dumas')->where('DUMAS_ID',$id)->delete();
-
-        return redirect('datadumas')->with('delpeng','.');
-    }
-
     public function verifikasidumas(Request $request,$id)
     {
         $st = $request->stat;
@@ -666,6 +648,16 @@ class CoAdmin extends Controller
 
         }
     }
+
+
+    public function deldumas($id)
+    {
+        
+        $data = DB::table('dumas')->where('DUMAS_ID',$id)->update(['HAPUS'=>2]);
+
+        return redirect('datatladumas')->with('delpeng','.');
+    }
+
 
 
     public function dtastat()

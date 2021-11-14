@@ -86,7 +86,7 @@ class CoPengunjung extends Controller
             $idv = verifikasi::getId();
             $ses = Session::get('akun');
             $kat = DB::SELECT("select*from kategori");
-            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.PENG_ID = '$ses' and a.HAPUS = 0");
+            $data = DB::SELECT("select*from dumas a, pengguna b, verifikasi c where a.PENG_ID = b.PENG_ID and a.DUMAS_ID = c.DUMAS_ID and a.PENG_ID = '$ses' and a.HAPUS NOT LIKE 1");
             return view('/pengunjung/dt_dumas',['idd'=>$idd,'idv'=>$idv,'data'=>$data,'kat'=>$kat]);
 
         }

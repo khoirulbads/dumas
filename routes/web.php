@@ -69,7 +69,6 @@ Route::get('/pengguna:del={id}', 'CoAdmin@delpeng');
 Route::get('/datadumas', 'CoAdmin@dtadumas');
 Route::post('/add_dumas', 'CoAdmin@adddumas');
 Route::post('/dumas:upd={id}', 'CoAdmin@upddumas');
-Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
 
 Route::post('/dumas:verifikasi={id}', 'CoAdmin@verifikasidumas');
 
@@ -82,6 +81,8 @@ Route::get('/dataprodumas', 'CoAdmin@dtaproses');
 Route::post('/dumas:tindak={id}', 'CoAdmin@tindakdumas');
 
 Route::get('/datatladumas', 'CoAdmin@dtaselesai');
+
+Route::get('/dumas:del={id}', 'CoAdmin@deldumas');
 
 Route::get('/datastat', 'CoAdmin@dtastat');
 

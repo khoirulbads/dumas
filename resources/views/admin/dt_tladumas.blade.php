@@ -128,8 +128,9 @@
                                                       <td><?= date('d M Y',strtotime($dat->TGL)); ?></td>
                                                       <td>{{$dat->NAMA}}</td>
                                                       <td>{{$dat->STATUS}}</td>
-                                                      <td style="width: 50px;">
+                                                      <td style="width: 80px;">
                                                           <button type="button" class="btn btn-icon btn-icon btn-info" data-toggle="modal" data-target="#infodumas{{$dat->DUMAS_ID}}"><i class="feather icon-info"></i></button>
+                                                          <a href="{{ url('/dumas:del=')}}{{$dat->DUMAS_ID}}" class="btn btn-icon btn-icon btn-danger" onclick="return(confirm('Anda Yakin ?'));"><i class="feather icon-trash"></i></a>
                                                       </td>
                                                   </tr>
                                               </tbody>

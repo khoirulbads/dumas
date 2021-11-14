@@ -150,67 +150,7 @@
           </div>
         </div>
 
-    <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-primary white">
-                  <h5 class="modal-title" id="myModalLabel160">Masukkan Pengaduan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <form action="{{url('/add_dumas')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
-              <div class="modal-body">
-                    <div class="form-body">
-                        <div class="row">
-                          @foreach($idk as $id)
-                            <input type="hidden" name="idd" value="{{$id->PENG_ID+1}}" readonly="">
-                          @endforeach
-                          <div class="col-md-8">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="first-name-vertical">Judul</label>
-                                    <input type="text" id="first-name-vertical" class="form-control" name="judul" placeholder="judul" autocomplete="off" required="">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="email-id-vertical">Isi Pengaduan</label>
-                                    <textarea type="email" id="email-id-vertical" class="form-control" name="isi" placeholder="berikan alamat lengkap dan contoh: jalan rusak parah di depan Terminal Gubug Kec. Gubug Kabupaten Grobogan, mohon segera diperbaiki" autocomplete="off" required="" style="height: 270px;resize: none;"> </textarea>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="password-vertical">Kategori</label>
-                                <input type="text" id="password-vertical" class="form-control" name="kat" placeholder="kategori" autocomplete="off" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-info-vertical">Lokasi</label>
-                                <input type="text" id="contact-info-vertical" class="form-control" name="lokasi" placeholder="lokasi" autocomplete="off" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="password-vertical">Lampiran</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="lamp" id="inputGroupFile01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" id="contact-info-vertical" class="form-control" name="akun" value="{{Session::get('akun')}}" autocomplete="off" required="" readonly="">
-                            </div>
-                          </div>
-                    </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary"><i class="feather icon-check-circle"></i> Simpan</button>
-              </div>
-              </form>
-          </div>
-      </div>
-  </div>
+    
 
   @foreach($data as $ed)
   <div class="modal fade text-left" id="statdumas{{$ed->DUMAS_ID}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
