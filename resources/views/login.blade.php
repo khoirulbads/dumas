@@ -98,7 +98,7 @@
                                                     <span aria-hidden="true"><i class="feather icon-x-circle"></i></span>
                                                 </button>
                                             </div>
-                                        <?php } ?>
+                                        <?php }else{} ?>
                                         <div class="card-content">
                                             <div class="card-body pt-1">
                                                 <form action="{{ url('/actlog')}}" method="get">
